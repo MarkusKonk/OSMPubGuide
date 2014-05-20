@@ -1,0 +1,20 @@
+#map {
+	min-height: 0%;
+	position: absolute;
+	top: 0px;
+	bottom: 28px;
+	right: 0px;
+	left: 0px;
+}
+
+#chat:after { background:  url("http://www.wpclipart.com/food/beverages/alcohol/beer/beer_mug.png.html") 50% 50% no-repeat; background-size: 24px 22px; }
+
+		.nav-glyphish-example .ui-btn { padding-top: 40px !important; }
+		.nav-glyphish-example .ui-btn:after { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
+
+		#email:after { background:  url("") 50% 50% no-repeat; background-size: 24px 16px;  }
+		#login:after { background:  url("") 50% 50% no-repeat;  background-size: 12px 26px; }
+		#beer:after { background:  url("http://www.clipartbest.com/cliparts/9c4/oxB/9c4oxBdcE.png") 50% 50% no-repeat;  background-size: 22px 27px; }
+		#coffee:after { background:  url("") 50% 50% no-repeat;  background-size: 20px 24px; }
+		#skull:after { background:  url("") 50% 50% no-repeat;  background-size: 22px 24px; }
+		#bla:after { background:  url("") 50% 50% no-repeat;  background-size: 22px 24px; }		

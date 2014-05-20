@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+	<link rel="stylesheet" href="css/osmPubGuide.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+	
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+</head>
+
+<body>
+
+	<div id="map">
+	</div>
+		<div>		
+			<a href="#leftpanel2" data-role="button" data-inline="true" data-mini="true" style="position:absolute; left:1%;">Query</a>%;
+		</div>
+		<div data-role="panel" id="leftpanel2" data-position="left" data-position-fixed="true" data-display="push" data-dismissible="false" data-theme="a">			
+			<h3>Start your query</h3>
+				<label for="select-choice-mini" class="select">Choose a day</label>
+				<select name="select-choice-mini" id="select-choice-mini" data-mini="true" data-inline="true">
+					<option value="standard">Monday</option>
+					<option value="rush">Tuesday</option>
+					<option value="express">Wednesday</option>
+					<option value="overnight">Thursday</option>
+				</select>
+				<label for="date">Date: (alternative)</label>
+				<input type="date" name="date" id="date" value="">
+				<form>
+					<label for="slider-10">Time</label>
+					<input type="range" name="slider-10" id="slider-10" min="18.00" max="23.59" step=".01" value="18.00">
+					    <fieldset data-role="controlgroup">
+							<legend>Vertical:</legend>
+							<input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a">
+							<label for="checkbox-v-2a">Food</label>
+							<input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b">
+							<label for="checkbox-v-2b">Barrier free</label>
+						</fieldset>
+					    <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
+							<legend>Max beer price</legend>
+							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value="on" checked="checked">
+							<label for="radio-choice-t-6a"><2€</label>
+							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value="off">
+							<label for="radio-choice-t-6b"><4€</label>
+							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6c" value="other">
+							<label for="radio-choice-t-6c"><100€</label>
+						</fieldset>
+				</form>
+				<form>		
+						<fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
+							<legend>Event</legend>
+							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value="on" checked="checked">
+							<label for="radio-choice-t-6a"><img src='http://www.mq.edu.au/blogs/getsirius/wp-content/uploads/football.jpg' style = 'height:30px;'/></label>
+							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value="off">
+							<label for="radio-choice-t-6b"><img src='http://www.iconsdb.com/icons/preview/black/guitar-xxl.png' style = 'height:30px;'/></label>
+							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6c" value="other">
+							<label for="radio-choice-t-6c"><img src='http://dvuifktgrlu5d.cloudfront.net/images/content_module_image_upload/125943/prost.jpg' style = 'height:30px;'/></label>
+						</fieldset>
+				</form>
+				<label for="radio-choice-t-6c">Results</label>
+				<div data-role="collapsibleset" data-theme="a" data-content-theme="a">
+					<div data-role="collapsible">
+						<h3>Section 1</h3>
+					<p>I'm the collapsible content for section 1</p>
+					</div>
+					<div data-role="collapsible">
+						<h3>Section 2</h3>
+					<p>I'm the collapsible content for section 2</p>
+					</div>
+					<div data-role="collapsible">
+						<h3>Section 3</h3>
+					<p>I'm the collapsible content for section 3</p>
+					</div>
+				</div>
+            <a href="#" data-rel="close" data-role="button" data-theme="a" data-icon="" data-inline="true">Submit</a>
+			<a href="#demo-links" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Close panel</a>
+				
+		</div>
+		<div data-role="footer" class="nav-glyphish-example" data-theme="b"  data-position="fixed" >
+			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+				<ul>
+					<li><a href="#" id="email" data-icon="custom">Query2</a></li>
+					<li><a href="#" id="skull" data-icon="custom">Query3</a></li>
+					<li><a href="#" id="beer" data-icon="custom">Beer</a></li>
+					<li><a href="#" id="coffee" data-icon="custom">Query4</a></li>
+					<li><a href="#" id="bla" data-icon="custom">Information/Help</a></li>					
+				</ul>
+			</div>
+		</div>
+
+	<script>
+
+		var map = L.map('map',{ zoomControl: false }).setView([51.505, -0.09], 13,false );
+		
+		
+		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			id: 'examples.map-i86knfo3'
+		}).addTo(map);
+		
+		
+		
+		L.marker([51.5, -0.09]).addTo(map)
+			.bindPopup("Name</b><br />Opening hours</b><br />Adress</b><br />Website</b><br /><a href='#'>Link for more information</></b><br /><img src='gorilla.jpg' style = 'height:50px;'/>").openPopup();
+
+
+		var popup = L.popup();
+
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(map);
+		}
+
+		map.on('click', onMapClick);
+	</script>
+</body>
+</html>
