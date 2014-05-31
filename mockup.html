@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
 <head>
 	<title></title>
@@ -13,9 +13,7 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 </head>
-
 <body>
-
 	<div id="map">
 	</div>
 		<div>		
@@ -93,36 +91,33 @@
 				</ul>
 			</div>
 		</div>
+		<script>
+				var lon = 7.6286;
+				var lat = 51.9629;
+				var zoom = 14;
+				var zoomPosition = 'topright';
 
-	<script>
+				var map = L.map('map', { zoomControl: false }).setView([lat, lon], zoom);
+				map.addControl( L.control.zoom({position: zoomPosition}) )
+				
+				
+				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+				}).addTo(map);
+				
+				L.marker([51.9629, 7.6286]).addTo(map)
+				.bindPopup("Name</b><br />Opening hours</b><br />Adress</b><br />Website</b><br /><a href='#'>Link for more information</></b><br /><img src='gorilla.jpg' style = 'height:50px;'/>");
 
-		var map = L.map('map',{ zoomControl: false }).setView([51.505, -0.09], 13,false );
-		
-		
-		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-			maxZoom: 18,
-			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			id: 'examples.map-i86knfo3'
-		}).addTo(map);
-		
-		
-		
-		L.marker([51.5, -0.09]).addTo(map)
-			.bindPopup("Name</b><br />Opening hours</b><br />Adress</b><br />Website</b><br /><a href='#'>Link for more information</></b><br /><img src='gorilla.jpg' style = 'height:50px;'/>").openPopup();
+				var popup = L.popup();
+				
+				function onMapClick(e) {
+							popup
+								.setLatLng(e.latlng)
+								.setContent("You clicked the map at " + e.latlng.toString())
+								.openOn(map);
+				}
 
-
-		var popup = L.popup();
-
-		function onMapClick(e) {
-			popup
-				.setLatLng(e.latlng)
-				.setContent("You clicked the map at " + e.latlng.toString())
-				.openOn(map);
-		}
-
-		map.on('click', onMapClick);
-	</script>
+				map.on('click', onMapClick);
+		</script>
 </body>
 </html>
