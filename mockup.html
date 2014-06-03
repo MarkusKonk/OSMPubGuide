@@ -12,6 +12,10 @@
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+	
+	<script src="js/l.control.geosearch.js"></script>
+	<script src="js/l.geosearch.provider.openstreetmap.js"></script>
+	<link rel="stylesheet" href="css/l.geosearch.css" />
 </head>
 <body>
 	
@@ -97,6 +101,7 @@
 				var lat = 51.9629;
 				var zoom = 14;
 				var zoomPosition = 'topright';
+				var searchPosition = 'topcenter';
 
 				var map = L.map('map', { zoomControl: false }).setView([lat, lon], zoom);
 				map.addControl( L.control.zoom({position: zoomPosition}) )
@@ -119,6 +124,14 @@
 				}
 
 				map.on('click', onMapClick);
+				
+				//Leaflet Plugin: Search Bar (Provider: OpenStreetMap)
+				new L.Control.GeoSearch({
+				provider: new L.GeoSearch.Provider.OpenStreetMap(),
+				position: searchPosition,
+				showMarker: false
+				}).addTo(map);
+				
 		</script>
 </body>
 </html>
