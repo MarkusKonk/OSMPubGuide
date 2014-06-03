@@ -5,8 +5,24 @@
 				var searchPosition = 'topcenter';
 
 				var map = L.map('map', { zoomControl: false }).setView([lat, lon], zoom);
-				map.addControl( L.control.zoom({position: zoomPosition}) )
+				map.addControl( L.control.zoom({position: zoomPosition}) );
+				map.locate({setView: true, watch: true})
 				
+				function onLocationFound(e) {
+					var radius = e.accuracy / 2;
+
+					L.marker(e.latlng).addTo(map);
+
+					L.circle(e.latlng, radius).addTo(map);
+				}
+
+				map.on('locationfound', onLocationFound);
+				
+				function onLocationError(e) {
+					alert(e.message);
+				}
+
+				map.on('locationerror', onLocationError);
 				
 				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
