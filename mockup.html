@@ -12,7 +12,6 @@
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-	
 	<script src="js/l.control.geosearch.js"></script>
 	<script src="js/l.geosearch.provider.openstreetmap.js"></script>
 	<link rel="stylesheet" href="css/l.geosearch.css" />
@@ -96,42 +95,6 @@
 				</ul>
 			</div>
 		</div>
-		<script>
-				var lon = 7.6286;
-				var lat = 51.9629;
-				var zoom = 14;
-				var zoomPosition = 'topright';
-				var searchPosition = 'topcenter';
-
-				var map = L.map('map', { zoomControl: false }).setView([lat, lon], zoom);
-				map.addControl( L.control.zoom({position: zoomPosition}) )
-				
-				
-				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-				}).addTo(map);
-				
-				L.marker([51.9629, 7.6286]).addTo(map)
-				.bindPopup("Name</b><br />Opening hours</b><br />Adress</b><br />Website</b><br /><a href='#'>Link for more information</></b><br /><img src='gorilla.jpg' style = 'height:50px;'/>");
-
-				var popup = L.popup();
-				
-				function onMapClick(e) {
-							popup
-								.setLatLng(e.latlng)
-								.setContent("You clicked the map at " + e.latlng.toString())
-								.openOn(map);
-				}
-
-				map.on('click', onMapClick);
-				
-				//Leaflet Plugin: Search Bar (Provider: OpenStreetMap)
-				new L.Control.GeoSearch({
-				provider: new L.GeoSearch.Provider.OpenStreetMap(),
-				position: searchPosition,
-				showMarker: false
-				}).addTo(map);
-				
-		</script>
+	<script src="js/map.js"></script>
 </body>
 </html>
