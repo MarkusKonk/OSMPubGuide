@@ -17,53 +17,62 @@
 	<link rel="stylesheet" href="css/l.geosearch.css" />
 </head>
 <body>
-	
 		<div data-role="content">			
 		<div id="map"></div>
 			<a href="#leftpanel2" data-role="button" data-inline="true" data-mini="true" data-position="fixed">>></a>
 		</div>
 		<div data-role="panel" id="leftpanel2" data-position="left" data-position-fixed="true" data-display="push" data-dismissible="false" data-theme="a">			
-			<h3>Start your query</h3>
-				<label for="select-choice-mini" class="select">Choose a day</label>
+			<h3 id = "sidebarHeader" class="ui-bar ui-bar-a">Start your query</h3>
+				<!--<label for="select-choice-mini" class="select">Choose a day:</label>
 				<select name="select-choice-mini" id="select-choice-mini" data-mini="true" data-inline="true">
-					<option value="standard">Monday</option>
-					<option value="rush">Tuesday</option>
-					<option value="express">Wednesday</option>
-					<option value="overnight">Thursday</option>
-				</select>
+					<option value="Monday">Monday</option>
+					<option value="Tuesday">Tuesday</option>
+					<option value="Wednesday">Wednesday</option>
+					<option value="Thursday">Thursday</option>
+					<option value="Friday">Friday</option>
+					<option value="Saturday">Saturday</option>
+					<option value="Sunday">Sunday</option>
+				</select>-->
 				<label for="date">Date: (alternative)</label>
 				<input type="date" name="date" id="date" value="">
 				<form>
-					<label for="slider-10">Time</label>
-					<input type="range" name="slider-10" id="slider-10" min="18.00" max="23.59" step=".01" value="18.00">
+						<form>
+							<label for="time-1">Time:</label>
+							<input type="time" data-clear-btn="false" name="time-1" id="time-1" value="">
+						</form>
 					    <fieldset data-role="controlgroup">
-							<legend>Vertical:</legend>
 							<input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a">
 							<label for="checkbox-v-2a">Food</label>
-							<input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b">
-							<label for="checkbox-v-2b">Barrier free</label>
 						</fieldset>
-					    <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
-							<legend>Max beer price</legend>
-							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value="on" checked="checked">
-							<label for="radio-choice-t-6a"><2€</label>
-							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value="off">
-							<label for="radio-choice-t-6b"><4€</label>
-							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6c" value="other">
-							<label for="radio-choice-t-6c"><100€</label>
-						</fieldset>
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<legend>Events</legend>
+						<input type="checkbox" name="checkbox-6" id="checkbox-6">
+						<label for="checkbox-6"><2€</label>
+						<input type="checkbox" name="checkbox-7" id="checkbox-7" checked="">
+						<label for="checkbox-7"><4€</label>
+						<input type="checkbox" name="checkbox-8" id="checkbox-8">
+						<label for="checkbox-8"><100€</label>
+					</fieldset>
 				</form>
 				<form>		
-						<fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
-							<legend>Event</legend>
-							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value="on" checked="checked">
-							<label for="radio-choice-t-6a"><img src='http://www.mq.edu.au/blogs/getsirius/wp-content/uploads/football.jpg' style = 'height:30px;'/></label>
-							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value="off">
-							<label for="radio-choice-t-6b"><img src='http://www.iconsdb.com/icons/preview/black/guitar-xxl.png' style = 'height:30px;'/></label>
-							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6c" value="other">
-							<label for="radio-choice-t-6c"><img src='http://dvuifktgrlu5d.cloudfront.net/images/content_module_image_upload/125943/prost.jpg' style = 'height:30px;'/></label>
-						</fieldset>
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<legend>Beer prices</legend>
+						<input type="checkbox" name="checkbox-6" id="checkbox-6">
+						<label for="checkbox-6">Concert</label>
+						<input type="checkbox" name="checkbox-7" id="checkbox-7" checked="">
+						<label for="checkbox-7">Sport</label>
+						<input type="checkbox" name="checkbox-8" id="checkbox-8">
+						<label for="checkbox-8">Party</label>
+					</fieldset>
 				</form>
+				<fieldset data-role="controlgroup" data-mini="true">
+					<label for="checkbox-5">Barrier Free</label>
+					<input type="checkbox" name="checkbox-5" id="checkbox-5">
+				</fieldset>
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a"><input type="submit" value="Submit" data-theme="a"></div>
+					<div class="ui-block-b"><input type="reset" value="Reset" data-theme="b"></div>
+				</fieldset>	
 				<label for="radio-choice-t-6c">Results</label>
 				<div data-role="collapsibleset" data-theme="a" data-content-theme="a">
 					<div data-role="collapsible">
@@ -79,7 +88,7 @@
 					<p>I'm the collapsible content for section 3</p>
 					</div>
 				</div>
-            <a href="#" data-rel="close" data-role="button" data-theme="a" data-icon="" data-inline="true">Submit</a>
+
 			<a href="#demo-links" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Close panel</a>
 				
 		</div>
