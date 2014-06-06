@@ -11,19 +11,49 @@
 					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 				}).addTo(map);
 				
-			  marker=L.marker();
-				 
-				 marker.setLatLng( [51.9629, 7.6286] );
-				$('#mapElements').append("<div data-role='popup' href='popupBasic' id='popupArrow' class='ui-content' data-arrow='true'><p align='center'><a>Gorilla Bar</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td><table><tr><td>Mon - Thu:</td><td> 20.00 - 02.00</td><tr><td>Fri - Sat:</td><td> 20.00 - 03.00 </td></tr> </table></td></tr><tr><td valign='top'><b>Adress</b></td><td>Juedefelderstr. 54<br>48143 MUENSTER  </td></tr><tr><td valign='top'><b>Phone number</b></td><td>0251-4882188</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>info@gorilla-bar.de</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='http://www.gorilla-bar.de/' style='font-weight:normal'>http://www.gorilla-bar.de/</a>  </td></tr><tr><th  colspan='2' align='left'><a href='http://www.gorilla-bar.de/'>More information</a></th></tr></table><p align='center'><img src='gorilla1.jpg' style = 'height:80px;'/><img src='gorilla2.jpg' style = 'height:80px;'/></p></div>");
-               
-			   marker.on('click', function(e) {
-			   var m=e.target;
-			   var x=map.latLngToContainerPoint(m.getLatLng(),zoom).x;
-			   var y =map.latLngToContainerPoint(m.getLatLng(),zoom).y;
+			  //Popup
+				 function addPopup(lat,lng,pubName,id,opening_hours,adress,e_mail,phone,website,images)
+				 {
+				 var marker=L.marker();
+				 marker.setLatLng( [lat, lng] );
+				 //adress
+				 var adresses=adress.split(',');
+				 var adress="";
+				 for(var p in adresses){
+				 adress=adress+adresses[p]+"<br>";
+				 }
+				 //opening hours
+				var opening=opening_hours.split(',');
+				var openingHours="<table>";
+				 for(var i=0;i<opening.length;i++){
+				 var openArray=opening[i].split(":");
+                  openingHours =openingHours+ "<tr><td>"+openArray[0]+":</td>";
+				  openingHours = openingHours+"<td>"+openArray[1]+"</td></tr>";
+				 }
+				 openingHours=openingHours+" </table>";
+				 //images
+				 var pictures=images.split(',');
+				 var images="";
+				 for(var i=0;i<pictures.length;i++){
+				 images=images+"<img src="+pictures[i]+" style = 'height:80px;'/>";
+				 }
+				 //create popup element
+				$('#mapElements').append("<div data-role='popup' id='"+id+"' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>"+pubName+"</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>"+openingHours+"</td></tr><tr><td valign='top'><b>Adress</b></td><td>"+adress+" </td></tr><tr><td valign='top'><b>Phone number</b></td><td>"+phone+"</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>"+e_mail+"</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='"+website+"' style='font-weight:normal'>"+website+"</a>  </td></tr><tr><th  colspan='2' align='left'><a href='http://www.gorilla-bar.de/'>More information</a></th></tr></table><p align='center'>"+images+"</p></div>");
+                // bind popup to marker
+			     marker.on('click', function(e) {
+			    var m=e.target;
+			     var x=map.latLngToContainerPoint(m.getLatLng(),zoom).x;
+			     var y =map.latLngToContainerPoint(m.getLatLng(),zoom).y;
 				var offsetLeft=$('#leftpanel2').width();
-				$('#popupArrow').popup( 'open',{x:offsetLeft+x,y:y});
+				$("#"+id+"").popup( 'open',{x:offsetLeft+x,y:y});
                  });
 				marker.addTo(map);
+				}
+				//add dynamically popup
+				addPopup(51.9629, 7.6286,'Gorilla Bar',"GorillaBar","Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00",'Juedefelderstr. 54,48143 MUENSTER','info@gorilla-bar.de','0251-4882188','http://www.gorilla-bar.de/',"gorilla1.jpg,gorilla2.jpg");
+				addPopup(51.961, 7.65,'Cavete',"Cavete","Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00",'Juedefelderstr. 54,48143 MUENSTER','info@gorilla-bar.de','0251-4882188','http://www.gorilla-bar.de/',"gorilla1.jpg,gorilla2.jpg");
+
+				//Popup end
 				var popup = L.popup();
 				
 				function onMapClick(e) {
