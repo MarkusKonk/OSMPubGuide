@@ -92,4 +92,3 @@
 
 						map.on('locationerror', onLocationError);
 				}
-				
