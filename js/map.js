@@ -1,15 +1,39 @@
-				var lon = 7.6286;
-				var lat = 51.9629;
-				var zoom = 14;
-				var zoomPosition = 'topright';
-				var searchPosition = 'topcenter';
-
-				var map = L.map('map', { zoomControl: false }).setView([lat, lon], zoom);
-				map.addControl( L.control.zoom({position: zoomPosition}) );
+		var lon = 7.6286;
+		var lat = 51.9629;
+		var zoom = 14;
+		var zoomPosition = 'topright';
+		var searchPosition = 'topcenter';
+	   
+	    // different OSM layers
+		var osm  = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+								attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}), 
+		streets  = L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+								id: 'examples.map-i86knfo3',   
+								attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+								'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+								'Imagery ?<a href="http://mapbox.com">Mapbox</a>',}),
+		mapquest = L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
+								attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'});
+		
+		// map definition
+		var map = L.map('map', { 
+			zoomControl: false, 
+			center: [lat, lon],
+			zoom: zoom,
+			layers: [osm]
+			})
+			
+		map.addControl( L.control.zoom({position: zoomPosition}) );
 				
-				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-				}).addTo(map);
+		var baseLayers = {
+			"OpenStreetMap Mapnik": osm,
+			"OpenStreetMap MapQuest": mapquest,
+			"OpenStreetMap Streets": streets
+		};
+
+		// Layer switcher
+		L.control.layers(baseLayers).addTo(map)
+				
 				
 			  //Popup
 				 function addPopup(lat,lng,pubName,id,opening_hours,adress,e_mail,phone,website,images)
