@@ -92,3 +92,85 @@
 
 						map.on('locationerror', onLocationError);
 				}
+				
+	var guitar = L.icon({
+		iconUrl: 'css/images/concert2.png',
+
+		iconSize:     [32, 32], // size of the icon
+		iconAnchor:   [0, 0] // point of the icon which will correspond to marker's location
+		//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+	});			
+
+	var partyIcon = L.icon({
+		iconUrl: 'css/images/disco2.png',
+		iconSize:     [32, 32], // size of the icon
+		iconAnchor:   [0, 0] // point of the icon which will correspond to marker's location
+		//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+	});	
+	
+	var beerIcon = L.icon({
+		iconUrl: 'css/images/beer2.png',
+		iconSize:     [32, 32], // size of the icon
+		iconAnchor:   [0, 0] // point of the icon which will correspond to marker's location
+		//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+	});	
+	
+	var concert1 	= L.marker([51.96712, 7.60331], {icon: guitar}).bindPopup(''),
+		concert2    = L.marker([51.96801, 7.64451], {icon: guitar}).bindPopup(''),
+		concert3   	= L.marker([51.95437, 7.62983], {icon: guitar}).bindPopup(''),
+		concert4  	= L.marker([51.97626, 7.62451], {icon: guitar}).bindPopup('');			
+	var party1 		= L.marker([51.97552, 7.58769], {icon: partyIcon}).bindPopup(''),
+		party2    	= L.marker([51.97325, 7.58666], {icon: partyIcon}).bindPopup(''),
+		party3    	= L.marker([51.96188, 7.62546], {icon: partyIcon}).bindPopup(''),
+		paryt4  	= L.marker([51.95913, 7.62185], {icon: partyIcon}).bindPopup('');
+	var beer1 		= L.marker([51.97769, 7.64142], {icon: beerIcon}).bindPopup(''),
+		beer2    	= L.marker([51.96569, 7.66125], {icon: beerIcon}).bindPopup(''),
+		beer3    	= L.marker([51.95876, 7.63653], {icon: beerIcon}).bindPopup(''),
+		beer4	  	= L.marker([51.96251, 7.61335], {icon: beerIcon}).bindPopup('');		
+
+	var concerts = L.layerGroup([concert1, concert2, concert3, concert4]);		
+		partys	 = L.layerGroup([party1, party2, party3, paryt4]);
+		beers	 = L.layerGroup([beer1, beer2, beer3, beer4]);	
+		
+	var overlayMaps = {
+		"Concerts": concerts,
+		"Partys": partys,
+		"Beers": beers		
+	};
+	
+	$("#concert").click(function(){
+		if (map.hasLayer(concerts)){
+			map.removeLayer(concerts);}
+		else{
+			concerts.addTo(map);
+		}
+	});
+	
+	$("#party").click(function(){
+		if (map.hasLayer(partys)){
+			map.removeLayer(partys);}
+		else{
+			partys.addTo(map);
+		}
+	});
+	
+	$("#beer").click(function(){
+		if (map.hasLayer(beers)){
+			map.removeLayer(beers);}
+		else{
+			beers.addTo(map);
+		}
+	});	
+	
+	$("#all").click(function(){
+		if (map.hasLayer(beers) && map.hasLayer(concerts) && map.hasLayer(partys)){
+			map.removeLayer(beers);
+			map.removeLayer(concerts);
+			map.removeLayer(partys);
+		}
+		else{
+			beers.addTo(map);
+			concerts.addTo(map);
+			partys.addTo(map);
+		}
+	});	

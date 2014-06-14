@@ -18,9 +18,15 @@
 		.nav-glyphish-example .ui-btn { padding-top: 40px !important; }
 		.nav-glyphish-example .ui-btn:after { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
 
-		#email:after { background:  url("") 50% 50% no-repeat; background-size: 24px 16px;  }
-		#login:after { background:  url("") 50% 50% no-repeat;  background-size: 12px 26px; }
-		#beer:after { background:  url("") 50% 50% no-repeat;  background-size: 22px 27px; }
-		#coffee:after { background:  url("") 50% 50% no-repeat;  background-size: 20px 24px; }
-		#skull:after { background:  url("") 50% 50% no-repeat;  background-size: 22px 24px; }
-		#bla:after { background:  url("") 50% 50% no-repeat;  background-size: 22px 24px; }		
+		#search:after { background:  url("images/search.png") 50% 50% no-repeat; background-size: 32px 32px; background-color: white; }
+		#party:after { background:  url("images/disco2.png") 50% 50% no-repeat;  background-size: 32px 32px; background-color: white; }
+		#beer:after { background:  url("images/beer2.png") 50% 50% no-repeat;  background-size: 32px 32px; background-color: white; }
+		#concert:after { background:  url("images/concert2.png") 50% 50% no-repeat;  background-size: 32px 32px; background-color: white; }
+		#all:after { background:  url("images/all.png") 50% 50% no-repeat; width:96px !important; margin-left:-20% !important; background-size: 96px 32px; background-color: white; }
+		#info:after { background:  url("images/info.png") 50% 50% no-repeat;  background-size: 32px 32px; background-color: white;}
+		
+
+.mytab {
+    width: 16.6% !important;  /* 12.5% for 8 tabs wide */
+    clear: none !important;  /* Prevent line break caused by ui-block-a */
+}

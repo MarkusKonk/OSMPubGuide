@@ -20,7 +20,7 @@
 		<div data-role="content">			
 		<div id="map"></div>
 			<a href="#leftpanel2" data-role="button" data-inline="true" data-mini="true" data-position="fixed">>></a>
-			<a id="location" data-mini="true" data-role="button"  data-inline="true" data-position="fixed" onclick="CurrentLocation()"> <img src="images/icons-png/location-black.png" /> </a>
+			<a id="location" data-mini="true" data-role="button"  data-inline="true" data-position="fixed" onclick="CurrentLocation()"> <img src="css/images/icons-png/location-black.png" /> </a>
 		</div>
 		<div data-role="panel" id="leftpanel2" data-position="left" data-position-fixed="true" data-display="overlay" data-dismissible="false" data-theme="a">			
 			<h3 id = "sidebarHeader" class="ui-bar ui-bar-a">Start your query</h3>
@@ -75,19 +75,17 @@
 					<p>I'm the collapsible content for section 3</p>
 					</div>
 				</div>
-
-			<a href="#demo-links" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Close panel</a>
-				
+			<a href="#demo-links" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Close panel</a>				
 		</div>
-		
 		<div data-role="footer" class="nav-glyphish-example" data-theme="b"  data-position="fixed" >
 			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
 				<ul>
-					<li><a href="#leftpanel2" data-role="button" data-inline="true" data-mini="true">Searchbox</a></li>
-					<li><a href="#" id="skull" data-icon="custom">Query3</a></li>
-					<li><a href="#" id="beer" data-icon="custom">Beer</a></li>
-					<li><a href="#" id="coffee" data-icon="custom">Query4</a></li>
-					<li><a href="#" id="bla" data-icon="custom">Information/Help</a></li>							
+					<li class="mytab"><a href="#leftpanel2" id = "search" data-icon="custom" data-role="button" data-inline="true" data-mini="true">Searchbox</a></li>
+					<li class="mytab"><a href="#" id="party" data-icon="custom">Party</a></li>
+					<li class="mytab"><a href="#" id="beer" data-icon="custom">Beer</a></li>
+					<li class="mytab"><a href="#" id="concert" data-icon="custom">Concert</a></li>
+					<li class="mytab"><a href="#" id="all" data-icon="custom">All</a></li>
+					<li class="mytab"><a href="#" id="info" data-icon="custom">Information/Help</a></li>							
 				</ul>
 			</div>
 		</div>
