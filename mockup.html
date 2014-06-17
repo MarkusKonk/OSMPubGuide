@@ -9,22 +9,22 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
     <link rel="stylesheet" href="css/osmPubGuide.css" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-
+	<link rel="stylesheet" href="css/l.geosearch.css" />
+	<link rel="stylesheet" href="//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/src/L.Control.Locate.css" />
+ 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
     <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.js"></script>
     <script src="js/l.control.geosearch.js"></script>
     <script src="js/l.geosearch.provider.openstreetmap.js"></script>
-    <link rel="stylesheet" href="css/l.geosearch.css" />
+    <script src="//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/src/L.Control.Locate.js" ></script>
+	
 </head>
 
 <body>
     <div data-role="content">
         <div id="map"></div>
         <a href="#leftpanel2" id="open_sb" class="ui-btn ui-btn-b ui-shadow ui-icon-carat-r ui-btn-icon-notext"></a>
-        <a id="location" data-mini="true" data-role="button" data-inline="true" data-position="fixed" onclick="CurrentLocation()">
-            <img src="css/images/icons-png/location-black.png" />
-        </a>
     </div>
     <div id="leftpanel2" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="b" class="ui-corner-all ui-shadow">
         <h3 id="sidebarHeader" class="ui-bar ui-bar-a ui-corner-all">Start your query</h3>

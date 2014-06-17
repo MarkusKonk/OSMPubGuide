@@ -9,15 +9,12 @@
 		var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 		        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		    }),
-		    streets = L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-		        id: 'examples.map-i86knfo3',
-		        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-		            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-		            'Imagery ?<a href="http://mapbox.com">Mapbox</a>',
-		    }),
-		    mapquest = L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
-		        attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">'
-		    });
+		    mapquest = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', { 
+				attribution: 'Map &copy; <a href=\"http://openstreetmap.org\">OSM</a> | Tiles &copy; <a href=\"http://www.mapquest.com/\">MapQuest</a>', subdomains: '1234'
+			}),
+		    humanitarian = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { 
+				attribution: 'Map &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
+			});
 
 		 // map definition
 		var map = L.map('map', {
@@ -36,7 +33,7 @@
 		var baseLayers = {
 		    "OpenStreetMap Mapnik": osm,
 		    "OpenStreetMap MapQuest": mapquest,
-		    "OpenStreetMap Streets": streets
+			"OpenStreetMap Humanitarian": humanitarian
 		};
 
 		 // Layer switcher
@@ -106,28 +103,8 @@
 		    showMarker: false
 		}).addTo(map);
 
-		 //The function for determine user's current location with a marker and a circle
-		function CurrentLocation() {
-		    map.locate({
-		        setView: true,
-		        watch: true
-		    })
-
-		    function onLocationFound(e) {
-		        var radius = e.accuracy / 2;
-
-		        L.marker(e.latlng).addTo(map);
-		        L.circle(e.latlng, radius).addTo(map);
-		    }
-
-		    map.on('locationfound', onLocationFound);
-
-		    function onLocationError(e) {
-		        alert(e.message);
-		    }
-
-		    map.on('locationerror', onLocationError);
-		}
+		//Leaflet Plugin: Current Location (https://github.com/domoritz/leaflet-locatecontrol)
+		L.control.locate({follow: true}).addTo(map);
 
 		var guitar = L.icon({
 		    iconUrl: 'css/images/concert2.png',
