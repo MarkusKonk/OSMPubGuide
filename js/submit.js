@@ -1,12 +1,11 @@
 //get query parameters on click of the submit button and send request 
-$(document).on("click", "#submit", function(e){
-var date = $("#date").val();
-var time = $("#time-1").val();
-var food = $("#checkbox-v-2a").val();
+$("#submit").click(function(e){
+//var date = $("#datetime-4").val();
+var food = $("#checkbox-v-2a").is(":checked");
 
-var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox"
-alert(date +","+ time +","+ food); //just for testing
 
+//var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox"
+alert(food); //just for testing
 
 // request using XMLHttpRequest
 var xmlHttp = null;

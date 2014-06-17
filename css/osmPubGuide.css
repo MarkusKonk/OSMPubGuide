@@ -1,10 +1,19 @@
-#map {
-	min-height: 0%;
+.ui-content {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    bottom: 67px;
+    left: 0;
+    padding: 0 !important;
+}
+
+#map {	
 	position: absolute;
 	top: 0px;
 	bottom: 0px;
 	right: 0px;
 	left: 0px;
+	height: 100%;
 }
 
 #sidebarHeader{
@@ -29,4 +38,22 @@
 .mytab {
     width: 16.6% !important;  /* 12.5% for 8 tabs wide */
     clear: none !important;  /* Prevent line break caused by ui-block-a */
+}
+
+#leftpanel2{
+	opacity:0.90;
+	min-width: 250px;
+	width: 15%;
+}	
+
+
+#open_sb{
+	opacity:0.90;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	height: 10%;
+	min-width: 10px;
+	width: 1%;
+	position: fixed;
+	top: 40%;
 }
