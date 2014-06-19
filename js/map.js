@@ -5,7 +5,7 @@
 		var searchPosition = 'topcenter';
 
 
-		 // different OSM layers
+		// different OSM layers
 		var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 		        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		    }),
@@ -16,7 +16,7 @@
 				attribution: 'Map &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
 			});
 
-		 // map definition
+		// map definition
 		var map = L.map('map', {
 		    zoomControl: false,
 		    center: [lat, lon],
@@ -36,7 +36,7 @@
 			"OpenStreetMap Humanitarian": humanitarian
 		};
 
-		 // Layer switcher
+		 //Baselayer switcher
 		L.control.layers(baseLayers).addTo(map)
 
 
@@ -96,15 +96,18 @@
 
 		map.on('click', onMapClick);
 
-		 //Leaflet Plugin: Search Bar (Provider: OpenStreetMap)
+		 //Leaflet.Geosearch: Search Bar (Provider: OpenStreetMap)
 		new L.Control.GeoSearch({
 		    provider: new L.GeoSearch.Provider.OpenStreetMap(),
 		    position: searchPosition,
 		    showMarker: false
 		}).addTo(map);
 
-		//Leaflet Plugin: Current Location (https://github.com/domoritz/leaflet-locatecontrol)
-		L.control.locate({follow: true}).addTo(map);
+		//Leaflet.Locator: Current Location  
+		L.control.locate({
+		position: 'topleft',  // set the location of the control
+		follow: true,  // follow the user's location
+		}).addTo(map);
 
 		var guitar = L.icon({
 		    iconUrl: 'css/images/concert2.png',
