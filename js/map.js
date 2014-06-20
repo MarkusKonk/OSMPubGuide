@@ -72,9 +72,8 @@
 		            var m = e.target;
 		            var x = map.latLngToContainerPoint(m.getLatLng(), zoom).x;
 		            var y = map.latLngToContainerPoint(m.getLatLng(), zoom).y;
-		            var offsetLeft = $('#leftpanel2').width();
 		            $("#" + id + "").popup('open', {
-		                x: offsetLeft + x,
+		                x: x,
 		                y: y
 		            });
 		        });
