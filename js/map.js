@@ -38,11 +38,81 @@
 
 		 //Baselayer switcher
 		L.control.layers(baseLayers).addTo(map)
+		
+				var guitar = L.icon({
+		    iconUrl: 'css/images/concert2.png',
 
+		    iconSize: [32, 32], // size of the icon
+		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
+		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+		});
+        var guitarIcon = L.icon({
+		    iconUrl: 'css/images/concert2.png',
 
-		 //Popup
-		function addPopup(lat, lng, pubName, id, opening_hours, adress, e_mail, phone, website, images) {
-		        var marker = L.marker();
+		    iconSize: [32, 32], // size of the icon
+		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
+		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+		});
+		var partyIcon = L.icon({
+		    iconUrl: 'css/images/disco2.png',
+		    iconSize: [32, 32], // size of the icon
+		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
+		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+		});
+
+		var beerIcon = L.icon({
+		    iconUrl: 'css/images/beer2.png',
+		    iconSize: [32, 32], // size of the icon
+		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
+		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+		});
+        //Popup
+         //marker types
+		 var layerGuitar=L.layerGroup();
+		 var layerParty=L.layerGroup();
+		 var layerBeer=L.layerGroup();
+		 
+		 //
+		 function addLayerofMarkers(){
+		 layerGuitar.addTo(map);
+		 layerParty.addTo(map);
+		 layerBeer.addTo(map);
+		 }
+		 
+		 function deleteAllMarkerandPopups(){
+		 $( "[id^=popup_]" ).remove();
+			map.removeLayer(layerGuitar);
+			map.removeLayer(layerParty);
+			map.removeLayer(layerBeer);
+		    layerGuitar=L.layerGroup();
+		    layerParty=L.layerGroup();
+		    layerBeer=L.layerGroup();
+			}
+		 function addMarker(marker,type){
+		   var iconSize=null;
+		   if(type=="guitar"){
+		      marker.setIcon(guitarIcon);
+			  marker.addTo(layerGuitar);
+			  iconSize=guitarIcon.options.iconSize;
+			  }
+		   else{
+		      if(type=="party"){
+		          marker.setIcon(partyIcon);
+				  marker.addTo(layerParty);
+				  iconSize=partyIcon.options.iconSize;
+			 	}
+		      else{
+		         if(type=="beer"){
+		             marker.setIcon(beerIcon);
+					 marker.addTo(layerBeer);
+					 iconSize=guitarIcon.options.iconSize;
+			    	}
+		        }
+			}
+			return iconSize;
+		 }
+		 function addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images) {
+		        var marker=L.marker();
 		        marker.setLatLng([lat, lng]);
 		        //adress
 		        var adresses = adress.split(',');
@@ -66,23 +136,38 @@
 		            images = images + "<img src=" + pictures[i] + " style = 'height:80px;'/>";
 		        }
 		        //create popup element
-		        $('#mapElements').append("<div data-role='popup' id='" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a href='http://www.gorilla-bar.de/'>More information</a></th></tr></table><p align='center'>" + images + "</p></div>");
-		        // bind popup to marker
+				
+		        var popup="<div data-role='popup' id='popup_" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a href='http://www.gorilla-bar.de/'>More information</a></th></tr></table><p align='center'>" + images + "</p></div>";
+		        if($.mobile.activePage==null){
+				$("#mapElements").append(popup);
+				}
+				else{
+			    $.mobile.activePage.append(popup);
+				$.mobile.activePage.trigger("create");
+				}
+				//$.mobile.activePage.append( popup ).trigger( "pagecreate" );
+				 //add marker an return icon width and height
+				 var iconSize=addMarker(marker,type);
+				 var iconPopupWidth=parseInt(iconSize[0]/2);
+				 var iconPopupHeight=parseInt(iconSize[1]/2);
+				// bind popup to marker
 		        marker.on('click', function (e) {
 		            var m = e.target;
 		            var x = map.latLngToContainerPoint(m.getLatLng(), zoom).x;
 		            var y = map.latLngToContainerPoint(m.getLatLng(), zoom).y;
-		            $("#" + id + "").popup('open', {
-		                x: x,
-		                y: y
+		            $("#popup_" + id + "").popup('open', {
+		                x: x+iconPopupWidth,
+		                y: y+iconPopupHeight
 		            });
 		        });
-		        marker.addTo(map);
+		       
 		    }
+		
+			
 		    //add dynamically popup
-		addPopup(51.9629, 7.6286, 'Gorilla Bar', "GorillaBar", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
-		addPopup(51.961, 7.65, 'Cavete', "Cavete", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
-
+		addPopup(51.9629, 7.6286, 'Gorilla Bar', "GorillaBar","beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
+		addPopup(51.961, 7.65, 'Cavete', "Cavete","party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
+        //addLayerofMarkers();
 		 //Popup end
 		var popup = L.popup();
 
@@ -183,6 +268,11 @@
 		    } else {
 		        concerts.addTo(map);
 		    }
+			 if (map.hasLayer(layerGuitar)) {
+		        map.removeLayer(layerGuitar);
+		    } else {
+		        layerGuitar.addTo(map);
+		    }
 		});
 
 		$("#party").click(function () {
@@ -190,6 +280,11 @@
 		        map.removeLayer(partys);
 		    } else {
 		        partys.addTo(map);
+		    }
+			 if (map.hasLayer(layerParty)) {
+		        map.removeLayer(layerParty);
+		    } else {
+		        layerParty.addTo(map);
 		    }
 		});
 
@@ -199,6 +294,11 @@
 		    } else {
 		        beers.addTo(map);
 		    }
+			 if (map.hasLayer(layerBeer)) {
+		        map.removeLayer(layerBeer);
+		    } else {
+		        layerBeer.addTo(map);
+		    }
 		});
 
 		$("#all").click(function () {
@@ -206,10 +306,20 @@
 		        map.removeLayer(beers);
 		        map.removeLayer(concerts);
 		        map.removeLayer(partys);
+				
+				map.removeLayer(layerBeer);
+		        map.removeLayer(layerGuitar);
+		        map.removeLayer(layerParty);
+				//deleteAllMarkerandPopups();
+				
 		    } else {
 		        beers.addTo(map);
 		        concerts.addTo(map);
 		        partys.addTo(map);
+				
+				//addPopup(51.9629, 7.6286, 'Gorilla Bar', "GorillaBar","beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
+		        //addPopup(51.961, 7.65, 'Cavete', "Cavete","party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
+				addLayerofMarkers();
 		    }
 		});
 
