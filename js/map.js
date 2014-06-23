@@ -339,3 +339,7 @@
 		        "left": w
 		    }, 220);
 		});
+		
+		function moveTo(){
+			map.setView([51.96602, 7.61879],18);
+		}
