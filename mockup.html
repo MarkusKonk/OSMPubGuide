@@ -80,8 +80,8 @@
             </br>
         </form>
         <label for="radio-choice-t-6c">Results:</label>
-        <div data-role="collapsibleset" data-theme="a" data-content-theme="a">
-            <div data-role="collapsible">
+        <div data-role="collapsibleset" data-theme="a" data-content-theme="a" id="result" data-collapsed="true">
+            <div id="result_GorillaBar" data-role="collapsible">
                 <h3>Gorilla Bar</h3>
                 <p>Opening hours: 20-03 Uhr</p>
                 <p>Happy Hour: -</p>
@@ -90,11 +90,17 @@
 				<img src= "gorilla.jpg" style = "width:30%;"></img>	
 				<button onclick="moveTo();">Move to</button>
             </div>
-            <div data-role="collapsible">
+            <div data-role="collapsible" data-collapsed="true">
                 <h3>Visage</h3>
                 <p>I'm the collapsible content for section 2</p>
             </div>
-            <div data-role="collapsible">
+			<div id="result_Cavete" data-role="collapsible" data-collapsed="true">
+                <h3>Cavete</h3>
+                <p>I'm the collapsible content for section 2</p>
+            </div>
+			
+			
+            <div data-role="collapsible" data-collapsed="true">
                 <h3>Jovel</h3>
                 <p>I'm the collapsible content for section 3</p>
             </div>
