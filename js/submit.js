@@ -1,7 +1,7 @@
 //get query parameters on click of the submit button and send request 
 $("#submit").click(function(e){
 //var date = $("#datetime-4").val();
-var food = $("#checkbox-v-2a").is(":checked");
+var food = $("#cbFood").is(":checked");
 
 
 //var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox"

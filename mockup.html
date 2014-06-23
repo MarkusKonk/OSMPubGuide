@@ -29,14 +29,14 @@
     <div id="leftpanel2" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="b" class="ui-corner-all ui-shadow">
         <h3 id="sidebarHeader" class="ui-bar ui-bar-a ui-corner-all">Start your query</h3>
         <form>
-            <label for="datetime-4">Choose start date and time:</label>
-            <input type="datetime-local" data-clear-btn="true" name="datetime-4" id="datetime-4" value="" data-theme="a">
-            <label for="datetime-5">Choose end date and time:</label>
-            <input type="datetime-local" data-clear-btn="true" name="datetime-5" id="datetime-5" value="" data-theme="a">			
+            <label for="datePickerStart">Choose start date and time:</label>
+            <input type="datetime-local" data-clear-btn="true" name="datePickerStart" id="datePickerStart" value="" data-theme="a">
+            <label for="datePickerEnd">Choose end date and time:</label>
+            <input type="datetime-local" data-clear-btn="true" name="datePickerEnd" id="datePickerEnd" value="" data-theme="a">			
             </br>
             <fieldset data-role="controlgroup">
-                <input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a" data-theme="a">
-                <label for="checkbox-v-2a">Hungry?</label>
+                <input type="checkbox" name="cbFood" id="cbFood" data-theme="a">
+                <label for="cbFood">Hungry?</label>
             </fieldset>
             </br>
             <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-theme="a">
@@ -54,19 +54,19 @@
             </br>
             <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-theme="a">
                 <legend>Search for event</legend>
-                <input type="checkbox" name="checkbox-6" id="checkbox-6">
-                <label for="checkbox-6">Concert</label>
-                <input type="checkbox" name="checkbox-7" id="checkbox-7">
-                <label for="checkbox-7">Sport</label>
-                <input type="checkbox" name="checkbox-8" id="checkbox-8">
-                <label for="checkbox-8">Party</label>
-                <input type="checkbox" name="checkbox-9" id="checkbox-9">
-                <label for="checkbox-9">All</label>
+                <input type="checkbox" name="cbConcert" id="cbConcert">
+                <label for="cbConcert">Concert</label>
+                <input type="checkbox" name="cbSport" id="cbSport">
+                <label for="cbSport">Sport</label>
+                <input type="checkbox" name="cbParty" id="cbParty">
+                <label for="cbParty">Party</label>
+                <input type="checkbox" name="cbAll" id="cbAll">
+                <label for="cbAll">All</label>
             </fieldset>
             </br>
             <fieldset data-role="controlgroup" data-mini="true" data-theme="a">
-                <label for="checkbox-5">Barrier Free?</label>
-                <input type="checkbox" name="checkbox-5" id="checkbox-5">
+                <label for="cbBarrier">Barrier Free?</label>
+                <input type="checkbox" name="cbBarrier" id="cbBarrier">
             </fieldset>
             </br>
             <fieldset class="ui-grid-a" data-theme="a">
