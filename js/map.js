@@ -353,3 +353,9 @@
 		function moveTo(){
 			map.setView([51.96602, 7.61879],18);
 		}
+		
+		// No Scrollbar
+		$('html, body').css({
+		'overflow': 'hidden',
+		'height': '100%'
+		})
