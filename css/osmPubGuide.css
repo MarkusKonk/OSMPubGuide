@@ -1,5 +1,5 @@
 .ui-content {
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: 0;
     bottom: 67px;
