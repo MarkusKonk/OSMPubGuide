@@ -359,3 +359,20 @@
 		'overflow': 'hidden',
 		'height': '100%'
 		})
+		
+		// gets current date and time
+		function getnow() {
+			var now = new Date();
+			var tnow = "";
+			var month = "";
+			var minutes = "";
+			if ((parseInt(now.getMonth())+1) < 10) month = "0" + parseInt(now.getMonth()+1); 
+				else month = parseInt(now.getMonth()+1);
+			if ((parseInt(now.getMinutes())) < 10) minutes = "0" + parseInt(now.getMinutes()); 
+				else minutes = parseInt(now.getMinutes());
+			tnow = now.getFullYear() + "-" + month + "-" + now.getDate() + "T" + now.getHours() + ":" + minutes;
+			return tnow;
+		}
+
+		// set current date and time as default value in the datepicker
+		$("#datePickerStart").val(getnow());
