@@ -397,10 +397,16 @@
 				document.getElementById("result_text").style.display = "block";
 				deleteResults();
 				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible">'+
-								'<h3>Section 1</h3>'+
-								'<p>I am the collapsible content for section 1</p>'+
-								'</div><div data-role="collapsible"><h3>Section 2</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible"><h3>Section 3</h3><p>I am the collapsible content for section 3</p></div></div>';							
+								'<h3>Gorilla Bar</h3>'+
+								'<p>Opening hours: 20-03 Uhr</p>'+
+								'<p>Happy Hour: -</p>'+
+								'<p>Website:	</p>'+
+								'<a href="http://gorillabar.de/">link</a></p>'+
+								'<p>Telephone: 0123456789</p>'+
+								'<img src="gorilla.jpg" style="width:30%;" /></br>'+
+								'<button onclick="moveTo();">Move to</button></div>'+
+								'</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
+								'</div><div data-role="collapsible"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>';							
 							$( "#result" ).append( content ).collapsibleset( "refresh" );
 		});
 		
