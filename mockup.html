@@ -24,7 +24,9 @@
 				<a href="#leftpanel2" id="open_sb" class="ui-btn ui-btn-b ui-shadow ui-icon-carat-r ui-btn-icon-notext"></a>
 			</div>
 			<div id="leftpanel2" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="b" class="ui-corner-all ui-shadow ui-panel ui-panel-open ui-panel-inner">
-				<h3 id="sidebarHeader" class="ui-bar ui-bar-a ui-corner-all">Start your query</h3>
+			<div id = "query" data-role="collapsible" data-inset="false" data-collapsed="false">
+				        <legend>Start your Query</legend>
+				<!--<h3 id="sidebarHeader" class="ui-bar ui-bar-a ui-corner-all">Start your query</h3>-->
 				<form>
 					<label for="datePickerStart">Choose start date and time:</label> 
 					<input type="datetime-local" data-clear-btn="true" name="datePickerStart" id="datePickerStart" value="" data-theme="a" /> 
@@ -63,8 +65,9 @@
 							<div class="ui-block-b">
 								<button type="button" id="submit" class="ui-btn ui-btn-a ui-corner-all ui-shadow">Submit</button>
 							</div>
-					</fieldset>
+					</div>
 			</form>
+			</fieldset>
 			<label id = "result_text" for="radio-choice-t-6c" style = "display:none;">Results:</label>
 				<div data-role="collapsibleset" data-theme="a" data-content-theme="a" id="result" data-collapsed="true">
 					<!--<div id="result_GorillaBar" data-role="collapsible">

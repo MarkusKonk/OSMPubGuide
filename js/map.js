@@ -393,11 +393,17 @@
 		$("#datePickerStart").val(getnow());
 		
 		$("#submit").click(function () {
+				$("#query").collapsible( "option", "collapsed", true );
 				document.getElementById("result_text").style.display = "block";
+				deleteResults();
 				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible">'+
 								'<h3>Section 1</h3>'+
 								'<p>I am the collapsible content for section 1</p>'+
 								'</div><div data-role="collapsible"><h3>Section 2</h3><p>I am the collapsible content for section 2</p>'+
 								'</div><div data-role="collapsible"><h3>Section 3</h3><p>I am the collapsible content for section 3</p></div></div>';							
 							$( "#result" ).append( content ).collapsibleset( "refresh" );
-				});
+		});
+		
+		function deleteResults(){
+			document.getElementById("result").innerHTML = "";
+		}
