@@ -7,10 +7,15 @@ $("#submit").click(function (e) {
     var start = $("#datePickerStart").val();
     var end = $("#datePickerEnd").val();
     var hasFood = $("#cbFood").is(":checked");
-    var hasOutdoorSeats = false; //dummy value
-    var hasHappyHour = true; //dummy value
+    var hasOutdoorSeats = $("#outside").is(":checked");
+    var hasHappyHour = $("#happy_hour").is(":checked");
     var isBarrierFree = $("#cbBarrier").is(":checked");
-    var maximumBeerPrice = 1.75; //dummy value
+
+	var maximumBeerPrice = "";
+	$('input[name="radio-choice-h-6"]:checked').each(function() {
+		maximumBeerPrice = this.value;
+	});
+
 
     // get checked event types
     var eventType = "";
