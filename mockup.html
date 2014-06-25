@@ -23,8 +23,7 @@
       <div id="map"></div>
       <a href="#leftpanel2" id="open_sb" class="ui-btn ui-btn-b ui-shadow ui-icon-carat-r ui-btn-icon-notext"></a>
     </div>
-    <div id="leftpanel2" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="b"
-    class="ui-corner-all ui-shadow ui-panel ui-panel-open ui-panel-inner">
+    <div id="leftpanel2" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="b" class="ui-corner-all ui-shadow ui-panel ui-panel-open ui-panel-inner">
       <h3 id="sidebarHeader" class="ui-bar ui-bar-a ui-corner-all">Start your query</h3>
       <form>
       <label for="datePickerStart">Choose start date and time:</label> 
@@ -36,14 +35,15 @@
       <input type="checkbox" name="cbFood" id="cbFood" data-theme="a" /> 
       <label for="cbFood">Hungry?</label></fieldset>
       <br />
-      <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-theme="a">
-      <legend>Maximum Beer Prices</legend> 
-      <input type="checkbox" name="checkbox-6" id="checkbox-6" /> 
-      <label for="checkbox-6">&lt;2€</label> 
-      <input type="checkbox" name="checkbox-7" id="checkbox-7" /> 
-      <label for="checkbox-7">&lt;4€</label> 
-      <input type="checkbox" name="checkbox-8" id="checkbox-8" /> 
-      <label for="checkbox-8">&lt;100€</label></fieldset>
+		<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+			<legend>Max. beer price:</legend>
+			<input type="radio" name="radio-choice-h-6" id="checkbox-6" value="on" checked="checked">
+			<label for="checkbox-6"><2€</label>
+			<input type="radio" name="radio-choice-h-6" id="checkbox-7" value="off">
+			<label for="checkbox-7"><4€</label>
+			<input type="radio" name="radio-choice-h-6" id="checkbox-8" value="other">
+			<label for="checkbox-8"><10€</label>
+		</fieldset>
       <br />
       <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-theme="a">
       <legend>Search for event</legend> 
