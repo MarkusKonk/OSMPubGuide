@@ -28,7 +28,17 @@
 		    position: zoomPosition
 		}));
 
-
+		var bus_stops = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=bus_stop_labeled.mbtiles&z={z}&x={x}&y={y}', {
+				tms: true,
+				minZoom: 14,
+				maxZoom:18,
+			});
+			
+		var atm = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=ACM.mbtiles&z={z}&x={x}&y={y}', {
+			tms: true,
+			minZoom: 14,
+			maxZoom:18,
+		});	
 
 		var baseLayers = {
 		    "OpenStreetMap Mapnik": osm,
@@ -36,8 +46,13 @@
 			"OpenStreetMap Humanitarian": humanitarian
 		};
 
+		var overlays = {
+			"Busstops": bus_stops,
+			"atm": atm
+		};
+		
 		 //Baselayer switcher
-		L.control.layers(baseLayers).addTo(map)
+		L.control.layers(baseLayers, overlays).addTo(map)
 		
 				var guitar = L.icon({
 		    iconUrl: 'css/images/concert2.png',
