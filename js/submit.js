@@ -81,14 +81,93 @@ $("#submit").click(function (e) {
         type: "GET",
         url: "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=41.886288445510516&west=12.483901977539062&north=41.893700240146295&east=12.500102519989014",
         dataType: "xml",
-        success: function (data) {
-            console.log("Successfully queried API!");
-            console.log(data);
+        success: parseXML
+		//function (data) {
+            //console.log("Successfully queried API!");
+            //console.log(data);
+			
+			
+        //},
 
-        },
-
-        error: function (data) {
-            console.log("An error occurred while processing XML file.");
-        }
+        //error: function (data) {
+         //   console.log("An error occurred while processing XML file.");
+       // }
     });
+	
+	function parseXML(xml)
+	{		 	
+		$(xml).find('node').each(function(){
+			var id = $(this).attr('id');
+			var lat = $(this).attr('lat');
+			var lng = $(this).attr('lon');
+			var pubName, type, website, phone, adresscity, adressnr, adresscode, adressstreet, email, opening_hours;
+			$(this).find('tag').each(function(){
+				var actk = $(this).attr('k');
+				//adress
+				if (actk == 'addr:city')
+				{
+					adresscity = $(this).attr('v');
+				}
+				
+				if (actk == 'addr:housenumber')
+				{
+					adressnr = $(this).attr('v');
+				}
+				
+				if (actk == 'addr:postcode')
+				{
+					adresscode = $(this).attr('v');
+				}
+				
+				if (actk == 'addr:street')
+				{
+					adressstreet = $(this).attr('v');
+				}
+				
+				//name
+				if (actk == 'name')
+				{
+					pubName = $(this).attr('v');
+				}
+				
+				//type
+				if (actk == 'amenity')
+				{
+					type = $(this).attr('v');
+				}
+				
+				//website
+				if (actk == 'website')
+				{
+					website = $(this).attr('v');
+				}
+				
+				//email
+				if (actk == 'email')
+				{
+					email = $(this).attr('v');
+				}
+				
+				//phone
+				if (actk == 'phone')
+				{
+					phone = $(this).attr('v');
+				}
+				
+				//opening hours
+				if (actk == 'opening_hours')
+				{
+					opening_hours = $(this).attr('v');
+				}
+				
+			});
+			
+			adress=adressstreet+','+adressnr+','+adresscode+','+adresscity;
+			
+			console.log(lat, lng, pubName, id,type)
+			
+		//function deleteAllMarkerandPopups()
+		//function addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images) 
+		});
+	}
 });
