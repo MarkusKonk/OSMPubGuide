@@ -346,7 +346,7 @@
 
 		 // Move button used to open the sidebar when the sidebar is opened/closed 
 		$("#leftpanel2").on("panelbeforeopen", function (e) {
-		    var w = $("#leftpanel2").width();
+		    var w = $("#leftpanel2").width() + 30; //ui panel inner has padding of 15px
 		    w = "+=" + w + "px";
 		    $("#open_sb").animate({
 		        "left": w
@@ -354,7 +354,7 @@
 		});
 
 		$("#leftpanel2").on("panelbeforeclose", function (e) {
-		    var w = $("#leftpanel2").width();
+		    var w = $("#leftpanel2").width() + 30;
 		    w = "-=" + w + "px";
 		    $("#open_sb").animate({
 		        "left": w
