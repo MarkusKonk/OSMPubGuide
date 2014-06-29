@@ -105,10 +105,13 @@
 			}
 			
 		function openResultOfBar(){
-		var id=$(this).attr("id");
-		id=id.split("_")[1];
+        var id=$(this).attr("id");
+		id="#result_"+id.split("_")[1];
 		$("#leftpanel2").panel( "open");
-        $( "#result_"+id).collapsible( "expand" );
+        $(id).collapsible( "expand" );
+		var position = parseInt($(id).position().top);
+		$("#leftpanel2").scroll();
+		$('#leftpanel2').animate({ scrollTop: position}, 2000);
         }
 			
 		
@@ -392,7 +395,7 @@
 				$("#query").collapsible( "option", "collapsed", true );
 				document.getElementById("result_text").style.display = "block";
 				deleteResults();
-				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible">'+
+				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="result_GorillaBar">'+
 								'<h3>Gorilla Bar</h3>'+
 								'<p>Opening hours: 20-03 Uhr</p>'+
 								'<p>Happy Hour: -</p>'+
@@ -402,7 +405,23 @@
 								'<img src="gorilla.jpg" style="width:30%;" /></br>'+
 								'<button onclick="moveTo();">Move to</button></div>'+
 								'</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>';							
+								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
+                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
+								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
+                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
+								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
+                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
+								'</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
+                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
+								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
+                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
+								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
+                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
+								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
+                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
+								'</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
+                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
+								'</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>';							
 							$( "#result" ).append( content ).collapsibleset( "refresh" );
 		});
 		

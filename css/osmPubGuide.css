@@ -44,6 +44,7 @@
 	opacity:0.90;
 	min-width: 250px;
 	width: 15%;
+	overflow: auto;
 }	
 
 
@@ -68,7 +69,6 @@
     left: 0;
     right: 0;
     bottom: 0px;
-    overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
 
