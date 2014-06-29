@@ -197,6 +197,27 @@
 		addPopup(51.961, 7.65, 'Cavete', "Cavete","party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
         //addLayerofMarkers();
 		 //Popup end
+		 //introStart
+		 var intro = introJs();  
+		 intro.setOptions({  
+    steps: [  
+        {  
+          element: '#search',  
+          intro: 'To start your query click on this button.',  
+          position: 'top'  ,
+		  
+        },
+		{  
+          element: '#leftpanel2',  
+          intro: 'Here you can decide for what kind of pub you would like to search.',  
+          position: 'right' 
+        }
+       
+    ] ,"showStepNumbers":"no"
+}); 
+		 
+		 
+		 //IntroEnd
 		var popup = L.popup();
 
 		function onMapClick(e) {

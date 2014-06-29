@@ -5,18 +5,21 @@
 				content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
 				<title>OSM Pub Guide</title>
 				<meta charset="utf-8" />
+				<link rel="stylesheet" href="css/introjs.css" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 				<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
 				<link rel="stylesheet" href="css/osmPubGuide.css" />
 				<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 				<link rel="stylesheet" href="css/l.geosearch.css" />
 				<link rel="stylesheet" href="css/L.Control.Locate.css" />
+				
 				<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 				<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
 				<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 				<script src="js/l.control.geosearch.js"></script>
 				<script src="js/l.geosearch.provider.openstreetmap.js"></script>
 				<script src="js/L.Control.Locate.js"></script>
+				<script src="js/intro.js"></script>
 		</head>
 	<body>
 			<div data-role="content" style="overflow-y:hidden;">
@@ -84,7 +87,7 @@
 			<div data-role="navbar" class="nav-glyphish-example" data-grid="d">
 				<ul>
 					<li class="mytab">
-						<a href="#leftpanel2" id="search" data-icon="custom" data-role="button" data-inline="true" data-mini="true">Searchbox</a>
+						<a href="#leftpanel2" id="search" data-icon="custom" data-role="button" data-inline="true" data-mini="true" >Searchbox</a>
 					</li>
 					<li class="mytab">
 						<a href="#" id="party" data-icon="custom">Party</a>
@@ -109,7 +112,7 @@
 			<p>The OSM Pub Guide will help you to find the right pub in Münster.</p>
 			<p>Depending what you want to do you can search for different attributes. Use the <b>search box</b> to start your query. Clicking at
 				the different buttons at the bottom you can select what kinds of pubs should be seen on the map. If you would like to get
-				more information then you can use the introductional guide: <a>Start guide</a></p>
+				more information then you can use the introductional guide: <a onclick="$('#leftpanel2').panel( 'open');intro.start();">Start guide</a></p>
 			<p style="padding-top:3%">The OSM Pub Guide is a project of the Institude of Geoinformatics (ifgi). </p>
 				<a href="http://www.uni-muenster.de/Geoinformatics/">
 				<img src="ifgilogo.gif" style="width:17%;" />
