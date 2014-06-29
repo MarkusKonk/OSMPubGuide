@@ -20,7 +20,9 @@
 	margin-top:0%;
 }
 	
-
+.custom{
+left:25% !important
+}
 
 #chat:after { background:  url("") 50% 50% no-repeat; background-size: 24px 22px; }
 
@@ -74,10 +76,10 @@
 
 #popupHelp{
 padding:1%;
-width:50%;
+/*width:50%;*/
 line-height:1.5em;
-left:25%;
-right:25%;
+/*left:25%;
+right:25%;*/
 
 }
 #popupHelpHeader{

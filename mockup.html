@@ -107,15 +107,15 @@
 		<div data-role="popup" id="popupHelp" data-position-to="window">
 			<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
 			<p id="popupHelpHeader" align="middle">OSM Pub Guide 
-				<img src="beer.png" style="width:3%;padding-left:3%" />
+				<img src="beer.png" style="width:30px;padding-left:3%" />
 			</p>
 			<p>The OSM Pub Guide will help you to find the right pub in Münster.</p>
 			<p>Depending what you want to do you can search for different attributes. Use the <b>search box</b> to start your query. Clicking at
 				the different buttons at the bottom you can select what kinds of pubs should be seen on the map. If you would like to get
-				more information then you can use the introductional guide: <a onclick="$('#leftpanel2').panel( 'open');intro.start();">Start guide</a></p>
+				more information then you can use the introductional guide: <a onclick="$('#popupHelp').popup('close');intro.start();">Start guide</a></p>
 			<p style="padding-top:3%">The OSM Pub Guide is a project of the Institude of Geoinformatics (ifgi). </p>
 				<a href="http://www.uni-muenster.de/Geoinformatics/">
-				<img src="ifgilogo.gif" style="width:17%;" />
+				<img src="ifgilogo.gif" style="width:120px;" />
 				</a>
 		</div>
 		<div id="mapElements">
