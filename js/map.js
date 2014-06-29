@@ -15,6 +15,19 @@
 		    humanitarian = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { 
 				attribution: 'Map &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
 			});
+			
+		var bus_stops = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=bus_stop_labeled.mbtiles&z={z}&x={x}&y={y}', {
+		tms: true,
+		minZoom: 14,
+		maxZoom:18,
+		});
+			
+		var atm = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=ACM.mbtiles&z={z}&x={x}&y={y}', {
+			tms: true,
+			minZoom: 14,
+			maxZoom:18,
+		});	
+
 
 		// map definition
 		var map = L.map('map', {
@@ -23,36 +36,39 @@
 		    zoom: zoom,
 		    layers: [osm]
 		})
+		
+		//Leaflet.Geosearch: Search Bar (Provider: OpenStreetMap)
+		new L.Control.GeoSearch({
+		    provider: new L.GeoSearch.Provider.OpenStreetMap(),
+		    position: searchPosition,
+		    showMarker: false
+		}).addTo(map);
+
+		//Leaflet.Locator: Current Location  
+		L.control.locate({
+		position: 'topleft',  // set the location of the control
+		follow: true,  // follow the user's location
+		}).addTo(map);
 
 		 map.addControl(L.control.zoom({
 		    position: zoomPosition
 		}));
-
-		var bus_stops = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=bus_stop_labeled.mbtiles&z={z}&x={x}&y={y}', {
-				tms: true,
-				minZoom: 14,
-				maxZoom:18,
-			});
-			
-		var atm = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=ACM.mbtiles&z={z}&x={x}&y={y}', {
-			tms: true,
-			minZoom: 14,
-			maxZoom:18,
-		});	
 
 		var baseLayers = {
 		    "OpenStreetMap Mapnik": osm,
 		    "OpenStreetMap MapQuest": mapquest,
 			"OpenStreetMap Humanitarian": humanitarian
 		};
-
+		
 		var overlays = {
 			"Busstops": bus_stops,
 			"atm": atm
 		};
 		
-		 //Baselayer switcher
-		L.control.layers(baseLayers, overlays).addTo(map)
+		
+		
+		var layersControl = new L.Control.Layers(baseLayers, overlays);
+		map.addControl(layersControl);
 		
 				var guitar = L.icon({
 		    iconUrl: 'css/images/concert2.png',
@@ -279,18 +295,6 @@ intro.setOption('tooltipClass','');
 
 		map.on('click', onMapClick);
 
-		 //Leaflet.Geosearch: Search Bar (Provider: OpenStreetMap)
-		new L.Control.GeoSearch({
-		    provider: new L.GeoSearch.Provider.OpenStreetMap(),
-		    position: searchPosition,
-		    showMarker: false
-		}).addTo(map);
-
-		//Leaflet.Locator: Current Location  
-		L.control.locate({
-		position: 'topleft',  // set the location of the control
-		follow: true,  // follow the user's location
-		}).addTo(map);
 
 		var guitar = L.icon({
 		    iconUrl: 'css/images/concert2.png',
