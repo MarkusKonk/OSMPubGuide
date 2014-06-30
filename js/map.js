@@ -243,7 +243,7 @@
         },
 		  {  
           element: '.leaflet-control-geosearch',  
-          intro: 'Here you can serach for streets and pubs and more OSM Elements',  
+          intro: 'Here you can search for streets and pubs and more OSM Elements',  
           position: 'bottom'  ,
 		  
         },
@@ -267,6 +267,7 @@
         },
        
     ] ,"showStepNumbers":"no",
+	"exitOnOverlayClick":"false",
 	
 }); 
 intro.onchange(function(targetElement) { 
