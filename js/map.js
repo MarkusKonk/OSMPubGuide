@@ -66,9 +66,15 @@
 		};
 		
 		
-		
-		var layersControl = new L.Control.Layers(baseLayers, overlays);
+		//Layer Control just for desktop-version
+		$( document ).ready(function() {      
+		var isMobile = window.matchMedia("only screen and (max-width: 760px)");
+
+		if (!isMobile.matches) {
+        var layersControl = new L.Control.Layers(baseLayers, overlays);
 		map.addControl(layersControl);
+		}
+		});
 		
 				var guitar = L.icon({
 		    iconUrl: 'css/images/concert2.png',
