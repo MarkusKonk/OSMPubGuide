@@ -49,7 +49,8 @@
 		position: 'topleft',  // set the location of the control
 		follow: true,  // follow the user's location
 		}).addTo(map);
-
+	
+	 
 		 map.addControl(L.control.zoom({
 		    position: zoomPosition
 		}));
@@ -67,13 +68,9 @@
 		
 		
 		//Layer Control just for desktop-version
-		$( document ).ready(function() {      
-		var isMobile = window.matchMedia("only screen and (max-width: 760px)");
-
-		if (!isMobile.matches) {
+		$( document ).ready(function() { 
         var layersControl = new L.Control.Layers(baseLayers, overlays);
 		map.addControl(layersControl);
-		}
 		});
 		
 				var guitar = L.icon({
@@ -243,7 +240,7 @@
         },
 		  {  
           element: '.leaflet-control-geosearch',  
-          intro: 'Here you can search for streets and pubs and more OSM Elements',  
+          intro: 'Here you can serach for streets and pubs and more OSM Elements',  
           position: 'bottom'  ,
 		  
         },
@@ -267,7 +264,6 @@
         },
        
     ] ,"showStepNumbers":"no",
-	"exitOnOverlayClick":"false",
 	
 }); 
 intro.onchange(function(targetElement) { 
