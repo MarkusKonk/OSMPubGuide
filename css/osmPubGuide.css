@@ -47,6 +47,16 @@ left:25% !important
 	min-width: 250px;
 	width: 15%;
 	overflow: auto;
+	height: 80%;
+	position: fixed;
+	top: 0%;
+}
+
+#footer{
+	height: 10%;
+	min-height: 67px;
+	position: fixed;
+	top: 90%;
 }	
 
 
