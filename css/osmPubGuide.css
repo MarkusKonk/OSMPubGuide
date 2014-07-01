@@ -46,20 +46,8 @@ left:25% !important
 	opacity:0.90;
 	min-width: 250px;
 	width: 15%;
-	overflow: auto;
-	height: 80%;
-	position: fixed;
-	top: 0%;
 }
-
-#footer{
-	height: 10%;
-	min-height: 67px;
-	position: fixed;
-	top: 90%;
-}	
-
-
+	
 #open_sb{
 	opacity:0.90;
 	border-top-right-radius: 10px;
@@ -71,6 +59,10 @@ left:25% !important
 	top: 40%;
 }
 
+#footer{
+	height: 67px;
+}
+
 .ui-panel.ui-panel-open {
     position:fixed;
 }
@@ -80,7 +72,8 @@ left:25% !important
     top: 1px;
     left: 0;
     right: 0;
-    bottom: 0px;
+    bottom: 67px;
+	overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
 
