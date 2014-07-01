@@ -461,12 +461,18 @@ intro.setOption('tooltipClass','');
 			var now = new Date();
 			var tnow = "";
 			var month = "";
+			var day = "";
+			var hours = "";
 			var minutes = "";
 			if ((parseInt(now.getMonth())+1) < 10) month = "0" + parseInt(now.getMonth()+1); 
 				else month = parseInt(now.getMonth()+1);
+			if ((parseInt(now.getDate()) < 10)) day = "0" + parseInt(now.getDate()); 
+				else day = parseInt(now.getDate());
+			if ((parseInt(now.getHours()) < 10)) hours = "0" + parseInt(now.getHours()); 
+				else hours = parseInt(now.getHours());
 			if ((parseInt(now.getMinutes())) < 10) minutes = "0" + parseInt(now.getMinutes()); 
 				else minutes = parseInt(now.getMinutes());
-			tnow = now.getFullYear() + "-" + month + "-" + now.getDate() + "T" + now.getHours() + ":" + minutes;
+			tnow = now.getFullYear() + "-" + month + "-" + day + "T" + hours + ":" + minutes;
 			return tnow;
 		}
 
