@@ -166,8 +166,8 @@ $("#submit").click(function (e) {
 			
 			console.log(lat, lng, pubName, id,type)
 			
-		//function deleteAllMarkerandPopups()
-		//function addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images) 
+		//deleteAllMarkerandPopups();
+		//addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, images) 
 		});
 	}
 });
