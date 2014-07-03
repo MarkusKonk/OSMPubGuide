@@ -96,11 +96,23 @@ $("#submit").click(function (e) {
 	
 	function parseXML(xml)
 	{		 	
+		
 		$(xml).find('node').each(function(){
 			var id = $(this).attr('id');
 			var lat = $(this).attr('lat');
 			var lng = $(this).attr('lon');
-			var pubName, type, website, phone, adresscity, adressnr, adresscode, adressstreet, email, opening_hours;
+			var pubName="";
+			var type="";
+			var website="";
+			var phone="";
+			var adresscity="";
+			var adressnr="";
+			var adresscode="";
+			var adressstreet="";
+			var e_mail="";
+			opening_hours="";
+			images="";
+			
 			$(this).find('tag').each(function(){
 				var actk = $(this).attr('k');
 				//adress
@@ -145,7 +157,7 @@ $("#submit").click(function (e) {
 				//email
 				if (actk == 'email')
 				{
-					email = $(this).attr('v');
+					e_mail = $(this).attr('v');
 				}
 				
 				//phone
@@ -163,11 +175,13 @@ $("#submit").click(function (e) {
 			});
 			
 			adress=adressstreet+','+adressnr+','+adresscode+','+adresscity;
+			//opening_hours="Hallo";
 			
 			console.log(lat, lng, pubName, id,type)
+						
+			deleteAllMarkerandPopups();
+			addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images); 
 			
-		//function deleteAllMarkerandPopups()
-		//function addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images) 
 		});
 	}
 });

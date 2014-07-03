@@ -162,27 +162,41 @@
 		 function addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images) {
 		        var marker=L.marker();
 		        marker.setLatLng([lat, lng]);
-		        //adress
-		        var adresses = adress.split(',');
-		        var adress = "";
-		        for (var p in adresses) {
-		            adress = adress + adresses[p] + "<br>";
-		        }
-		        //opening hours
-		        var opening = opening_hours.split(',');
-		        var openingHours = "<table>";
-		        for (var i = 0; i < opening.length; i++) {
-		            var openArray = opening[i].split(":");
-		            openingHours = openingHours + "<tr><td>" + openArray[0] + ":</td>";
-		            openingHours = openingHours + "<td>" + openArray[1] + "</td></tr>";
-		        }
-		        openingHours = openingHours + " </table>";
+				
+				//adress	
+				if (adress!=',,,')
+				{    
+					var adresses = adress.split(',');
+					var adress = "";
+					for (var p in adresses) {
+						adress = adress + adresses[p] + "<br>";
+					}
+				}
+				
+				//opening hours
+				if (opening_hours!='')
+				{
+					var opening = opening_hours.split(',');
+					var openingHours = "<table>";
+					for (var i = 0; i < opening.length; i++) {
+						var openArray = opening[i].split(":");
+						openingHours = openingHours + "<tr><td>" + openArray[0] + ":</td>";
+						openingHours = openingHours + "<td>" + openArray[1] + "</td></tr>";
+					}	
+				
+					openingHours = openingHours + " </table>";
+				}
+				
 		        //images
-		        var pictures = images.split(',');
-		        var images = "";
-		        for (var i = 0; i < pictures.length; i++) {
-		            images = images + "<img src=" + pictures[i] + " style = 'height:80px;'/>";
-		        }
+		        if (images!=' ')
+				{
+					var pictures = images.split(',');
+					var images = "";
+					for (var i = 0; i < pictures.length; i++) {
+						images = images + "<img src=" + pictures[i] + " style = 'height:80px;'/>";
+					}
+				}
+				
 		        //create popup element
 				
 		        var popup="<div data-role='popup' id='popup_" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a id='popupResultLink_"+id+"'>More information</a></th></tr></table><p align='center'>" + images + "</p></div>";
@@ -195,6 +209,7 @@
 				}
 				//$.mobile.activePage.append( popup ).trigger( "pagecreate" );
 				 //add marker an return icon width and height
+				 type="beer";
 				 var iconSize=addMarker(marker,type);
 				 var iconPopupWidth=parseInt(iconSize[0]/2);
 				 var iconPopupHeight=parseInt(iconSize[1]/2);
@@ -208,9 +223,20 @@
 		                y: y+iconPopupHeight
 		            });
 		        });
+				
+				//missing: add Popup also to right layer
+				
+				
 		       //set link to result on sidebar
 			   $("#popupResultLink_"+id+"").click(openResultOfBar);
-		    }
+			   
+			   if (type=="beer")
+			   {
+					$("#beer").click();
+			   }
+			   
+			   }
+
 		
 			
 		    //add dynamically popup
@@ -359,8 +385,8 @@ intro.setOption('tooltipClass','');
 		    }).bindPopup('');
 
 		var concerts = L.layerGroup([concert1, concert2, concert3, concert4]);
-		partys = L.layerGroup([party1, party2, party3, paryt4]);
-		beers = L.layerGroup([beer1, beer2, beer3, beer4]);
+		var partys = L.layerGroup([party1, party2, party3, paryt4]);
+		var beers = L.layerGroup([beer1, beer2, beer3, beer4]);
 
 		var overlayMaps = {
 		    "Concerts": concerts,
