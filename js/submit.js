@@ -118,7 +118,7 @@ $("#submit").click(function (e) {
 			var beerprice="";
 			var outdoor_seatings="";
 			var happy_hour="";
-			var toc="";
+			var tuc="";
 			
 			$(this).find('tag').each(function(){
 				var actk = $(this).attr('k');
@@ -215,9 +215,9 @@ $("#submit").click(function (e) {
 				}
 				
 				//Time until closing
-				if (actk == 'toc')
+				if (actk == 'tuc')
 				{
-					toc = $(this).attr('v');
+					tuc = $(this).attr('v');
 				}
 				
 				
