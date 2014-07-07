@@ -96,6 +96,8 @@ $("#submit").click(function (e) {
 	
 	function parseXML(xml)
 	{		 	
+		//	The following array will contain all pubs, each entry is an object of type newPub.
+		//	var allEntries = new Array();
 		//pubs
 		$(xml).find('node').each(function(){
 			var id = $(this).attr('id');
@@ -230,8 +232,14 @@ $("#submit").click(function (e) {
 			deleteAllMarkerandPopups();
 			addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images); 
 			
+			//has to be filled with all attributes.
+			var pub = new newPub(pubname,mail,phone);
+			allEntries.push(pub);
+			
 		});
 		
+		//function does not exist, will be defined later by Markus
+		//insertResults(allEntries);
 		
 		//events
 		$(xml).find('event').each(function(){
@@ -291,3 +299,9 @@ $("#submit").click(function (e) {
 		});
 	}
 });
+
+function newPub(pubname,email,phone){
+	this.pubname = pubname;
+	this.email = email;
+	this.phone = phone;
+}
