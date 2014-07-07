@@ -225,7 +225,7 @@ $("#submit").click(function (e) {
 			
 			adress=adressstreet+','+adressnr+','+adresscode+','+adresscity+','+adresscountry;
 						
-			console.log(lat, lng, pubName, id,type)
+			console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
 						
 			deleteAllMarkerandPopups();
 			addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images); 
@@ -273,6 +273,21 @@ $("#submit").click(function (e) {
 			});	
 		}); //end events
 		
-		
+		//relations
+		$(xml).find('relation').each(function(){
+			$(this).find('member').each(function(){
+				//node
+				if (acttype == 'node')
+				{
+					nodeid = $(this).attr('ref');
+				}
+				
+				//event
+				if (acttype == 'event')
+				{
+					eventid = $(this).attr('ref');
+				}
+			});
+		});
 	}
 });
