@@ -306,6 +306,12 @@ $("#submit").click(function (e) {
 			});
 			
 			//for number of objects in event do: check if the current eventid is eventid then insert pubid, else go to the next
+			for (i=0; allevents.length; i++){
+				if (eventid == allevents[i].id)
+				{
+					allevents[i].pubid = nodeid;
+				}
+			}
 		});
 	}
 });
