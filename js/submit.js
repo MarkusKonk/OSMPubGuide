@@ -98,6 +98,7 @@ $("#submit").click(function (e) {
 	{		 	
 		//	The following array will contain all pubs, each entry is an object of type newPub.
 		var allpubs = new Array();
+		var allevents = new Array();
 		
 		//pubs
 		$(xml).find('node').each(function(){
@@ -281,6 +282,11 @@ $("#submit").click(function (e) {
 				}
 				
 			});	
+			
+			//has to be filled with all attributes.
+			var event = new newEvent(ev_id, ev_start, ev_end, ev_name, ev_type, ev_description, ev_cost);
+			allevents.push(event);
+			
 		}); //end events
 		
 		//relations
@@ -298,12 +304,13 @@ $("#submit").click(function (e) {
 					eventid = $(this).attr('ref');
 				}
 			});
+			
+			//for number of objects in event do: check if the current eventid is eventid then insert pubid, else go to the next
 		});
 	}
 });
 
 function newPub(id, lat, lng, pubName, type, adress, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc){
-	//lat, lng?, adress einzeln?
 	this.id = id;
 	this.lat = lat;
 	this.lng = lng;
@@ -319,4 +326,15 @@ function newPub(id, lat, lng, pubName, type, adress, email, phone, website, food
 	this.opening_hours = opening_hours;
 	this.happy_hour = happy_hour;
 	this.tuc = tuc;
+}
+
+function newEvent(ev_id, ev_start, ev_end, ev_name, ev_type, ev_description, ev_cost){
+	this.idpub="";
+	this.id = ev_id;
+	this.start = ev_start;
+	this.end = ev_end;
+	this.name = ev_name;
+	this.type = ev_type;
+	this.description = ev_description;
+	this.cost = ev_cost;
 }
