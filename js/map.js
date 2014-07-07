@@ -5,21 +5,25 @@
 		var searchPosition = 'topcenter';
 
 
-		// different OSM layers
+		// different OSM layers & own Tiles
 		var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 		        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		    }),
-		    mapquest = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', { 
-				attribution: 'Map &copy; <a href=\"http://openstreetmap.org\">OSM</a> | Tiles &copy; <a href=\"http://www.mapquest.com/\">MapQuest</a>', subdomains: '1234'
-			}),
 		    humanitarian = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { 
 				attribution: 'Map &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
+			}),
+			day = new L.tileLayer ('http://openpubguide-tile.uni-muenster.de:8001/tiles/{z}/{x}/{y}.png', {
+			maxZoom:22,
+			})
+			night = new L.tileLayer ('http://openpubguide-tile.uni-muenster.de:8002/tiles/{z}/{x}/{y}.png', {
+			maxZoom:22,
 			});
 			
+		// own Overlays	
 		var bus_stops = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=bus_stop_labeled.mbtiles&z={z}&x={x}&y={y}', {
-		tms: true,
-		minZoom: 14,
-		maxZoom:18,
+			tms: true,
+			minZoom: 14,
+			maxZoom:18,
 		});
 			
 		var atm = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=ACM.mbtiles&z={z}&x={x}&y={y}', {
@@ -57,17 +61,18 @@
 
 		var baseLayers = {
 		    "OpenStreetMap Mapnik": osm,
-		    "OpenStreetMap MapQuest": mapquest,
-			"OpenStreetMap Humanitarian": humanitarian
+			"OpenStreetMap Humanitarian": humanitarian,
+			"Day-Skin": day,
+			"Night-Skin": night
 		};
 		
 		var overlays = {
 			"Busstops": bus_stops,
-			"atm": atm
+			"Automatic Teller Machines (ATMs)": atm
 		};
 		
 		
-		//Layer Control just for desktop-version
+		// add Layers Control to mmap
 		$( document ).ready(function() { 
         var layersControl = new L.Control.Layers(baseLayers, overlays);
 		map.addControl(layersControl);
