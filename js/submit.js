@@ -97,7 +97,8 @@ $("#submit").click(function (e) {
 	function parseXML(xml)
 	{		 	
 		//	The following array will contain all pubs, each entry is an object of type newPub.
-		//	var allEntries = new Array();
+		var allpubs = new Array();
+		
 		//pubs
 		$(xml).find('node').each(function(){
 			var id = $(this).attr('id');
@@ -114,7 +115,7 @@ $("#submit").click(function (e) {
 			var adressnr="";
 			var adresscode="";
 			var adressstreet="";
-			var e_mail="";
+			var email="";
 			var opening_hours="";
 			var images="";
 			var beerprice="";
@@ -183,7 +184,7 @@ $("#submit").click(function (e) {
 				//email
 				if (actk == 'email')
 				{
-					e_mail = $(this).attr('v');
+					email = $(this).attr('v');
 				}
 				
 				//phone
@@ -230,11 +231,12 @@ $("#submit").click(function (e) {
 			console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
 						
 			deleteAllMarkerandPopups();
-			addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images); 
+			addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, images); 
 			
 			//has to be filled with all attributes.
-			//var pub = new newPub(pubname,mail,phone);
-			//allEntries.push(pub);
+			var pub = new newPub(id, lat, lng, pubName, type, adress, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc);
+			allpubs.push(pub);
+			console.log(allpubs);
 			
 		});
 		
@@ -300,8 +302,21 @@ $("#submit").click(function (e) {
 	}
 });
 
-function newPub(pubname,email,phone){
-	this.pubname = pubname;
+function newPub(id, lat, lng, pubName, type, adress, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc){
+	//lat, lng?, adress einzeln?
+	this.id = id;
+	this.lat = lat;
+	this.lng = lng;
+	this.pubname = pubName;
+	this.type = type;
+	this.adress = adress;
 	this.email = email;
 	this.phone = phone;
+	this.website = website;
+	this.food = food;
+	this.wheelchair = wheelchair;
+	this.beerprice = beerprice;
+	this.opening_hours = opening_hours;
+	this.happy_hour = happy_hour;
+	this.tuc = tuc;
 }
