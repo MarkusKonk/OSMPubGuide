@@ -96,22 +96,29 @@ $("#submit").click(function (e) {
 	
 	function parseXML(xml)
 	{		 	
-		
+		//pubs
 		$(xml).find('node').each(function(){
 			var id = $(this).attr('id');
 			var lat = $(this).attr('lat');
 			var lng = $(this).attr('lon');
 			var pubName="";
 			var type="";
+			var food="";
 			var website="";
+			var wheelchair="";
 			var phone="";
 			var adresscity="";
+			var adresscountry="";
 			var adressnr="";
 			var adresscode="";
 			var adressstreet="";
 			var e_mail="";
-			opening_hours="";
-			images="";
+			var opening_hours="";
+			var images="";
+			var beerprice="";
+			var outdoor_seatings="";
+			var happy_hour="";
+			var toc="";
 			
 			$(this).find('tag').each(function(){
 				var actk = $(this).attr('k');
@@ -119,6 +126,11 @@ $("#submit").click(function (e) {
 				if (actk == 'addr:city')
 				{
 					adresscity = $(this).attr('v');
+				}
+				
+				if (actk == 'addr:country')
+				{
+					adresscountry = $(this).attr('v');
 				}
 				
 				if (actk == 'addr:housenumber')
@@ -136,22 +148,34 @@ $("#submit").click(function (e) {
 					adressstreet = $(this).attr('v');
 				}
 				
-				//name
-				if (actk == 'name')
-				{
-					pubName = $(this).attr('v');
-				}
-				
 				//type
 				if (actk == 'amenity')
 				{
 					type = $(this).attr('v');
 				}
 				
+				//food
+				if (actk == 'food')
+				{
+					food = $(this).attr('v');
+				}
+				
+				//name
+				if (actk == 'name')
+				{
+					pubName = $(this).attr('v');
+				}
+								
 				//website
 				if (actk == 'website')
 				{
 					website = $(this).attr('v');
+				}
+				
+				//wheelchair
+				if (actk == 'wheelchair')
+				{
+					wheelchair = $(this).attr('v');
 				}
 				
 				//email
@@ -166,15 +190,40 @@ $("#submit").click(function (e) {
 					phone = $(this).attr('v');
 				}
 				
+				//beerprice
+				if (actk == 'price:beer')
+				{
+					beerprice = $(this).attr('v');
+				}
+				
+				//outdoor_seatings
+				if ((actk == 'outdoor_seatings') || (actk == 'beer_garden'))
+				{
+					outdoor_seatings = $(this).attr('v');
+				}
+				
 				//opening hours
 				if (actk == 'opening_hours')
 				{
 					opening_hours = $(this).attr('v');
 				}
 				
+				//happy_hour
+				if (actk == 'happy_hour')
+				{
+					happy_hour = $(this).attr('v');
+				}
+				
+				//Time until closing
+				if (actk == 'toc')
+				{
+					toc = $(this).attr('v');
+				}
+				
+				
 			});
 			
-			adress=adressstreet+','+adressnr+','+adresscode+','+adresscity;
+			adress=adressstreet+','+adressnr+','+adresscode+','+adresscity+','+adresscountry;
 						
 			console.log(lat, lng, pubName, id,type)
 						
@@ -182,5 +231,48 @@ $("#submit").click(function (e) {
 			addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images); 
 			
 		});
+		
+		
+		//events
+		$(xml).find('event').each(function(){
+			var ev_id = $(this).attr('id');
+			var ev_start = $(this).attr('start');
+			var ev_end = $(this).attr('end');
+			
+			var ev_name="";
+			var ev_type="";
+			var ev_description="";
+			var ev_cost="";
+			
+			$(this).find('tag').each(function(){
+				
+				//event name
+				if (actk == 'name')
+				{
+					ev_name = $(this).attr('v');
+				}
+				
+				//event type
+				if (actk == 'type')
+				{
+					ev_type = $(this).attr('v');
+				}
+				
+				//event description
+				if (actk == 'description')
+				{
+					ev_description = $(this).attr('v');
+				}
+				
+				//event cost
+				if (actk == 'cost')
+				{
+					ev_cost = $(this).attr('v');
+				}
+				
+			});	
+		}); //end events
+		
+		
 	}
 });
