@@ -233,8 +233,8 @@ $("#submit").click(function (e) {
 			addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images); 
 			
 			//has to be filled with all attributes.
-			var pub = new newPub(pubname,mail,phone);
-			allEntries.push(pub);
+			//var pub = new newPub(pubname,mail,phone);
+			//allEntries.push(pub);
 			
 		});
 		
