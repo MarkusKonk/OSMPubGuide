@@ -183,13 +183,13 @@ $("#submit").click(function (e) {
 				}
 				
 				//email
-				if (actk == 'email')
+				if (actk == 'contact:email')
 				{
 					email = $(this).attr('v');
 				}
 				
 				//phone
-				if (actk == 'phone')
+				if (actk == 'contact:phone')
 				{
 					phone = $(this).attr('v');
 				}
