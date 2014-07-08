@@ -129,8 +129,8 @@
 		$("#leftpanel2").panel( "open");
         $(id).collapsible( "expand" );
 		var position = parseInt($(id).position().top);
-		$("#leftpanel2").scroll();
-		$('#leftpanel2').animate({ scrollTop: position}, 2000);
+		$(".ui-panel-inner").scroll();
+		$('.ui-panel-inner').animate({ scrollTop: position}, 2000);
         }
 			
 		
