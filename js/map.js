@@ -473,6 +473,16 @@
 		markers.addLayer(concerts);
 		markers.addTo(map);
 
+		/*
+		Needed soon.
+		function createResultList(pubs){
+			var pubArray = pubs;
+			for (var i = 0; i < pubs.length; i++){
+				
+			}
+		}
+		*/
+		
 		$("#submit").click(function () {
 		    $("#query").collapsible("option", "collapsed", true);
 		    document.getElementById("result_text").style.display = "block";
