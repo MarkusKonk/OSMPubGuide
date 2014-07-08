@@ -67,7 +67,7 @@
 		
 		// add Layers Control to mmap
 		$( document ).ready(function() { 
-        var layersControl = new L.Control.Layers(baseLayers, overlays, ({position: zoomPosition}));
+        var layersControl = new L.Control.Layers(baseLayers, overlays, ({position: 'topright'}));
 		map.addControl(layersControl);
 		});
 		
