@@ -2,7 +2,7 @@
 // request returns an xml file
 $("#submit").click(function (e) {
     //default bounding box
-    var bbox = "41.886288445510516,12.483901977539062,41.893700240146295,12.500102519989014"
+    var bbox = "51.961,7.596,51.9335,7.672"
     //get query parameters
     var start = $("#datePickerStart").val();
     var end = $("#datePickerEnd").val();
@@ -79,7 +79,7 @@ $("#submit").click(function (e) {
     // request using jQuery
     $.ajax({
         type: "GET",
-        url: "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=41.886288445510516&west=12.483901977539062&north=41.893700240146295&east=12.500102519989014",
+        url: "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.933&west=7.596&north=51.961&east=7.672",
         dataType: "xml",
         success: parseXML
 		//function (data) {
