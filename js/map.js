@@ -93,7 +93,7 @@
 		});
 
 		var beerIcon = L.icon({
-		    iconUrl: 'css/images/beer2.png',
+		    iconUrl: 'css/images/beer3.ico',
 		    iconSize: [32, 32], // size of the icon
 		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
 		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -323,51 +323,37 @@ intro.setOption('tooltipClass','');
 		map.on('click', onMapClick);
 
 
-		var guitar = L.icon({
-		    iconUrl: 'css/images/concert2.png',
-
-		    iconSize: [32, 32], // size of the icon
-		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
-		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-		});
-
-		var partyIcon = L.icon({
-		    iconUrl: 'css/images/disco2.png',
-		    iconSize: [32, 32], // size of the icon
-		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
-		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-		});
 
 		var beerIcon = L.icon({
-		    iconUrl: 'css/images/beer2.png',
+		    iconUrl: 'css/images/beer3.ico',
 		    iconSize: [32, 32], // size of the icon
 		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
 		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 		});
 
 		var concert1 = L.marker([51.96712, 7.60331], {
-		        icon: guitar
+		        icon: beerIcon
 		    }).bindPopup(''),
 		    concert2 = L.marker([51.96801, 7.64451], {
-		        icon: guitar
+		        icon: beerIcon
 		    }).bindPopup(''),
 		    concert3 = L.marker([51.95437, 7.62983], {
-		        icon: guitar
+		        icon: beerIcon
 		    }).bindPopup(''),
 		    concert4 = L.marker([51.97626, 7.62451], {
-		        icon: guitar
+		        icon: beerIcon
 		    }).bindPopup('');
 		var party1 = L.marker([51.97552, 7.58769], {
-		        icon: partyIcon
+		        icon: beerIcon
 		    }).bindPopup(''),
 		    party2 = L.marker([51.97325, 7.58666], {
-		        icon: partyIcon
+		        icon: beerIcon
 		    }).bindPopup(''),
 		    party3 = L.marker([51.96188, 7.62546], {
-		        icon: partyIcon
+		        icon: beerIcon
 		    }).bindPopup(''),
 		    paryt4 = L.marker([51.95913, 7.62185], {
-		        icon: partyIcon
+		        icon: beerIcon
 		    }).bindPopup('');
 		var beer1 = L.marker([51.97769, 7.64142], {
 		        icon: beerIcon
