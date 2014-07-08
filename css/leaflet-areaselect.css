@@ -1,6 +1,6 @@
 .leaflet-areaselect-shade {
     position: absolute;
-    background: rgba(0,0,0, 0.4);
+    background: rgba(0,0,0, 0.2);
 }
 .leaflet-areaselect-handle {
     position: absolute;
@@ -9,7 +9,10 @@
     -moz-box-shadow: 1px 1px rgba(0,0,0, 0.2);
     -webkit-box-shadow: 1px 1px rgba(0,0,0, 0.2);
     box-shadow: 1px 1px rgba(0,0,0, 0.2);
-    width: 14px;
-    height: 14px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    width: 12px;
+    height: 12px;
     cursor: move;
 }

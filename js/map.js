@@ -3,6 +3,7 @@
 		var zoom = 14;
 		var zoomPosition = 'topleft';
 		var searchPosition = 'topcenter';
+		var b_box = false;
 
 
 		 //own Tile-Services (Back-End Group)
@@ -501,4 +502,20 @@
 
 		function deleteResults() {
 		    document.getElementById("result").innerHTML = "";
+		}
+		
+		// Add functionality for adding the BBox-Tool
+		if (b_box) {
+			// Add it to the map
+			var areaSelect = L.areaSelect({width:200, height:300});
+			areaSelect.addTo(map);
+			
+			// Read the bouding box
+			var bounds = areaSelect.getBounds();
+			
+			// Get a callback when the bounds change
+			areaSelect.on("change", function() {
+			    console.log("Southwest:", this.getBounds()._southWest.lat, this.getBounds()._southWest.lng,
+					" Northeast:", this.getBounds()._northEast.lat, this.getBounds()._northEast.lng);
+			});
 		}
