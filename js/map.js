@@ -129,8 +129,8 @@
 		$("#leftpanel2").panel( "open");
         $(id).collapsible( "expand" );
 		var position = parseInt($(id).position().top);
-		$("#leftpanel2").scroll();
-		$('#leftpanel2').animate({ scrollTop: position}, 2000);
+		$(".ui-panel-inner").scroll();
+		$('.ui-panel-inner').animate({ scrollTop: position}, 2000);
         }
 			
 		
@@ -488,6 +488,11 @@ intro.setOption('tooltipClass','');
 
 		// set current date and time as default value in the datepicker
 		$("#datePickerStart").val(getnow());
+		
+		var markers = new L.MarkerClusterGroup();
+			markers.addLayer(beers);
+			markers.addLayer
+			markers.addTo(map);
 		
 		$("#submit").click(function () {
 				$("#query").collapsible( "option", "collapsed", true );
