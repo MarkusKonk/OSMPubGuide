@@ -5,26 +5,13 @@
 		var searchPosition = 'topcenter';
 
 
-		// different OSM layers & own Tiles
+		//own Tile-Services (Back-End Group)
 		var day = new L.tileLayer ('http://openpubguide-tile.uni-muenster.de:8001/tiles/{z}/{x}/{y}.png', {
 			maxZoom:22,
 			})
 			night = new L.tileLayer ('http://openpubguide-tile.uni-muenster.de:8002/tiles/{z}/{x}/{y}.png', {
 			maxZoom:22,
 			});
-			
-		// own Overlays	
-		var bus_stops = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=bus_stop_labeled.mbtiles&z={z}&x={x}&y={y}', {
-			tms: true,
-			minZoom: 14,
-			maxZoom:18,
-		});
-			
-		var atm = new L.tileLayer('http://openpubguide-tile.uni-muenster.de/tiles_demo/mbtiles.php?db=ACM.mbtiles&z={z}&x={x}&y={y}', {
-			tms: true,
-			minZoom: 14,
-			maxZoom:18,
-		});	
 
 
 		// map definition
@@ -49,9 +36,32 @@
 		//Leaflet.Locator: Current Location  
 		L.control.locate({
 		position: 'topleft',  // set the location of the control
-		follow: true,  // follow the user's location
+		drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
+		follow: false,  // follow the user's location
+		setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true
+		keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
+		stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
+		remainActive: false, // if true locate control remains active on click even if the user's location is in view.
+		markerClass: L.circleMarker, // L.circleMarker or L.marker
+		circleStyle: {},  // change the style of the circle around the user's location
+		markerStyle: {},
+		followCircleStyle: {},  // set difference for the style of the circle around the user's location while following
+		followMarkerStyle: {},
+		icon: 'icon-location',  // `icon-location` or `icon-direction`
+		iconLoading: 'icon-spinner  animate-spin',  // class for loading icon
+		circlePadding: [0, 0], // padding around accuracy circle, value is passed to setBounds
+		metric: true,  // use metric or imperial units
+		onLocationError: function(err) {alert(err.message)},  // define an error callback function
+		onLocationOutsideMapBounds:  function(context) { // called when outside map boundaries
+				alert(context.options.strings.outsideMapBoundsMsg);
+		},
+		strings: {
+        title: "Show me where I am",  // title of the locate control
+        popup: "You are within {distance} {unit} from this point",  // text to appear if user clicks on circle
+        outsideMapBoundsMsg: "You seem located outside the boundaries of the map" // default message for onLocationOutsideMapBounds
+		},
+		locateOptions: {}  // define location options e.g enableHighAccuracy: true or maxZoom: 10
 		}).addTo(map);
-	
 	 
 
 		var baseLayers = {
@@ -59,15 +69,10 @@
 			"Nightview": night
 		};
 		
-		var overlays = {
-			"Busstops": bus_stops,
-			"Automatic Teller Machines (ATMs)": atm
-		};
-		
 		
 		// add Layers Control to mmap
 		$( document ).ready(function() { 
-        var layersControl = new L.Control.Layers(baseLayers, overlays, ({position: 'topright'}));
+        var layersControl = new L.Control.Layers(baseLayers);
 		map.addControl(layersControl);
 		});
 		
