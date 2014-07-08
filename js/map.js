@@ -14,7 +14,6 @@
 		    maxZoom: 22,
 		});
 
-
 		 // map definition
 		var map = L.map('map', {
 		    zoomControl: false,
@@ -24,7 +23,7 @@
 		})
 
 		 //Leaflet.Geosearch: Search Bar (Provider: OpenStreetMap)
-		 new L.Control.GeoSearch({
+		new L.Control.GeoSearch({
 		    provider: new L.GeoSearch.Provider.OpenStreetMap(),
 		    position: searchPosition,
 		    showMarker: false
@@ -73,14 +72,14 @@
 		};
 
 
-		 // add Layers Control to mmap
+		// add Layers Control to mmap
 		$(document).ready(function () {
 		    var layersControl = new L.Control.Layers(baseLayers);
 		    map.addControl(layersControl);
 		});
 
 
-		 // icon representing pubs on the map
+		// icon representing pubs on the map
 		var beerIcon = L.icon({
 		    iconUrl: 'css/images/beer3.ico',
 		    iconSize: [32, 32], // size of the icon
@@ -89,13 +88,12 @@
 		});
 
 
-		 //Popup
-		 //marker types
+		//Popup
+		//marker types
 		var layerGuitar = L.layerGroup();
 		var layerParty = L.layerGroup();
 		var layerBeer = L.layerGroup();
 
-		 //
 		function addLayerofMarkers() {
 		    layerGuitar.addTo(map);
 		    layerParty.addTo(map);
@@ -123,7 +121,6 @@
 		    $(".ui-panel-inner").scroll();
 		    $('.ui-panel-inner').animate({scrollTop: position}, 2000);
 		}
-
 
 		function addMarker(marker, type) {
 		    var iconSize = null;
@@ -216,18 +213,17 @@
 		    if (type == "beer") {
 		        $("#beer").click();
 		    }
-
 		}
 
 
 
-		 //add dynamically popup
+		//add dynamically popup
 		addPopup(51.96602, 7.61879, 'Gorilla Bar', "GorillaBar", "beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
 		addPopup(51.961, 7.65, 'Cavete', "Cavete", "party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
 		 //addLayerofMarkers();
 		 //Popup end
 		 
-		 //introStart
+		//introStart
 		var intro = introJs();
 		intro.setOptions({
 		    steps: [{
@@ -275,7 +271,8 @@
 		    if (targetElement.className == "introjsFloatingElement") {
 		        $('#leftpanel2').panel('open');
 		        $(".introjs-overlay").css("opacity", "0");
-		    } else {
+		    } 
+			else {
 		        $('#leftpanel2').panel('close');
 		        $(".introjs-overlay").css("opacity", "1");
 
@@ -287,7 +284,8 @@
 		intro.onbeforechange(function (targetElement) {
 		    if (targetElement.className == "ui-grid-d") {
 		        intro.setOption('tooltipClass', 'custom');
-		    } else {
+		    } 
+			else {
 		        intro.setOption('tooltipClass', '');
 		    }
 		});
@@ -299,9 +297,6 @@
 		function onMapClick(e) {}
 
 		map.on('click', onMapClick);
-
-
-
 
 		var concert1 = L.marker([51.96712, 7.60331], {
 		        icon: beerIcon
