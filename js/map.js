@@ -489,6 +489,11 @@ intro.setOption('tooltipClass','');
 		// set current date and time as default value in the datepicker
 		$("#datePickerStart").val(getnow());
 		
+		var markers = new L.MarkerClusterGroup();
+			markers.addLayer(beers);
+			markers.addLayer
+			markers.addTo(map);
+		
 		$("#submit").click(function () {
 				$("#query").collapsible( "option", "collapsed", true );
 				document.getElementById("result_text").style.display = "block";
