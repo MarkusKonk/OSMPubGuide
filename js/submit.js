@@ -242,7 +242,7 @@ $("#submit").click(function (e) {
 		});
 		
 		//function does not exist, will be defined later by Markus
-		//insertResults(allEntries);
+		//createResultList(allpubs);
 		
 		//events
 		$(xml).find('event').each(function(){
