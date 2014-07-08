@@ -277,7 +277,7 @@
 		 {  
           element: '.leaflet-control-zoom',  
           intro: 'With this button you can zoom in and out of the map.',  
-          position: 'left'  ,
+          position: 'right'  ,
 		  
         },
 		 {  
