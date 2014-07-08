@@ -456,9 +456,21 @@
 		 // set current date and time as default value in the datepicker
 		$("#datePickerStart").val(getnow());
 
-		var markers = new L.MarkerClusterGroup();
+		var markers = new L.MarkerClusterGroup({ 
+			spiderfyOnMaxZoom: true, 
+			showCoverageOnHover: true, 
+			zoomToBoundsOnClick: true,
+		
+			iconCreateFunction: function (cluster) {
+				var markers = cluster.getAllChildMarkers();
+
+				return L.divIcon({ html: markers.length, className: 'mycluster', iconSize: L.point(40, 40) })
+				}
+			});			
+		
 		markers.addLayer(beers);
-		markers.addLayer
+		markers.addLayer(partys);
+		markers.addLayer(concerts);
 		markers.addTo(map);
 
 		$("#submit").click(function () {
