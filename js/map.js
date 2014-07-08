@@ -5,25 +5,25 @@
 		var searchPosition = 'topcenter';
 
 
-		//own Tile-Services (Back-End Group)
-		var day = new L.tileLayer ('http://openpubguide-tile.uni-muenster.de:8001/tiles/{z}/{x}/{y}.png', {
-			maxZoom:22,
-			})
-			night = new L.tileLayer ('http://openpubguide-tile.uni-muenster.de:8002/tiles/{z}/{x}/{y}.png', {
-			maxZoom:22,
-			});
+		 //own Tile-Services (Back-End Group)
+		var day = new L.tileLayer('http://openpubguide-tile.uni-muenster.de:8001/tiles/{z}/{x}/{y}.png', {
+		    maxZoom: 22,
+		})
+		 night = new L.tileLayer('http://openpubguide-tile.uni-muenster.de:8002/tiles/{z}/{x}/{y}.png', {
+		    maxZoom: 22,
+		});
 
 
-		// map definition
+		 // map definition
 		var map = L.map('map', {
 		    zoomControl: false,
 		    center: [lat, lon],
 		    zoom: zoom,
 		    layers: [day]
 		})
-		
-		//Leaflet.Geosearch: Search Bar (Provider: OpenStreetMap)
-		new L.Control.GeoSearch({
+
+		 //Leaflet.Geosearch: Search Bar (Provider: OpenStreetMap)
+		 new L.Control.GeoSearch({
 		    provider: new L.GeoSearch.Provider.OpenStreetMap(),
 		    position: searchPosition,
 		    showMarker: false
@@ -32,309 +32,275 @@
 		map.addControl(L.control.zoom({
 		    position: zoomPosition
 		}));
-		
-		//Leaflet.Locator: Current Location  
+
+		 //Leaflet.Locator: Current Location  
 		L.control.locate({
-		position: 'topleft',  // set the location of the control
-		drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
-		follow: false,  // follow the user's location
-		setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true
-		keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
-		stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
-		remainActive: false, // if true locate control remains active on click even if the user's location is in view.
-		markerClass: L.circleMarker, // L.circleMarker or L.marker
-		circleStyle: {},  // change the style of the circle around the user's location
-		markerStyle: {},
-		followCircleStyle: {},  // set difference for the style of the circle around the user's location while following
-		followMarkerStyle: {},
-		icon: 'icon-location',  // `icon-location` or `icon-direction`
-		iconLoading: 'icon-spinner  animate-spin',  // class for loading icon
-		circlePadding: [0, 0], // padding around accuracy circle, value is passed to setBounds
-		metric: true,  // use metric or imperial units
-		onLocationError: function(err) {alert(err.message)},  // define an error callback function
-		onLocationOutsideMapBounds:  function(context) { // called when outside map boundaries
-				alert(context.options.strings.outsideMapBoundsMsg);
-		},
-		strings: {
-        title: "Show me where I am",  // title of the locate control
-        popup: "You are within {distance} {unit} from this point",  // text to appear if user clicks on circle
-        outsideMapBoundsMsg: "You seem located outside the boundaries of the map" // default message for onLocationOutsideMapBounds
-		},
-		locateOptions: {}  // define location options e.g enableHighAccuracy: true or maxZoom: 10
+		    position: 'topleft', // set the location of the control
+		    drawCircle: true, // controls whether a circle is drawn that shows the uncertainty about the location
+		    follow: false, // follow the user's location
+		    setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true
+		    keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
+		    stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
+		    remainActive: false, // if true locate control remains active on click even if the user's location is in view.
+		    markerClass: L.circleMarker, // L.circleMarker or L.marker
+		    circleStyle: {}, // change the style of the circle around the user's location
+		    markerStyle: {},
+		    followCircleStyle: {}, // set difference for the style of the circle around the user's location while following
+		    followMarkerStyle: {},
+		    icon: 'icon-location', // `icon-location` or `icon-direction`
+		    iconLoading: 'icon-spinner  animate-spin', // class for loading icon
+		    circlePadding: [0, 0], // padding around accuracy circle, value is passed to setBounds
+		    metric: true, // use metric or imperial units
+		    onLocationError: function (err) {
+		        alert(err.message)
+		    }, // define an error callback function
+		    onLocationOutsideMapBounds: function (context) { // called when outside map boundaries
+		        alert(context.options.strings.outsideMapBoundsMsg);
+		    },
+		    strings: {
+		        title: "Show me where I am", // title of the locate control
+		        popup: "You are within {distance} {unit} from this point", // text to appear if user clicks on circle
+		        outsideMapBoundsMsg: "You seem located outside the boundaries of the map" // default message for onLocationOutsideMapBounds
+		    },
+		    locateOptions: {} // define location options e.g enableHighAccuracy: true or maxZoom: 10
 		}).addTo(map);
-	 
+
 
 		var baseLayers = {
-			"Dayview": day,
-			"Nightview": night
+		    "Dayview": day,
+		    "Nightview": night
 		};
-		
-		
-		// add Layers Control to mmap
-		$( document ).ready(function() { 
-        var layersControl = new L.Control.Layers(baseLayers);
-		map.addControl(layersControl);
-		});
-		
-				var guitar = L.icon({
-		    iconUrl: 'css/images/concert2.png',
 
-		    iconSize: [32, 32], // size of the icon
-		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
-		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-		});
-        var guitarIcon = L.icon({
-		    iconUrl: 'css/images/concert2.png',
 
-		    iconSize: [32, 32], // size of the icon
-		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
-		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-		});
-		var partyIcon = L.icon({
-		    iconUrl: 'css/images/disco2.png',
-		    iconSize: [32, 32], // size of the icon
-		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
-		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+		 // add Layers Control to mmap
+		$(document).ready(function () {
+		    var layersControl = new L.Control.Layers(baseLayers);
+		    map.addControl(layersControl);
 		});
 
+
+		 // icon representing pubs on the map
 		var beerIcon = L.icon({
 		    iconUrl: 'css/images/beer3.ico',
 		    iconSize: [32, 32], // size of the icon
 		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
 		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 		});
-        //Popup
-         //marker types
-		 var layerGuitar=L.layerGroup();
-		 var layerParty=L.layerGroup();
-		 var layerBeer=L.layerGroup();
-		 
+
+
+		 //Popup
+		 //marker types
+		var layerGuitar = L.layerGroup();
+		var layerParty = L.layerGroup();
+		var layerBeer = L.layerGroup();
+
 		 //
-		 function addLayerofMarkers(){
-		 layerGuitar.addTo(map);
-		 layerParty.addTo(map);
-		 layerBeer.addTo(map);
-		 }
-		 
-		 function deleteAllMarkerandPopups(){
-		 $( "[id^=popup_]" ).remove();
-			map.removeLayer(layerGuitar);
-			map.removeLayer(layerParty);
-			map.removeLayer(layerBeer);
-		    layerGuitar=L.layerGroup();
-		    layerParty=L.layerGroup();
-		    layerBeer=L.layerGroup();
-			}
-			
-		function openResultOfBar(){
-        var id=$(this).attr("id");
-		id=id.split("_")[1];
-		 $("#popup_"+id).popup("close");
-		id="#result_"+id;
-		$("#leftpanel2").panel( "open");
-        $(id).collapsible( "expand" );
-		var position = parseInt($(id).position().top);
-		$(".ui-panel-inner").scroll();
-		$('.ui-panel-inner').animate({ scrollTop: position}, 2000);
-        }
-			
-		
-		 function addMarker(marker,type){
-		   var iconSize=null;
-		   if(type=="guitar"){
-		      marker.setIcon(guitarIcon);
-			  marker.addTo(layerGuitar);
-			  iconSize=guitarIcon.options.iconSize;
-			  }
-		   else{
-		      if(type=="party"){
-		          marker.setIcon(partyIcon);
-				  marker.addTo(layerParty);
-				  iconSize=partyIcon.options.iconSize;
-			 	}
-		      else{
-		         if(type=="beer"){
-		             marker.setIcon(beerIcon);
-					 marker.addTo(layerBeer);
-					 iconSize=guitarIcon.options.iconSize;
-			    	}
+		function addLayerofMarkers() {
+		    layerGuitar.addTo(map);
+		    layerParty.addTo(map);
+		    layerBeer.addTo(map);
+		}
+
+		function deleteAllMarkerandPopups() {
+		    $("[id^=popup_]").remove();
+		    map.removeLayer(layerGuitar);
+		    map.removeLayer(layerParty);
+		    map.removeLayer(layerBeer);
+		    layerGuitar = L.layerGroup();
+		    layerParty = L.layerGroup();
+		    layerBeer = L.layerGroup();
+		}
+
+		function openResultOfBar() {
+		    var id = $(this).attr("id");
+		    id = id.split("_")[1];
+		    $("#popup_" + id).popup("close");
+		    id = "#result_" + id;
+		    $("#leftpanel2").panel("open");
+		    $(id).collapsible("expand");
+		    var position = parseInt($(id).position().top);
+		    $(".ui-panel-inner").scroll();
+		    $('.ui-panel-inner').animate({scrollTop: position}, 2000);
+		}
+
+
+		function addMarker(marker, type) {
+		    var iconSize = null;
+		    if (type == "guitar") {
+		        marker.setIcon(beerIcon);
+		        marker.addTo(layerGuitar);
+		        iconSize = beerIcon.options.iconSize;
+		    } else {
+		        if (type == "party") {
+		            marker.setIcon(beerIcon);
+		            marker.addTo(layerParty);
+		            iconSize = beerIcon.options.iconSize;
+		        } else {
+		            if (type == "beer") {
+		                marker.setIcon(beerIcon);
+		                marker.addTo(layerBeer);
+		                iconSize = beerIcon.options.iconSize;
+		            }
 		        }
-			}
-			return iconSize;
-		 }
-		 function addPopup(lat, lng, pubName, id,type, opening_hours, adress, e_mail, phone, website, images) {
-		        var marker=L.marker();
-		        marker.setLatLng([lat, lng]);
-				
-				//adress	
-				if (adress!=',,,')
-				{    
-					var adresses = adress.split(',');
-					var adress = "";
-					for (var p in adresses) {
-						adress = adress + adresses[p] + "<br>";
-					}
-				}
-				
-				//opening hours
-				if (opening_hours!='')
-				{
-					var opening = opening_hours.split(',');
-					var openingHours = "<table>";
-					for (var i = 0; i < opening.length; i++) {
-						var openArray = opening[i].split(":");
-						openingHours = openingHours + "<tr><td>" + openArray[0] + ":</td>";
-						openingHours = openingHours + "<td>" + openArray[1] + "</td></tr>";
-					}	
-				
-					openingHours = openingHours + " </table>";
-				}
-				
-		        //images
-		        if (images!=' ')
-				{
-					var pictures = images.split(',');
-					var images = "";
-					for (var i = 0; i < pictures.length; i++) {
-						images = images + "<img src=" + pictures[i] + " style = 'height:80px;'/>";
-					}
-				}
-				
-		        //create popup element
-				
-		        var popup="<div data-role='popup' id='popup_" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a id='popupResultLink_"+id+"'>More information</a></th></tr></table><p align='center'>" + images + "</p></div>";
-		        if($.mobile.activePage==null){
-				$("#mapElements").append(popup);
-				}
-				else{
-			    $.mobile.activePage.append(popup);
-				$.mobile.activePage.trigger("create");
-				}
-				//$.mobile.activePage.append( popup ).trigger( "pagecreate" );
-				 //add marker an return icon width and height
-				 type="beer";
-				 var iconSize=addMarker(marker,type);
-				 var iconPopupWidth=parseInt(iconSize[0]/2);
-				 var iconPopupHeight=parseInt(iconSize[1]/2);
-				// bind popup to marker
-		        marker.on('click', function (e) {
-		            var m = e.target;
-		            var x = map.latLngToContainerPoint(m.getLatLng(), zoom).x;
-		            var y = map.latLngToContainerPoint(m.getLatLng(), zoom).y;
-		            $("#popup_" + id + "").popup('open', {
-		                x: x+iconPopupWidth,
-		                y: y+iconPopupHeight
-		            });
+		    }
+		    return iconSize;
+		}
+
+		function addPopup(lat, lng, pubName, id, type, opening_hours, adress, e_mail, phone, website, images) {
+		    var marker = L.marker();
+		    marker.setLatLng([lat, lng]);
+
+		    //adress	
+		    if (adress != ',,,') {
+		        var adresses = adress.split(',');
+		        var adress = "";
+		        for (var p in adresses) {
+		            adress = adress + adresses[p] + "<br>";
+		        }
+		    }
+
+		    //opening hours
+		    if (opening_hours != '') {
+		        var opening = opening_hours.split(',');
+		        var openingHours = "<table>";
+		        for (var i = 0; i < opening.length; i++) {
+		            var openArray = opening[i].split(":");
+		            openingHours = openingHours + "<tr><td>" + openArray[0] + ":</td>";
+		            openingHours = openingHours + "<td>" + openArray[1] + "</td></tr>";
+		        }
+		        openingHours = openingHours + " </table>";
+		    }
+
+		    //images
+		    if (images != ' ') {
+		        var pictures = images.split(',');
+		        var images = "";
+		        for (var i = 0; i < pictures.length; i++) {
+		            images = images + "<img src=" + pictures[i] + " style = 'height:80px;'/>";
+		        }
+		    }
+
+		    
+			//create popup element
+		    var popup = "<div data-role='popup' id='popup_" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a id='popupResultLink_" + id + "'>More information</a></th></tr></table><p align='center'>" + images + "</p></div>";
+		    if ($.mobile.activePage == null) {
+		        $("#mapElements").append(popup);
+		    } else {
+		        $.mobile.activePage.append(popup);
+		        $.mobile.activePage.trigger("create");
+		    }
+		    //$.mobile.activePage.append( popup ).trigger( "pagecreate" );
+		    //add marker an return icon width and height
+		    type = "beer";
+		    var iconSize = addMarker(marker, type);
+		    var iconPopupWidth = parseInt(iconSize[0] / 2);
+		    var iconPopupHeight = parseInt(iconSize[1] / 2);
+		    // bind popup to marker
+		    marker.on('click', function (e) {
+		        var m = e.target;
+		        var x = map.latLngToContainerPoint(m.getLatLng(), zoom).x;
+		        var y = map.latLngToContainerPoint(m.getLatLng(), zoom).y;
+		        $("#popup_" + id + "").popup('open', {
+		            x: x + iconPopupWidth,
+		            y: y + iconPopupHeight
 		        });
-				
-				//missing: add Popup also to right layer
-				
-				
-		       //set link to result on sidebar
-			   $("#popupResultLink_"+id+"").click(openResultOfBar);
-			   
-			   if (type=="beer")
-			   {
-					$("#beer").click();
-			   }
-			   
-			   }
+		    });
 
-		
-			
-		    //add dynamically popup
-		addPopup(51.96602, 7.61879, 'Gorilla Bar', "GorillaBar","beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
-		addPopup(51.961, 7.65, 'Cavete', "Cavete","party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
-        //addLayerofMarkers();
+		    //missing: add Popup also to right layer
+
+
+		    //set link to result on sidebar
+		    $("#popupResultLink_" + id + "").click(openResultOfBar);
+
+		    if (type == "beer") {
+		        $("#beer").click();
+		    }
+
+		}
+
+
+
+		 //add dynamically popup
+		addPopup(51.96602, 7.61879, 'Gorilla Bar', "GorillaBar", "beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
+		addPopup(51.961, 7.65, 'Cavete', "Cavete", "party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
+		 //addLayerofMarkers();
 		 //Popup end
-		 //introStart
-		 var intro = introJs();  
-		 intro.setOptions({  
-    steps: [  
-        {  
-          element: '#search',  
-          intro: 'To start your query click on this button. Then the panel opens.',  
-          position: 'top'  ,
-		  
-        },
-		{  
-          intro: 'With this panel you can decide for what kind of pub you would like to search.',  
-        },
-		
-		 {  
-          element: '.ui-grid-d',  
-          intro: 'With this button and the two more left you can decide which kind of pubs should be shown in the map',  
-          position: 'top'  ,
-		  
-        },
-		  {  
-          element: '.leaflet-control-geosearch',  
-          intro: 'Here you can serach for streets and pubs and more OSM Elements',  
-          position: 'bottom'  ,
-		  
-        },
-		 {  
-          element: '.leaflet-control-locate',  
-          intro: 'With this button you can find your actual location.',  
-          position: 'bottom'  ,
-		  
-        },
-		 {  
-          element: '.leaflet-control-zoom',  
-          intro: 'With this button you can zoom in and out of the map.',  
-          position: 'right'  ,
-		  
-        },
-		 {  
-          element: '.leaflet-control-layers',  
-          intro: 'Here you can choose different maps.',  
-          position: 'left'  ,
-		  
-        },
-       
-    ] ,"showStepNumbers":"no",
-	
-}); 
-intro.onchange(function(targetElement) { 
-
-  if(targetElement.className=="introjsFloatingElement"){
-  $('#leftpanel2').panel( 'open');
-  $(".introjs-overlay").css("opacity","0");
- }
-  else{
-  $('#leftpanel2').panel( 'close');
-   $(".introjs-overlay").css("opacity","1");
-    
-  }
-  
-  	
-});
-
-intro.onbeforechange(function(targetElement) { 
- if(targetElement.className=="ui-grid-d"){
-intro.setOption('tooltipClass','custom');
-}
-else{
-intro.setOption('tooltipClass','');
-}
-	});	 
 		 
-		 //IntroEnd
+		 //introStart
+		var intro = introJs();
+		intro.setOptions({
+		    steps: [{
+		            element: '#search',
+		            intro: 'To start your query click on this button. Then the panel opens.',
+		            position: 'top',
+
+		        }, {
+		            intro: 'With this panel you can decide for what kind of pub you would like to search.',
+		        },
+
+		        {
+		            element: '.ui-grid-d',
+		            intro: 'With this button and the two more left you can decide which kind of pubs should be shown in the map',
+		            position: 'top',
+
+		        }, {
+		            element: '.leaflet-control-geosearch',
+		            intro: 'Here you can serach for streets and pubs and more OSM Elements',
+		            position: 'bottom',
+
+		        }, {
+		            element: '.leaflet-control-locate',
+		            intro: 'With this button you can find your actual location.',
+		            position: 'bottom',
+
+		        }, {
+		            element: '.leaflet-control-zoom',
+		            intro: 'With this button you can zoom in and out of the map.',
+		            position: 'right',
+
+		        }, {
+		            element: '.leaflet-control-layers',
+		            intro: 'Here you can choose different maps.',
+		            position: 'left',
+
+		        },
+
+		    ],
+		    "showStepNumbers": "no",
+
+		});
+		intro.onchange(function (targetElement) {
+
+		    if (targetElement.className == "introjsFloatingElement") {
+		        $('#leftpanel2').panel('open');
+		        $(".introjs-overlay").css("opacity", "0");
+		    } else {
+		        $('#leftpanel2').panel('close');
+		        $(".introjs-overlay").css("opacity", "1");
+
+		    }
+
+
+		});
+
+		intro.onbeforechange(function (targetElement) {
+		    if (targetElement.className == "ui-grid-d") {
+		        intro.setOption('tooltipClass', 'custom');
+		    } else {
+		        intro.setOption('tooltipClass', '');
+		    }
+		});
+		//IntroEnd
+		
+		
 		var popup = L.popup();
 
-		function onMapClick(e) {
-		}
+		function onMapClick(e) {}
 
 		map.on('click', onMapClick);
 
 
 
-		var beerIcon = L.icon({
-		    iconUrl: 'css/images/beer3.ico',
-		    iconSize: [32, 32], // size of the icon
-		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
-		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-		});
 
 		var concert1 = L.marker([51.96712, 7.60331], {
 		        icon: beerIcon
@@ -389,7 +355,7 @@ intro.setOption('tooltipClass','');
 		    } else {
 		        concerts.addTo(map);
 		    }
-			 if (map.hasLayer(layerGuitar)) {
+		    if (map.hasLayer(layerGuitar)) {
 		        map.removeLayer(layerGuitar);
 		    } else {
 		        layerGuitar.addTo(map);
@@ -402,7 +368,7 @@ intro.setOption('tooltipClass','');
 		    } else {
 		        partys.addTo(map);
 		    }
-			 if (map.hasLayer(layerParty)) {
+		    if (map.hasLayer(layerParty)) {
 		        map.removeLayer(layerParty);
 		    } else {
 		        layerParty.addTo(map);
@@ -415,7 +381,7 @@ intro.setOption('tooltipClass','');
 		    } else {
 		        beers.addTo(map);
 		    }
-			 if (map.hasLayer(layerBeer)) {
+		    if (map.hasLayer(layerBeer)) {
 		        map.removeLayer(layerBeer);
 		    } else {
 		        layerBeer.addTo(map);
@@ -427,20 +393,20 @@ intro.setOption('tooltipClass','');
 		        map.removeLayer(beers);
 		        map.removeLayer(concerts);
 		        map.removeLayer(partys);
-				
-				map.removeLayer(layerBeer);
+
+		        map.removeLayer(layerBeer);
 		        map.removeLayer(layerGuitar);
 		        map.removeLayer(layerParty);
-				//deleteAllMarkerandPopups();
-				
+		        //deleteAllMarkerandPopups();
+
 		    } else {
 		        beers.addTo(map);
 		        concerts.addTo(map);
 		        partys.addTo(map);
-				
-				//addPopup(51.9629, 7.6286, 'Gorilla Bar', "GorillaBar","beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
+
+		        //addPopup(51.9629, 7.6286, 'Gorilla Bar', "GorillaBar","beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
 		        //addPopup(51.961, 7.65, 'Cavete', "Cavete","party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
-				addLayerofMarkers();
+		        addLayerofMarkers();
 		    }
 		});
 
@@ -460,79 +426,79 @@ intro.setOption('tooltipClass','');
 		        "left": w
 		    }, 220);
 		});
-		
-		function moveTo(){
-			map.setView([51.96602, 7.61879],18);
-		}
-		
-		// No Scrollbar
-		$('html, body').css({
-		'overflow': 'hidden',
-		'height': '100%'
-		})
-		
-		// gets current date and time
-		function getnow() {
-			var now = new Date();
-			var tnow = "";
-			var month = "";
-			var day = "";
-			var hours = "";
-			var minutes = "";
-			if ((parseInt(now.getMonth())+1) < 10) month = "0" + parseInt(now.getMonth()+1); 
-				else month = parseInt(now.getMonth()+1);
-			if ((parseInt(now.getDate()) < 10)) day = "0" + parseInt(now.getDate()); 
-				else day = parseInt(now.getDate());
-			if ((parseInt(now.getHours()) < 10)) hours = "0" + parseInt(now.getHours()); 
-				else hours = parseInt(now.getHours());
-			if ((parseInt(now.getMinutes())) < 10) minutes = "0" + parseInt(now.getMinutes()); 
-				else minutes = parseInt(now.getMinutes());
-			tnow = now.getFullYear() + "-" + month + "-" + day + "T" + hours + ":" + minutes;
-			return tnow;
+
+		function moveTo() {
+		    map.setView([51.96602, 7.61879], 18);
 		}
 
-		// set current date and time as default value in the datepicker
+		 // No Scrollbar
+		$('html, body').css({
+		    'overflow': 'hidden',
+		    'height': '100%'
+		})
+
+		 // gets current date and time
+		function getnow() {
+		    var now = new Date();
+		    var tnow = "";
+		    var month = "";
+		    var day = "";
+		    var hours = "";
+		    var minutes = "";
+		    if ((parseInt(now.getMonth()) + 1) < 10) month = "0" + parseInt(now.getMonth() + 1);
+		    else month = parseInt(now.getMonth() + 1);
+		    if ((parseInt(now.getDate()) < 10)) day = "0" + parseInt(now.getDate());
+		    else day = parseInt(now.getDate());
+		    if ((parseInt(now.getHours()) < 10)) hours = "0" + parseInt(now.getHours());
+		    else hours = parseInt(now.getHours());
+		    if ((parseInt(now.getMinutes())) < 10) minutes = "0" + parseInt(now.getMinutes());
+		    else minutes = parseInt(now.getMinutes());
+		    tnow = now.getFullYear() + "-" + month + "-" + day + "T" + hours + ":" + minutes;
+		    return tnow;
+		}
+
+		 // set current date and time as default value in the datepicker
 		$("#datePickerStart").val(getnow());
-		
+
 		var markers = new L.MarkerClusterGroup();
-			markers.addLayer(beers);
-			markers.addLayer
-			markers.addTo(map);
-		
+		markers.addLayer(beers);
+		markers.addLayer
+		markers.addTo(map);
+
 		$("#submit").click(function () {
-				$("#query").collapsible( "option", "collapsed", true );
-				document.getElementById("result_text").style.display = "block";
-				deleteResults();
-				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="result_GorillaBar">'+
-								'<h3>Gorilla Bar</h3>'+
-								'<p>Opening hours: 20-03 Uhr</p>'+
-								'<p>Happy Hour: -</p>'+
-								'<p>Website:	</p>'+
-								'<a href="http://gorillabar.de/">link</a></p>'+
-								'<p>Telephone: 0123456789</p>'+
-								'<img src="gorilla.jpg" style="width:30%;" /></br>'+
-								'<button onclick="moveTo();">Move to</button></div>'+
-								'</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
-                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
-                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
-                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
-                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
-                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
-                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
-                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>'+
-                                '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>'+
-								'</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>';							
-							$( "#result" ).append( content ).collapsibleset( "refresh" );
+		    $("#query").collapsible("option", "collapsed", true);
+		    document.getElementById("result_text").style.display = "block";
+		    deleteResults();
+		    var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="result_GorillaBar">' +
+		        '<h3>Gorilla Bar</h3>' +
+		        '<p>Opening hours: 20-03 Uhr</p>' +
+		        '<p>Happy Hour: -</p>' +
+		        '<p>Website:	</p>' +
+		        '<a href="http://gorillabar.de/">link</a></p>' +
+		        '<p>Telephone: 0123456789</p>' +
+		        '<img src="gorilla.jpg" style="width:30%;" /></br>' +
+		        '<button onclick="moveTo();">Move to</button></div>' +
+		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
+		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
+		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
+		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
+		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
+		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
+		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
+		        '</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
+		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
+		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
+		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
+		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
+		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
+		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
+		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
+		        '</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
+		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
+		        '</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>';
+		    $("#result").append(content).collapsibleset("refresh");
 		});
-		
-		function deleteResults(){
-			document.getElementById("result").innerHTML = "";
+
+		function deleteResults() {
+		    document.getElementById("result").innerHTML = "";
 		}
