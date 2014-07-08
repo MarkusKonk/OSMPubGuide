@@ -1,18 +1,12 @@
 		var lon = 7.6286;
 		var lat = 51.9629;
 		var zoom = 14;
-		var zoomPosition = 'topright';
+		var zoomPosition = 'topleft';
 		var searchPosition = 'topcenter';
 
 
 		// different OSM layers & own Tiles
-		var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-		        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-		    }),
-		    humanitarian = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { 
-				attribution: 'Map &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> | Tiles &copy; <a href=\"http://hot.openstreetmap.org\">Humanitarian OSM Team</a>'
-			}),
-			day = new L.tileLayer ('http://openpubguide-tile.uni-muenster.de:8001/tiles/{z}/{x}/{y}.png', {
+		var day = new L.tileLayer ('http://openpubguide-tile.uni-muenster.de:8001/tiles/{z}/{x}/{y}.png', {
 			maxZoom:22,
 			})
 			night = new L.tileLayer ('http://openpubguide-tile.uni-muenster.de:8002/tiles/{z}/{x}/{y}.png', {
@@ -38,7 +32,7 @@
 		    zoomControl: false,
 		    center: [lat, lon],
 		    zoom: zoom,
-		    layers: [osm]
+		    layers: [day]
 		})
 		
 		//Leaflet.Geosearch: Search Bar (Provider: OpenStreetMap)
@@ -48,6 +42,10 @@
 		    showMarker: false
 		}).addTo(map);
 
+		map.addControl(L.control.zoom({
+		    position: zoomPosition
+		}));
+		
 		//Leaflet.Locator: Current Location  
 		L.control.locate({
 		position: 'topleft',  // set the location of the control
@@ -55,15 +53,10 @@
 		}).addTo(map);
 	
 	 
-		 map.addControl(L.control.zoom({
-		    position: zoomPosition
-		}));
 
 		var baseLayers = {
-		    "OpenStreetMap Mapnik": osm,
-			"OpenStreetMap Humanitarian": humanitarian,
-			"Day-Skin": day,
-			"Night-Skin": night
+			"Dayview": day,
+			"Nightview": night
 		};
 		
 		var overlays = {
@@ -74,7 +67,7 @@
 		
 		// add Layers Control to mmap
 		$( document ).ready(function() { 
-        var layersControl = new L.Control.Layers(baseLayers, overlays);
+        var layersControl = new L.Control.Layers(baseLayers, overlays, ({position: zoomPosition}));
 		map.addControl(layersControl);
 		});
 		
