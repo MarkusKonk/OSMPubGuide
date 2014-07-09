@@ -82,7 +82,7 @@
 		// icon representing pubs on the map
 		var beerIcon = L.icon({
 		    iconUrl: 'css/images/beer3.ico',
-		    iconSize: [32, 32], // size of the icon
+		    iconSize: [20, 20], // size of the icon
 		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
 		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 		});

@@ -100,6 +100,8 @@ $("#submit").click(function (e) {
 		var allpubs = new Array();
 		var allevents = new Array();
 		
+		deleteAllMarkerandPopups();
+		
 		//pubs
 		$(xml).find('node').each(function(){
 			var id = $(this).attr('id');
@@ -231,7 +233,6 @@ $("#submit").click(function (e) {
 						
 			console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
 						
-			deleteAllMarkerandPopups();
 			addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, images); 
 			
 			//has to be filled with all attributes.
