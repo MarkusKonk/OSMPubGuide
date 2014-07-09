@@ -211,7 +211,7 @@
 		    $("#popupResultLink_" + id + "").click(openResultOfBar);
 
 		    if (type == "beer") {
-		        $("#beer").click();
+		        $("#food").click();
 		    }
 		}
 
