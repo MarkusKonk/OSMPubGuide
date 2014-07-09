@@ -238,19 +238,19 @@ $("#submit").click(function (e) {
 			
 			adress=adressstreet+','+adressnr+','+adresscode+','+adresscity+','+adresscountry;
 						
-			console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
+			//console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
 						
 			addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, images); 
 			
 			//has to be filled with all attributes.
 			var pub = new newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc);
 			allpubs.push(pub);
-			console.log(allpubs);
+			//console.log(allpubs);
 			
 		});
 		
 		//function does not exist, will be defined later by Markus
-		//createResultList(allpubs);
+		createResultList(allpubs);
 		
 		//events
 		$(xml).find('event').each(function(){

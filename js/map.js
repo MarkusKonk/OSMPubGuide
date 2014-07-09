@@ -423,9 +423,6 @@
 		    }, 220);
 		});
 
-		function moveTo() {
-		    map.setView([51.96602, 7.61879], 18);
-		}
 
 		 // No Scrollbar
 		$('html, body').css({
@@ -473,50 +470,38 @@
 		markers.addLayer(price);
 		markers.addTo(map);
 
-		/*
-		Needed soon.
+		
+
 		function createResultList(pubs){
 			var pubArray = pubs;
-			for (var i = 0; i < pubs.length; i++){
-				
+			console.log(pubArray.length);
+
+			$("#query").collapsible("option", "collapsed", true);
+			document.getElementById("result_text").style.display = "block";
+			deleteResults();
+
+			for (var i = 0; i < pubArray.length; i++){
+				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="'+pubArray[i].pubname+'">' +
+					'<h3>'+pubArray[i].pubname+'</h3>' +
+					'<p>Open:'+pubArray[i].opening_hours+'</p>' +
+					'<p>Happy hour: '+pubArray[i].happy_hour+'</p>' +
+					'<a href="'+pubArray[i].website+'">Website</a></p>' +
+					'<p>Telephone: '+pubArray[i].phone+'</p>' +
+					'<p>Mail: '+pubArray[i].email+'</p>' +
+					'<p>Food: '+pubArray[i].food+'</p>' +
+					'<p>Barrier free: '+pubArray[i].wheelchair+'</p>' +
+					'<img src="gorilla.jpg" style="width:30%;" /></br>' +
+					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+');">Move to</button></div>';
+
+				$("#result").append(content).collapsibleset("refresh");
 			}
 		}
-		*/
 		
-		$("#submit").click(function () {
-		    $("#query").collapsible("option", "collapsed", true);
-		    document.getElementById("result_text").style.display = "block";
-		    deleteResults();
-		    var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="result_GorillaBar">' +
-		        '<h3>Gorilla Bar</h3>' +
-		        '<p>Opening hours: 20-03 Uhr</p>' +
-		        '<p>Happy Hour: -</p>' +
-		        '<p>Website:	</p>' +
-		        '<a href="http://gorillabar.de/">link</a></p>' +
-		        '<p>Telephone: 0123456789</p>' +
-		        '<img src="gorilla.jpg" style="width:30%;" /></br>' +
-		        '<button onclick="moveTo();">Move to</button></div>' +
-		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
-		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
-		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
-		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
-		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
-		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
-		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
-		        '</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
-		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
-		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
-		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
-		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
-		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
-		        '</div><div data-role="collapsible" id="result_Cavete2"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
-		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
-		        '</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>' +
-		        '</div><div data-role="collapsible"><h3>Jovel</h3><p>I am the collapsible content for section 2</p>' +
-		        '</div><div data-role="collapsible" id="result_Cavete"><h3>Cavete</h3><p>I am the collapsible content for section 3</p></div></div>';
-		    $("#result").append(content).collapsibleset("refresh");
-		});
-
+		function moveTo(lat,lng) {
+		    map.setView([lat, lng], 18);
+		}
+		
+		
 		function deleteResults() {
 		    document.getElementById("result").innerHTML = "";
 		}
