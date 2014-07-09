@@ -90,24 +90,24 @@
 
 		//Popup
 		//marker types
-		var layerGuitar = L.layerGroup();
-		var layerParty = L.layerGroup();
-		var layerBeer = L.layerGroup();
+		var layerPrice = L.layerGroup();
+		var layerOpen = L.layerGroup();
+		var layerFood = L.layerGroup();
 
 		function addLayerofMarkers() {
-		    layerGuitar.addTo(map);
-		    layerParty.addTo(map);
-		    layerBeer.addTo(map);
+		    layerPrice.addTo(map);
+		    layerOpen.addTo(map);
+		    layerFood.addTo(map);
 		}
 
 		function deleteAllMarkerandPopups() {
 		    $("[id^=popup_]").remove();
-		    map.removeLayer(layerGuitar);
-		    map.removeLayer(layerParty);
-		    map.removeLayer(layerBeer);
-		    layerGuitar = L.layerGroup();
-		    layerParty = L.layerGroup();
-		    layerBeer = L.layerGroup();
+		    map.removeLayer(layerPrice);
+		    map.removeLayer(layerOpen);
+		    map.removeLayer(layerFood);
+		    layerPrice = L.layerGroup();
+		    layerOpen = L.layerGroup();
+		    layerFood = L.layerGroup();
 		}
 
 		function openResultOfBar() {
@@ -126,17 +126,17 @@
 		    var iconSize = null;
 		    if (type == "guitar") {
 		        marker.setIcon(beerIcon);
-		        marker.addTo(layerGuitar);
+		        marker.addTo(layerPrice);
 		        iconSize = beerIcon.options.iconSize;
 		    } else {
 		        if (type == "party") {
 		            marker.setIcon(beerIcon);
-		            marker.addTo(layerParty);
+		            marker.addTo(layerOpen);
 		            iconSize = beerIcon.options.iconSize;
 		        } else {
 		            if (type == "beer") {
 		                marker.setIcon(beerIcon);
-		                marker.addTo(layerBeer);
+		                marker.addTo(layerFood);
 		                iconSize = beerIcon.options.iconSize;
 		            }
 		        }
@@ -298,107 +298,107 @@
 
 		map.on('click', onMapClick);
 
-		var concert1 = L.marker([51.96712, 7.60331], {
+		var price1 = L.marker([51.96712, 7.60331], {
 		        icon: beerIcon
 		    }).bindPopup(''),
-		    concert2 = L.marker([51.96801, 7.64451], {
+		    price2 = L.marker([51.96801, 7.64451], {
 		        icon: beerIcon
 		    }).bindPopup(''),
-		    concert3 = L.marker([51.95437, 7.62983], {
+		    price3 = L.marker([51.95437, 7.62983], {
 		        icon: beerIcon
 		    }).bindPopup(''),
-		    concert4 = L.marker([51.97626, 7.62451], {
+		    price4 = L.marker([51.97626, 7.62451], {
 		        icon: beerIcon
 		    }).bindPopup('');
-		var party1 = L.marker([51.97552, 7.58769], {
+		var open1 = L.marker([51.97552, 7.58769], {
 		        icon: beerIcon
 		    }).bindPopup(''),
-		    party2 = L.marker([51.97325, 7.58666], {
+		    open2 = L.marker([51.97325, 7.58666], {
 		        icon: beerIcon
 		    }).bindPopup(''),
-		    party3 = L.marker([51.96188, 7.62546], {
+		    open3 = L.marker([51.96188, 7.62546], {
 		        icon: beerIcon
 		    }).bindPopup(''),
-		    paryt4 = L.marker([51.95913, 7.62185], {
+		    open4 = L.marker([51.95913, 7.62185], {
 		        icon: beerIcon
 		    }).bindPopup('');
-		var beer1 = L.marker([51.97769, 7.64142], {
+		var food1 = L.marker([51.97769, 7.64142], {
 		        icon: beerIcon
 		    }).bindPopup(''),
-		    beer2 = L.marker([51.96569, 7.66125], {
+		    food2 = L.marker([51.96569, 7.66125], {
 		        icon: beerIcon
 		    }).bindPopup(''),
-		    beer3 = L.marker([51.95876, 7.63653], {
+		    food3 = L.marker([51.95876, 7.63653], {
 		        icon: beerIcon
 		    }).bindPopup(''),
-		    beer4 = L.marker([51.96251, 7.61335], {
+		    food4 = L.marker([51.96251, 7.61335], {
 		        icon: beerIcon
 		    }).bindPopup('');
 
-		var concerts = L.layerGroup([concert1, concert2, concert3, concert4]);
-		var partys = L.layerGroup([party1, party2, party3, paryt4]);
-		var beers = L.layerGroup([beer1, beer2, beer3, beer4]);
+		var price = L.layerGroup([price1, price2, price3, price4]);
+		var open = L.layerGroup([open1, open2, open3, open4]);
+		var food = L.layerGroup([food1, food2, food3, food4]);
 
 		var overlayMaps = {
-		    "Concerts": concerts,
-		    "Partys": partys,
-		    "Beers": beers
+		    "Price": price,
+		    "Open": open,
+		    "Food": food
 		};
 
-		$("#concert").click(function () {
-		    if (map.hasLayer(concerts)) {
-		        map.removeLayer(concerts);
+		$("#price").click(function () {
+		    if (map.hasLayer(price)) {
+		        map.removeLayer(price);
 		    } else {
-		        concerts.addTo(map);
+		        price.addTo(map);
 		    }
-		    if (map.hasLayer(layerGuitar)) {
-		        map.removeLayer(layerGuitar);
+		    if (map.hasLayer(layerPrice)) {
+		        map.removeLayer(layerPrice);
 		    } else {
-		        layerGuitar.addTo(map);
-		    }
-		});
-
-		$("#party").click(function () {
-		    if (map.hasLayer(partys)) {
-		        map.removeLayer(partys);
-		    } else {
-		        partys.addTo(map);
-		    }
-		    if (map.hasLayer(layerParty)) {
-		        map.removeLayer(layerParty);
-		    } else {
-		        layerParty.addTo(map);
+		        layerPrice.addTo(map);
 		    }
 		});
 
-		$("#beer").click(function () {
-		    if (map.hasLayer(beers)) {
-		        map.removeLayer(beers);
+		$("#open").click(function () {
+		    if (map.hasLayer(open)) {
+		        map.removeLayer(open);
 		    } else {
-		        beers.addTo(map);
+		        open.addTo(map);
 		    }
-		    if (map.hasLayer(layerBeer)) {
-		        map.removeLayer(layerBeer);
+		    if (map.hasLayer(layerOpen)) {
+		        map.removeLayer(layerOpen);
 		    } else {
-		        layerBeer.addTo(map);
+		        layerOpen.addTo(map);
+		    }
+		});
+
+		$("#food").click(function () {
+		    if (map.hasLayer(food)) {
+		        map.removeLayer(food);
+		    } else {
+		        food.addTo(map);
+		    }
+		    if (map.hasLayer(layerFood)) {
+		        map.removeLayer(layerFood);
+		    } else {
+		        layerFood.addTo(map);
 		    }
 		});
 
 		$("#all").click(function () {
-		    if (map.hasLayer(beers) && map.hasLayer(concerts) && map.hasLayer(partys)) {
-		        map.removeLayer(beers);
-		        map.removeLayer(concerts);
-		        map.removeLayer(partys);
+		    if (map.hasLayer(food) && map.hasLayer(price) && map.hasLayer(open)) {
+		        map.removeLayer(food);
+		        map.removeLayer(price);
+		        map.removeLayer(open);
 
-		        map.removeLayer(layerBeer);
-		        map.removeLayer(layerGuitar);
-		        map.removeLayer(layerParty);
+		        map.removeLayer(layerFood);
+		        map.removeLayer(layerPrice);
+		        map.removeLayer(layerOpen);
 		        //deleteAllMarkerandPopups();
 
 		    } else {
-		        beers.addTo(map);
-		        concerts.addTo(map);
-		        partys.addTo(map);
+		        food.addTo(map);
+		        price.addTo(map);
+		        open.addTo(map);
 
 		        //addPopup(51.9629, 7.6286, 'Gorilla Bar', "GorillaBar","beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
 		        //addPopup(51.961, 7.65, 'Cavete', "Cavete","party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
@@ -468,9 +468,9 @@
 				}
 			});			
 		
-		markers.addLayer(beers);
-		markers.addLayer(partys);
-		markers.addLayer(concerts);
+		markers.addLayer(food);
+		markers.addLayer(open);
+		markers.addLayer(price);
 		markers.addTo(map);
 
 		/*
