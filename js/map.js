@@ -159,13 +159,6 @@
 			
 		    return iconSize;
 		}
-		
-		
-		
-		//markers.addLayer(food);
-		//markers.addLayer(open);
-		//markers.addLayer(price);
-		//markers.addTo(map);
 
 		function addPopup(lat, lng, pubName, id, type, opening_hours, adress, e_mail, phone, website, images) {
 		    var marker = L.marker();
@@ -483,7 +476,9 @@
 					'<h3>'+pubArray[i].pubname+'</h3></br>' +
 					'<p class = "entry"><b>Adress:</b> '+pubArray[i].street+' ' + pubArray[i].housenr + ', ' + pubArray[i].city +'</p>' +					
 					'<p class = "entry"><b>Open:</b> '+pubArray[i].opening_hours+'</p>' +
+					'<p class = "entry"><b>Closed in </b> '+pubArray[i].tuc+' minutes</p>' +
 					'<p class = "entry"><b>Happy hour: </b>'+pubArray[i].happy_hour+'</p>' +
+					'<p class = "entry"><b>Cheapest beer: </b>'+pubArray[i].beerprice+'</p>' +					
 					'<a href="'+pubArray[i].website+'">Website</a></p>' +
 					'<p class = "entry"><b>Telephone:</b> '+pubArray[i].phone+'</p>' +
 					'<p class = "entry"><b>Mail: </b>'+pubArray[i].email+'</p>' +
