@@ -90,24 +90,24 @@
 
 		//Popup
 		//marker types
-		var layerGuitar = L.layerGroup();
-		var layerParty = L.layerGroup();
-		var layerBeer = L.layerGroup();
+		var layerPrice = L.layerGroup();
+		var layerOpen = L.layerGroup();
+		var layerFood = L.layerGroup();
 
 		function addLayerofMarkers() {
-		    layerGuitar.addTo(map);
-		    layerParty.addTo(map);
-		    layerBeer.addTo(map);
+		    layerPrice.addTo(map);
+		    layerOpen.addTo(map);
+		    layerFood.addTo(map);
 		}
 
 		function deleteAllMarkerandPopups() {
 		    $("[id^=popup_]").remove();
-		    map.removeLayer(layerGuitar);
-		    map.removeLayer(layerParty);
-		    map.removeLayer(layerBeer);
-		    layerGuitar = L.layerGroup();
-		    layerParty = L.layerGroup();
-		    layerBeer = L.layerGroup();
+		    map.removeLayer(layerPrice);
+		    map.removeLayer(layerOpen);
+		    map.removeLayer(layerFood);
+		    layerPrice = L.layerGroup();
+		    layerOpen = L.layerGroup();
+		    layerFood = L.layerGroup();
 		}
 
 		function openResultOfBar() {
@@ -126,17 +126,17 @@
 		    var iconSize = null;
 		    if (type == "guitar") {
 		        marker.setIcon(beerIcon);
-		        marker.addTo(layerGuitar);
+		        marker.addTo(layerPrice);
 		        iconSize = beerIcon.options.iconSize;
 		    } else {
 		        if (type == "party") {
 		            marker.setIcon(beerIcon);
-		            marker.addTo(layerParty);
+		            marker.addTo(layerOpen);
 		            iconSize = beerIcon.options.iconSize;
 		        } else {
 		            if (type == "beer") {
 		                marker.setIcon(beerIcon);
-		                marker.addTo(layerBeer);
+		                marker.addTo(layerFood);
 		                iconSize = beerIcon.options.iconSize;
 		            }
 		        }
@@ -351,10 +351,10 @@
 		    } else {
 		        concerts.addTo(map);
 		    }
-		    if (map.hasLayer(layerGuitar)) {
-		        map.removeLayer(layerGuitar);
+		    if (map.hasLayer(layerPrice)) {
+		        map.removeLayer(layerPrice);
 		    } else {
-		        layerGuitar.addTo(map);
+		        layerPrice.addTo(map);
 		    }
 		});
 
@@ -364,10 +364,10 @@
 		    } else {
 		        partys.addTo(map);
 		    }
-		    if (map.hasLayer(layerParty)) {
-		        map.removeLayer(layerParty);
+		    if (map.hasLayer(layerOpen)) {
+		        map.removeLayer(layerOpen);
 		    } else {
-		        layerParty.addTo(map);
+		        layerOpen.addTo(map);
 		    }
 		});
 
@@ -377,10 +377,10 @@
 		    } else {
 		        beers.addTo(map);
 		    }
-		    if (map.hasLayer(layerBeer)) {
-		        map.removeLayer(layerBeer);
+		    if (map.hasLayer(layerFood)) {
+		        map.removeLayer(layerFood);
 		    } else {
-		        layerBeer.addTo(map);
+		        layerFood.addTo(map);
 		    }
 		});
 
@@ -390,9 +390,9 @@
 		        map.removeLayer(concerts);
 		        map.removeLayer(partys);
 
-		        map.removeLayer(layerBeer);
-		        map.removeLayer(layerGuitar);
-		        map.removeLayer(layerParty);
+		        map.removeLayer(layerFood);
+		        map.removeLayer(layerPrice);
+		        map.removeLayer(layerOpen);
 		        //deleteAllMarkerandPopups();
 
 		    } else {
