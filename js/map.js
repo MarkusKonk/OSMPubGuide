@@ -122,8 +122,21 @@
 		    $('.ui-panel-inner').animate({scrollTop: position}, 2000);
 		}
 
+		var markers = new L.MarkerClusterGroup({ 
+			spiderfyOnMaxZoom: true, 
+			showCoverageOnHover: true, 
+			zoomToBoundsOnClick: true,
+		
+			iconCreateFunction: function (cluster) {
+				var markers = cluster.getAllChildMarkers();
+
+				return L.divIcon({ html: markers.length, className: 'mycluster', iconSize: L.point(40, 40) })
+				}
+			});			
+		
 		function addMarker(marker, type) {
 		    var iconSize = null;
+			
 		    if (type == "guitar") {
 		        marker.setIcon(beerIcon);
 		        marker.addTo(layerPrice);
@@ -141,8 +154,18 @@
 		            }
 		        }
 		    }
+			markers.addLayer(marker);
+			markers.addTo(map);
+			
 		    return iconSize;
 		}
+		
+		
+		
+		//markers.addLayer(food);
+		//markers.addLayer(open);
+		//markers.addLayer(price);
+		//markers.addTo(map);
 
 		function addPopup(lat, lng, pubName, id, type, opening_hours, adress, e_mail, phone, website, images) {
 		    var marker = L.marker();
@@ -177,7 +200,6 @@
 		            images = images + "<img src=" + pictures[i] + " style = 'height:80px;'/>";
 		        }
 		    }
-
 		    
 			//create popup element
 		    var popup = "<div data-role='popup' id='popup_" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a id='popupResultLink_" + id + "'>More information</a></th></tr></table><p align='center'>" + images + "</p></div>";
@@ -214,8 +236,6 @@
 		        $("#food").click();
 		    }
 		}
-
-
 
 		//add dynamically popup
 		addPopup(51.96602, 7.61879, 'Gorilla Bar', "GorillaBar", "beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
@@ -275,10 +295,7 @@
 			else {
 		        $('#leftpanel2').panel('close');
 		        $(".introjs-overlay").css("opacity", "1");
-
 		    }
-
-
 		});
 
 		intro.onbeforechange(function (targetElement) {
@@ -453,25 +470,6 @@
 		 // set current date and time as default value in the datepicker
 		$("#datePickerStart").val(getnow());
 
-		var markers = new L.MarkerClusterGroup({ 
-			spiderfyOnMaxZoom: true, 
-			showCoverageOnHover: true, 
-			zoomToBoundsOnClick: true,
-		
-			iconCreateFunction: function (cluster) {
-				var markers = cluster.getAllChildMarkers();
-
-				return L.divIcon({ html: markers.length, className: 'mycluster', iconSize: L.point(40, 40) })
-				}
-			});			
-		
-		markers.addLayer(food);
-		markers.addLayer(open);
-		markers.addLayer(price);
-		markers.addTo(map);
-
-		
-
 		function createResultList(pubs){
 			var pubArray = pubs;
 			console.log(pubArray.length);
@@ -482,18 +480,20 @@
 
 			for (var i = 0; i < pubArray.length; i++){
 				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="'+pubArray[i].pubname+'">' +
-					'<h3>'+pubArray[i].pubname+'</h3>' +
-					'<p>Open:'+pubArray[i].opening_hours+'</p>' +
-					'<p>Happy hour: '+pubArray[i].happy_hour+'</p>' +
+					'<h3>'+pubArray[i].pubname+'</h3></br>' +
+					'<p class = "entry"><b>Adress:</b> '+pubArray[i].street+' ' + pubArray[i].housenr + ', ' + pubArray[i].city +'</p>' +					
+					'<p class = "entry"><b>Open:</b> '+pubArray[i].opening_hours+'</p>' +
+					'<p class = "entry"><b>Happy hour: </b>'+pubArray[i].happy_hour+'</p>' +
 					'<a href="'+pubArray[i].website+'">Website</a></p>' +
-					'<p>Telephone: '+pubArray[i].phone+'</p>' +
-					'<p>Mail: '+pubArray[i].email+'</p>' +
-					'<p>Food: '+pubArray[i].food+'</p>' +
-					'<p>Barrier free: '+pubArray[i].wheelchair+'</p>' +
+					'<p class = "entry"><b>Telephone:</b> '+pubArray[i].phone+'</p>' +
+					'<p class = "entry"><b>Mail: </b>'+pubArray[i].email+'</p>' +
+					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +
+					'<p class = "entry"><b>Barrier free: </b>'+pubArray[i].wheelchair+'</p>' +
 					'<img src="gorilla.jpg" style="width:30%;" /></br>' +
 					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
+				
 			}
 		}
 		

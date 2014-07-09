@@ -109,6 +109,9 @@ padding-bottom:3%
 	text-align: center;
 	font-size: 24px;
 	border: 7px solid green;
-	border-radius: 100px;
-	
+	border-radius: 100px;	
+}
+
+.entry{
+	margin-top:-4%;
 }
