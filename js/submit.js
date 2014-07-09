@@ -75,24 +75,31 @@ $("#submit").click(function (e) {
     }
 
     console.log(query); //just for testing
-
-    // request using jQuery
-    $.ajax({
-        type: "GET",
-        url: "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.933&west=7.596&north=51.961&east=7.672",
-        dataType: "xml",
-        success: parseXML
-		//function (data) {
-            //console.log("Successfully queried API!");
-            //console.log(data);
+	ajaxrequest(query);
+    
+	});
+	
+	function ajaxrequest(query)
+	{// request using jQuery
+		console.log(query); //just for testing
+		$.ajax({
+			type: "GET",
+			url: "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.933&west=7.596&north=51.961&east=7.672",
+			dataType: "xml",
+			success: parseXML
+			//function (data) {
+				//console.log("Successfully queried API!");
+				//console.log(data);
 			
 			
-        //},
+			//},
 
-        //error: function (data) {
-         //   console.log("An error occurred while processing XML file.");
+			//error: function (data) {
+			//   console.log("An error occurred while processing XML file.");
        // }
     });
+	}
+	
 	
 	function parseXML(xml)
 	{		 	
@@ -315,7 +322,6 @@ $("#submit").click(function (e) {
 			}
 		});
 	}
-});
 
 function newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc){
 	this.id = id;
