@@ -5,6 +5,14 @@
 		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
 		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 		});
+		
+		// icon for nightview
+		var beerIconN = L.icon({
+		    iconUrl: 'css/images/beer4.ico',
+		    iconSize: [20, 20], // size of the icon
+		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
+		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+		});
 
 
 		// delete markers and popups
@@ -229,3 +237,15 @@
 				return true;
 			}
 		}
+		
+		
+		// change icon on nightview
+		map.on('baselayerchange',function(e){
+			for (var i in markers.getLayers()){
+				if (e.name == "Nightview") {
+					markers.getLayers()[i].setIcon(beerIconN);
+				} else {
+					markers.getLayers()[i].setIcon(beerIcon);
+				}
+			}
+		});
