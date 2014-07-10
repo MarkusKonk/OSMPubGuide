@@ -15,8 +15,6 @@ $("#submit").click(function (e) {
 	$('input[name="radio-choice-h-6"]:checked').each(function() {
 		maximumBeerPrice = this.value;
 	});
-	console.log(maximumBeerPrice);
-
 
     // get checked event types
     var eventType = "";
@@ -49,7 +47,7 @@ $("#submit").click(function (e) {
     }
 
     // default query string
-    var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/query?bbox=" + bbox + "&start=" + start + "&end=" + end;
+    var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?bbox=" + bbox + "&start=" + start + "&end=" + end;
 
     //add events 
     if (!eventType == "") {
@@ -74,8 +72,6 @@ $("#submit").click(function (e) {
         if (!maximumBeerPrice == "") query = query + "maximumBeerPrice=" + maximumBeerPrice;
         else query.slice(0, -1); //remove unnecessary comma at the end
     }
-
-    console.log(query); //just for testing
 	ajaxrequest(query);
     
 	});
@@ -109,6 +105,7 @@ $("#submit").click(function (e) {
 		var allevents = new Array();
 		
 		deleteAllMarkerandPopups();
+		var count = false;
 		
 		//pubs
 		$(xml).find('node').each(function(){
@@ -133,6 +130,7 @@ $("#submit").click(function (e) {
 			var outdoor_seatings="";
 			var happy_hour="";
 			var tuc="";
+			count = true;
 			
 			$(this).find('tag').each(function(){
 				var actk = $(this).attr('k');
@@ -241,7 +239,7 @@ $("#submit").click(function (e) {
 						
 			//console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
 						
-			addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, images); 
+			addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, images, tuc); 
 			
 			//has to be filled with all attributes.
 			var pub = new newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc);
@@ -322,6 +320,11 @@ $("#submit").click(function (e) {
 				}
 			}
 		});
+		
+		if (count==false)
+		{
+			window.alert("No results found for your query!");
+		}
 	}
 
 function newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc){
