@@ -186,7 +186,7 @@
 			$("#query").collapsible("option", "collapsed", true);
 			document.getElementById("result_text").style.display = "block";
 			deleteResults();
-			
+			/*
 			for (var i = 0; i < pubArray.length; i++){
 				var pictureID;
 				if ( !doesFileExist("http://giv-openpubguide.uni-muenster.de/pubs/"+pubArray[i].id + ".png")){
@@ -194,7 +194,7 @@
 				}
 				else{
 					pictureID = pubArray[i].id
-				}
+				}*/
 				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="'+pubArray[i].pubname+'">' +
 					'<h3>'+pubArray[i].pubname+'</h3></br>' +
 					'<p class = "entry"><b>Adress:</b> '+pubArray[i].street+' ' + pubArray[i].housenr + ', ' + pubArray[i].city +'</p>' +					
@@ -207,7 +207,7 @@
 					'<p class = "entry"><b>Mail: </b>'+pubArray[i].email+'</p>' +
 					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +
 					'<p class = "entry"><b>Barrier free: </b>'+pubArray[i].wheelchair+'</p>' +
-					'<img src="pubs/'+pictureID+'.png" style="width:50%;" /></br>' +
+					//'<img src="pubs/'+pictureID+'.png" style="width:50%;" /></br>' +
 					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
