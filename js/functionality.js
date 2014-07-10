@@ -242,11 +242,21 @@
 		
 		// change icon on nightview
 		map.on('baselayerchange',function(e){
-			for (var i in markers.getLayers()){
-				if (e.name == "Nightview") {
+			changeIcon()
+		});
+		
+		map.on('layeradd',function(e){
+			changeIcon()
+		});
+		
+		function changeIcon() {
+			if (!map.hasLayer(day)) {
+				for (var i in markers.getLayers()){
 					markers.getLayers()[i].setIcon(beerIconN);
-				} else {
+				}
+			} else {
+				for (var i in markers.getLayers()){
 					markers.getLayers()[i].setIcon(beerIcon);
 				}
 			}
-		});
+		}
