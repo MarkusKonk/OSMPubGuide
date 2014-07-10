@@ -2,7 +2,14 @@
 // request returns an xml file
 $("#submit").click(function (e) {
     //default bounding box
-    var bbox = "51.961,7.596,51.9335,7.672"
+    if (bbox == 'undefined') {
+	var bbox = "51.967,7.6,51.95,7.66";
+	console.log("bbox set");
+    }
+    else {
+	console.log("bbox not set");
+    }
+    console.log("bbox submit: ",bbox);
     //get query parameters
     var start = $("#datePickerStart").val();
     var end = $("#datePickerEnd").val();
@@ -15,7 +22,6 @@ $("#submit").click(function (e) {
 	$('input[name="radio-choice-h-6"]:checked').each(function() {
 		maximumBeerPrice = this.value;
 	});
-
 
     // get checked event types
     var eventType = "";
@@ -48,7 +54,7 @@ $("#submit").click(function (e) {
     }
 
     // default query string
-    var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/query?bbox=" + bbox + "&start=" + start + "&end=" + end;
+    var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?bbox=" + bbox + "&start=" + start + "&end=" + end;
 
     //add events 
     if (!eventType == "") {
@@ -73,8 +79,6 @@ $("#submit").click(function (e) {
         if (!maximumBeerPrice == "") query = query + "maximumBeerPrice=" + maximumBeerPrice;
         else query.slice(0, -1); //remove unnecessary comma at the end
     }
-
-    console.log(query); //just for testing
 	ajaxrequest(query);
     
 	});
@@ -84,7 +88,7 @@ $("#submit").click(function (e) {
 		console.log(query); //just for testing
 		$.ajax({
 			type: "GET",
-			url: "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.933&west=7.596&north=51.961&east=7.672",
+			url: query,
 			dataType: "xml",
 			success: parseXML
 			//function (data) {
@@ -108,6 +112,7 @@ $("#submit").click(function (e) {
 		var allevents = new Array();
 		
 		deleteAllMarkerandPopups();
+		var count = false;
 		
 		//pubs
 		$(xml).find('node').each(function(){
@@ -132,6 +137,7 @@ $("#submit").click(function (e) {
 			var outdoor_seatings="";
 			var happy_hour="";
 			var tuc="";
+			count = true;
 			
 			$(this).find('tag').each(function(){
 				var actk = $(this).attr('k');
@@ -236,21 +242,21 @@ $("#submit").click(function (e) {
 				
 			});
 			
-			adress=adressstreet+','+adressnr+','+adresscode+','+adresscity+','+adresscountry;
+			adress=adressstreet+','+adressnr;
 						
-			console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
+			//console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
 						
-			addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, images); 
+			addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, images, tuc); 
 			
 			//has to be filled with all attributes.
 			var pub = new newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc);
 			allpubs.push(pub);
-			console.log(allpubs);
+			//console.log(allpubs);
 			
 		});
 		
 		//function does not exist, will be defined later by Markus
-		//createResultList(allpubs);
+		createResultList(allpubs);
 		
 		//events
 		$(xml).find('event').each(function(){
@@ -321,6 +327,11 @@ $("#submit").click(function (e) {
 				}
 			}
 		});
+		
+		if (count==false)
+		{
+			window.alert("No results found for your query!");
+		}
 	}
 
 function newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc){
