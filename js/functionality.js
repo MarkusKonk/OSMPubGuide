@@ -186,10 +186,10 @@
 			$("#query").collapsible("option", "collapsed", true);
 			document.getElementById("result_text").style.display = "block";
 			deleteResults();
-
+			
 			for (var i = 0; i < pubArray.length; i++){
 				var pictureID;
-				if ( !doesFileExist("http://localhost/OSMPubGuide/pubs/"+pubArray[i].id + ".png")){
+				if ( !doesFileExist("http://giv-openpubguide.uni-muenster.de/pubs/"+pubArray[i].id + ".png")){
 					pictureID = 0;
 				}
 				else{
