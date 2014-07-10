@@ -2,7 +2,14 @@
 // request returns an xml file
 $("#submit").click(function (e) {
     //default bounding box
-    var bbox = "51.967,7.6,51.95,7.66"
+    if (bbox == 'undefined') {
+	var bbox = "51.967,7.6,51.95,7.66";
+	console.log("bbox set");
+    }
+    else {
+	console.log("bbox not set");
+    }
+    console.log("bbox submit: ",bbox);
     //get query parameters
     var start = $("#datePickerStart").val();
     var end = $("#datePickerEnd").val();

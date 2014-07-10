@@ -219,6 +219,7 @@
 		// Add functionality for adding the BBox-Tool
 		if (b_box) {
 			// Add it to the map
+			var bbox;
 			var areaSelect = L.areaSelect({width:200, height:300});
 			areaSelect.addTo(map);
 			
@@ -227,8 +228,7 @@
 			
 			// Get a callback when the bounds change
 			areaSelect.on("change", function() {
-			    console.log("Southwest:", this.getBounds()._southWest.lat, this.getBounds()._southWest.lng,
-					" Northeast:", this.getBounds()._northEast.lat, this.getBounds()._northEast.lng);
+			    bbox = this.getBounds()._southWest.lat + "," + this.getBounds()._southWest.lng + "," + this.getBounds()._northEast.lat + "," + this.getBounds()._northEast.lng;
 			});
 		}
 		
