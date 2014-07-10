@@ -7,26 +7,11 @@
 		});
 
 
-		//Popup
-		//marker types
-		var layerPrice = L.layerGroup();
-		var layerOpen = L.layerGroup();
-		var layerFood = L.layerGroup();
-
-		function addLayerofMarkers() {
-		    layerPrice.addTo(map);
-		    layerOpen.addTo(map);
-		    layerFood.addTo(map);
-		}
-
+		// delete markers and popups
 		function deleteAllMarkerandPopups() {
 		    $("[id^=popup_]").remove();
-		    map.removeLayer(layerPrice);
-		    map.removeLayer(layerOpen);
-		    map.removeLayer(layerFood);
-		    layerPrice = L.layerGroup();
-		    layerOpen = L.layerGroup();
-		    layerFood = L.layerGroup();
+		    map.removeLayer(markers);
+			markers.clearLayers();
 		}
 
 		function openResultOfBar() {
@@ -41,41 +26,14 @@
 		    $('.ui-panel-inner').animate({scrollTop: position}, 2000);
 		}
 
-		var markers = new L.MarkerClusterGroup({ 
-			spiderfyOnMaxZoom: true, 
-			showCoverageOnHover: true, 
-			zoomToBoundsOnClick: true,
-		
-			iconCreateFunction: function (cluster) {
-				var markers = cluster.getAllChildMarkers();
-
-				return L.divIcon({ html: markers.length, className: 'mycluster', iconSize: L.point(40, 40) })
-				}
-			});			
+		var markers = new L.MarkerClusterGroup();			
 		
 		function addMarker(marker, type) {
 		    var iconSize = null;
-			
-		    if (type == "guitar") {
-		        marker.setIcon(beerIcon);
-		        marker.addTo(layerPrice);
-		        iconSize = beerIcon.options.iconSize;
-		    } else {
-		        if (type == "party") {
-		            marker.setIcon(beerIcon);
-		            marker.addTo(layerOpen);
-		            iconSize = beerIcon.options.iconSize;
-		        } else {
-		            if (type == "beer") {
-		                marker.setIcon(beerIcon);
-		                marker.addTo(layerFood);
-		                iconSize = beerIcon.options.iconSize;
-		            }
-		        }
-		    }
+		    marker.setIcon(beerIcon);
+		    iconSize = beerIcon.options.iconSize;
 			markers.addLayer(marker);
-			markers.addTo(map);
-			
+			markers.addTo(map);			
 		    return iconSize;
 		}
 
@@ -137,23 +95,10 @@
 		            y: y + iconPopupHeight
 		        });
 		    });
-
-		    //missing: add Popup also to right layer
-
-
 		    //set link to result on sidebar
 		    $("#popupResultLink_" + id + "").click(openResultOfBar);
-
-		    if (type == "beer") {
-		        $("#food").click();
-		    }
 		}
-
-		//add dynamically popup
-		addPopup(51.96602, 7.61879, 'Gorilla Bar', "GorillaBar", "beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
-		addPopup(51.961, 7.65, 'Cavete', "Cavete", "party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
-		 //addLayerofMarkers();
-		 //Popup end		
+	
 		
 		var popup = L.popup();
 
@@ -161,114 +106,24 @@
 
 		map.on('click', onMapClick);
 
-		var price1 = L.marker([51.96712, 7.60331], {
-		        icon: beerIcon
-		    }).bindPopup(''),
-		    price2 = L.marker([51.96801, 7.64451], {
-		        icon: beerIcon
-		    }).bindPopup(''),
-		    price3 = L.marker([51.95437, 7.62983], {
-		        icon: beerIcon
-		    }).bindPopup(''),
-		    price4 = L.marker([51.97626, 7.62451], {
-		        icon: beerIcon
-		    }).bindPopup('');
-		var open1 = L.marker([51.97552, 7.58769], {
-		        icon: beerIcon
-		    }).bindPopup(''),
-		    open2 = L.marker([51.97325, 7.58666], {
-		        icon: beerIcon
-		    }).bindPopup(''),
-		    open3 = L.marker([51.96188, 7.62546], {
-		        icon: beerIcon
-		    }).bindPopup(''),
-		    open4 = L.marker([51.95913, 7.62185], {
-		        icon: beerIcon
-		    }).bindPopup('');
-		var food1 = L.marker([51.97769, 7.64142], {
-		        icon: beerIcon
-		    }).bindPopup(''),
-		    food2 = L.marker([51.96569, 7.66125], {
-		        icon: beerIcon
-		    }).bindPopup(''),
-		    food3 = L.marker([51.95876, 7.63653], {
-		        icon: beerIcon
-		    }).bindPopup(''),
-		    food4 = L.marker([51.96251, 7.61335], {
-		        icon: beerIcon
-		    }).bindPopup('');
-
-		var price = L.layerGroup([price1, price2, price3, price4]);
-		var open = L.layerGroup([open1, open2, open3, open4]);
-		var food = L.layerGroup([food1, food2, food3, food4]);
-
-		var overlayMaps = {
-		    "Price": price,
-		    "Open": open,
-		    "Food": food
-		};
-
+		// quick queries
+		// cheapest beer
 		$("#price").click(function () {
-		    if (map.hasLayer(price)) {
-		        map.removeLayer(price);
-		    } else {
-		        price.addTo(map);
-		    }
-		    if (map.hasLayer(layerPrice)) {
-		        map.removeLayer(layerPrice);
-		    } else {
-		        layerPrice.addTo(map);
-		    }
+			deleteAllMarkerandPopups()
 		});
-
+		
+		// all opened pubs
 		$("#open").click(function () {
-		    if (map.hasLayer(open)) {
-		        map.removeLayer(open);
-		    } else {
-		        open.addTo(map);
-		    }
-		    if (map.hasLayer(layerOpen)) {
-		        map.removeLayer(layerOpen);
-		    } else {
-		        layerOpen.addTo(map);
-		    }
+			deleteAllMarkerandPopups()
+			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.933&west=7.596&north=51.961&east=7.672")
 		});
-
+		
+		// pubs serving food
 		$("#food").click(function () {
-		    if (map.hasLayer(food)) {
-		        map.removeLayer(food);
-		    } else {
-		        food.addTo(map);
-		    }
-		    if (map.hasLayer(layerFood)) {
-		        map.removeLayer(layerFood);
-		    } else {
-		        layerFood.addTo(map);
-		    }
+			deleteAllMarkerandPopups()
 		});
 
-		$("#all").click(function () {
-		    if (map.hasLayer(food) && map.hasLayer(price) && map.hasLayer(open)) {
-		        map.removeLayer(food);
-		        map.removeLayer(price);
-		        map.removeLayer(open);
-
-		        map.removeLayer(layerFood);
-		        map.removeLayer(layerPrice);
-		        map.removeLayer(layerOpen);
-		        //deleteAllMarkerandPopups();
-
-		    } else {
-		        food.addTo(map);
-		        price.addTo(map);
-		        open.addTo(map);
-
-		        //addPopup(51.9629, 7.6286, 'Gorilla Bar', "GorillaBar","beer", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
-		        //addPopup(51.961, 7.65, 'Cavete', "Cavete","party", "Mon - Thu: 20.00 - 02.00,Fri - Sat: 20.00 - 03.00", 'Juedefelderstr. 54,48143 MUENSTER', 'info@gorilla-bar.de', '0251-4882188', 'http://www.gorilla-bar.de/', "gorilla1.jpg,gorilla2.jpg");
-		        addLayerofMarkers();
-		    }
-		});
-
+		
 		 // Move button used to open the sidebar when the sidebar is opened/closed 
 		$("#leftpanel2").on("panelbeforeopen", function (e) {
 		    var w = $("#leftpanel2").width() + 30; //ui panel inner has padding of 15px
@@ -313,8 +168,7 @@
 		    return tnow;
 		}
 
-		 // set current date and time as default value in the datepicker
-		$("#datePickerStart").val(getnow());
+
 
 		function createResultList(pubs){
 			var pubArray = pubs;
