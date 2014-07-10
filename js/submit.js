@@ -2,7 +2,7 @@
 // request returns an xml file
 $("#submit").click(function (e) {
     //default bounding box
-    var bbox = "51.961,7.596,51.9335,7.672"
+    var bbox = "51.967,7.6,51.95,7.66"
     //get query parameters
     var start = $("#datePickerStart").val();
     var end = $("#datePickerEnd").val();
@@ -85,7 +85,7 @@ $("#submit").click(function (e) {
 		console.log(query); //just for testing
 		$.ajax({
 			type: "GET",
-			url: "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.933&west=7.596&north=51.961&east=7.672",
+			url: query,
 			dataType: "xml",
 			success: parseXML
 			//function (data) {
@@ -237,7 +237,7 @@ $("#submit").click(function (e) {
 				
 			});
 			
-			adress=adressstreet+','+adressnr+','+adresscode+','+adresscity+','+adresscountry;
+			adress=adressstreet+','+adressnr;
 						
 			//console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
 						
