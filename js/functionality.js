@@ -318,7 +318,6 @@
 
 		function createResultList(pubs){
 			var pubArray = pubs;
-			console.log(pubArray.length);
 
 			$("#query").collapsible("option", "collapsed", true);
 			document.getElementById("result_text").style.display = "block";
@@ -337,7 +336,7 @@
 					'<p class = "entry"><b>Mail: </b>'+pubArray[i].email+'</p>' +
 					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +
 					'<p class = "entry"><b>Barrier free: </b>'+pubArray[i].wheelchair+'</p>' +
-					'<img src="gorilla.jpg" style="width:30%;" /></br>' +
+					'<img src="pubs/'+pubArray[i].id+'.png" style="width:50%;" /></br>' +
 					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
