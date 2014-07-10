@@ -85,9 +85,7 @@
 		        $("#mapElements").append(popup);
 		    } else {
 		        $.mobile.activePage.append(popup);
-		        $.mobile.activePage.trigger("create");
 		    }
-		    //$.mobile.activePage.append( popup ).trigger( "pagecreate" );
 		    //add marker an return icon width and height
 		    type = "beer";
 		    var iconSize = addMarker(marker, type);
