@@ -136,102 +136,26 @@ $("#submit").click(function (e) {
 			
 			$(this).find('tag').each(function(){
 				var actk = $(this).attr('k');
-				//adress
-				if (actk == 'addr:city')
-				{
-					adresscity = $(this).attr('v');
-				}
 				
-				if (actk == 'addr:country')
-				{
-					adresscountry = $(this).attr('v');
-				}
-				
-				if (actk == 'addr:housenumber')
-				{
-					adressnr = $(this).attr('v');
-				}
-				
-				if (actk == 'addr:postcode')
-				{
-					adresscode = $(this).attr('v');
-				}
-				
-				if (actk == 'addr:street')
-				{
-					adressstreet = $(this).attr('v');
-				}
-				
-				//type
-				if (actk == 'amenity')
-				{
-					type = $(this).attr('v');
-				}
-				
-				//food
-				if (actk == 'food')
-				{
-					food = $(this).attr('v');
-				}
-				
-				//name
-				if (actk == 'name')
-				{
-					pubName = $(this).attr('v');
-				}
-								
-				//website
-				if (actk == 'website')
-				{
-					website = $(this).attr('v');
-				}
-				
-				//wheelchair
-				if (actk == 'wheelchair')
-				{
-					wheelchair = $(this).attr('v');
-				}
-				
-				//email
-				if (actk == 'contact:email')
-				{
-					email = $(this).attr('v');
-				}
-				
-				//phone
-				if (actk == 'contact:phone')
-				{
-					phone = $(this).attr('v');
-				}
-				
-				//beerprice
-				if (actk == 'price:beer')
-				{
-					beerprice = $(this).attr('v');
-				}
-				
-				//outdoor_seatings
-				if ((actk == 'outdoor_seatings') || (actk == 'beer_garden'))
-				{
-					outdoor_seatings = $(this).attr('v');
-				}
-				
-				//opening hours
-				if (actk == 'opening_hours')
-				{
-					opening_hours = $(this).attr('v');
-				}
-				
-				//happy_hour
-				if (actk == 'happy_hour')
-				{
-					happy_hour = $(this).attr('v');
-				}
-				
-				//Time until closing
-				if (actk == 'tuc')
-				{
-					tuc = $(this).attr('v');
+				switch(actk){
+					case "addr:city": adresscity = $(this).attr('v');
+					case "addr:country": adresscountry = $(this).attr('v');
+					case "addr:housenumber": adressnr = $(this).attr('v');
+					case "addr:postcode": adresscode = $(this).attr('v');
+					case "addr:street": adressstreet = $(this).attr('v');
+					case "amenity": type = $(this).attr('v');
+					case "food": food = $(this).attr('v');
+					case "name": pubName = $(this).attr('v');
+					case "website": website = $(this).attr('v');
+					case "wheelchair": wheelchair = $(this).attr('v');
+					case "contact:email": email = $(this).attr('v');
+					case "contact:phone": phone = $(this).attr('v');
+					case "price:beer": beerprice = $(this).attr('v');
+					case "outdoor_seatings" : outdoor_seatings = $(this).attr('v');
+					case "beer_garden" : outdoor_seatings = $(this).attr('v');
+					case "opening_hours" : opening_hours = $(this).attr('v');
+					case "happy_hour" : happy_hour = $(this).attr('v');
+					case "tuc" : tuc = $(this).attr('v');
 				}
 				
 				
