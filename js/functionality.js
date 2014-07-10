@@ -37,7 +37,7 @@
 		    return iconSize;
 		}
 
-		function addPopup(lat, lng, pubName, id, type, opening_hours, adress, e_mail, phone, website, images) {
+		function addPopup(lat, lng, pubName, id, type, opening_hours, adress, e_mail, phone, website, images, tuc) {
 		    var marker = L.marker();
 		    marker.setLatLng([lat, lng]);
 
