@@ -15,6 +15,7 @@ $("#submit").click(function (e) {
 	$('input[name="radio-choice-h-6"]:checked').each(function() {
 		maximumBeerPrice = this.value;
 	});
+	console.log(maximumBeerPrice);
 
 
     // get checked event types
