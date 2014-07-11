@@ -23,14 +23,21 @@
 		}
 
 		function openResultOfBar() {
+		    // scroll to position zero first
+		    $(".ui-panel-inner").scroll();
+		    $('.ui-panel-inner').animate({scrollTop: 0}, 0);
 		    var id = $(this).attr("id");
 		    id = "#"+id.split("_")[1];
 		    $("#popup_" + id).popup("close");
 		    $("#leftpanel2").panel("open");
 		    $(id).collapsible("expand");
 		    var position = parseInt($(id).position().top);
+		    var offset = $(this).offset().top;
+		    //console.log('position: ' + position)
+		    //console.log('offset: ' + offset)
+		    // now scroll to position of entry
 		    $(".ui-panel-inner").scroll();
-		    $('.ui-panel-inner').animate({scrollTop: position}, 2000);
+		    $('.ui-panel-inner').animate({scrollTop: position}, 0);
 		}
 
 		var markers = new L.MarkerClusterGroup();			
