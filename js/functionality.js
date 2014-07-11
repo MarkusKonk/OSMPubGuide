@@ -76,14 +76,16 @@
 		        openingHours = openingHours + " </table>";
 		    }
 			var picture="";
-	        $.ajax({
-             url:'pubs/'+id + '.png',
+	        
+			$.ajax({
+             url:'pubs/thumb/'+id + '.png',
              type:'HEAD',
 			 async: false,
              success: function(){
-             picture =  "<img src='pubs/" + id + ".png' style = 'height:80px;'/>";
+             picture =  "<img src='pubs/thumb/" + id + ".png' style = 'height:80px;'/>";
              }
              });
+			 
 			//create popup element
 		    var popup = "<div data-role='popup' id='popup_" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a id='popupResultLink_" + id + "'>More information</a></th></tr></table><p align='center'>" + picture+ "</p></div>";
 		    if ($.mobile.activePage == null) {
@@ -191,14 +193,15 @@
 			deleteResults();
 			
 			for (var i = 0; i < pubArray.length; i++){
-			/*
+			
 				var pictureID;
-				if ( !doesFileExist("http://giv-openpubguide.uni-muenster.de/pubs/"+pubArray[i].id + ".png")){
+				if ( !doesFileExist("http://localhost/OSMPubGuide/pubs/thumb/"+pubArray[i].id + ".png")){
 					pictureID = 0;
 				}
 				else{
 					pictureID = pubArray[i].id
-				}*/
+				}
+				
 				var content = '<div data-role="collapsible" id="'+pubArray[i].id+'">' +
 					'<h3>'+pubArray[i].pubname+'</h3></br>' +
 					'<p class = "entry"><b>Adress:</b> '+pubArray[i].street+' ' + pubArray[i].housenr + ', ' + pubArray[i].city +'</p>' +					
@@ -211,7 +214,7 @@
 					'<p class = "entry"><b>Mail: </b>'+pubArray[i].email+'</p>' +
 					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +
 					'<p class = "entry"><b>Barrier free: </b>'+pubArray[i].wheelchair+'</p>' +
-					//'<img src="pubs/'+pictureID+'.png" style="width:50%;" /></br>' +
+					'<img src="pubs/thumb/'+pictureID+'.png" style="width:50%;" /></br>' +
 					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+','+pubArray[i].id+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
