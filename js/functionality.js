@@ -130,18 +130,21 @@
 		$("#price").click(function () {
 			deleteAllMarkerandPopups()
 			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.95&west=7.6&north=51.967&east=7.644&filter=maximumBeerPrice=2")
+			$("#leftpanel2").panel("open");
 		});
 		
 		// all opened pubs
 		$("#open").click(function () {
 			deleteAllMarkerandPopups()
 			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.95&west=7.6&north=51.967&east=7.644")
+			$("#leftpanel2").panel("open");
 		});
 		
 		// pubs serving food
 		$("#food").click(function () {
 			deleteAllMarkerandPopups()
 			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.95&west=7.6&north=51.967&east=7.644&filter=hasFood")
+			$("#leftpanel2").panel("open");
 		});
 
 		
