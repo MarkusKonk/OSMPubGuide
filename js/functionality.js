@@ -24,9 +24,8 @@
 
 		function openResultOfBar() {
 		    var id = $(this).attr("id");
-		    id = id.split("_")[1];
+		    id = "#"+id.split("_")[1];
 		    $("#popup_" + id).popup("close");
-		    id = "#result_" + id;
 		    $("#leftpanel2").panel("open");
 		    $(id).collapsible("expand");
 		    var position = parseInt($(id).position().top);
