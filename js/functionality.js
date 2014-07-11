@@ -193,7 +193,7 @@
 				else{
 					pictureID = pubArray[i].id
 				}*/
-				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="'+pubArray[i].pubname+'">' +
+				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="'+pubArray[i].id+'">' +
 					'<h3>'+pubArray[i].pubname+'</h3></br>' +
 					'<p class = "entry"><b>Adress:</b> '+pubArray[i].street+' ' + pubArray[i].housenr + ', ' + pubArray[i].city +'</p>' +					
 					'<p class = "entry"><b>Open:</b> '+pubArray[i].opening_hours+'</p>' +
