@@ -130,7 +130,6 @@ $("#submit").click(function (e) {
 			var adressstreet="";
 			var email="";
 			var opening_hours="";
-			var images="";
 			var beerprice="";
 			var outdoor_seatings="";
 			var happy_hour="";
@@ -168,7 +167,7 @@ $("#submit").click(function (e) {
 						
 			//console.log(lat, lng, pubName, id,type, adress, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc)
 						
-			addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, images, tuc); 
+			addPopup(lat, lng, pubName, id,type, opening_hours, adress, email, phone, website, tuc); 
 			
 			//has to be filled with all attributes.
 			var pub = new newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc);
