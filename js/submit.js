@@ -2,14 +2,9 @@
 // request returns an xml file
 $("#submit").click(function (e) {
     //default bounding box
-    if (bbox == 'undefined') {
-	var bbox = "51.967,7.6,51.95,7.66";
-	console.log("bbox set");
-    }
-    else {
-	console.log("bbox not set");
-    }
-    console.log("bbox submit: ",bbox);
+    var bbox = setBbox();
+    //var bbox = "51.967,7.6,51.95,7.66";
+    console.log("bbox submit2: ",bbox);
     //get query parameters
     var start = $("#datePickerStart").val();
     var end = $("#datePickerEnd").val();
@@ -141,102 +136,26 @@ $("#submit").click(function (e) {
 			
 			$(this).find('tag').each(function(){
 				var actk = $(this).attr('k');
-				//adress
-				if (actk == 'addr:city')
-				{
-					adresscity = $(this).attr('v');
-				}
 				
-				if (actk == 'addr:country')
-				{
-					adresscountry = $(this).attr('v');
-				}
-				
-				if (actk == 'addr:housenumber')
-				{
-					adressnr = $(this).attr('v');
-				}
-				
-				if (actk == 'addr:postcode')
-				{
-					adresscode = $(this).attr('v');
-				}
-				
-				if (actk == 'addr:street')
-				{
-					adressstreet = $(this).attr('v');
-				}
-				
-				//type
-				if (actk == 'amenity')
-				{
-					type = $(this).attr('v');
-				}
-				
-				//food
-				if (actk == 'food')
-				{
-					food = $(this).attr('v');
-				}
-				
-				//name
-				if (actk == 'name')
-				{
-					pubName = $(this).attr('v');
-				}
-								
-				//website
-				if (actk == 'website')
-				{
-					website = $(this).attr('v');
-				}
-				
-				//wheelchair
-				if (actk == 'wheelchair')
-				{
-					wheelchair = $(this).attr('v');
-				}
-				
-				//email
-				if (actk == 'contact:email')
-				{
-					email = $(this).attr('v');
-				}
-				
-				//phone
-				if (actk == 'contact:phone')
-				{
-					phone = $(this).attr('v');
-				}
-				
-				//beerprice
-				if (actk == 'price:beer')
-				{
-					beerprice = $(this).attr('v');
-				}
-				
-				//outdoor_seatings
-				if ((actk == 'outdoor_seatings') || (actk == 'beer_garden'))
-				{
-					outdoor_seatings = $(this).attr('v');
-				}
-				
-				//opening hours
-				if (actk == 'opening_hours')
-				{
-					opening_hours = $(this).attr('v');
-				}
-				
-				//happy_hour
-				if (actk == 'happy_hour')
-				{
-					happy_hour = $(this).attr('v');
-				}
-				
-				//Time until closing
-				if (actk == 'tuc')
-				{
-					tuc = $(this).attr('v');
+				switch(actk){
+					case "addr:city": adresscity = $(this).attr('v');
+					case "addr:country": adresscountry = $(this).attr('v');
+					case "addr:housenumber": adressnr = $(this).attr('v');
+					case "addr:postcode": adresscode = $(this).attr('v');
+					case "addr:street": adressstreet = $(this).attr('v');
+					case "amenity": type = $(this).attr('v');
+					case "food": food = $(this).attr('v');
+					case "name": pubName = $(this).attr('v');
+					case "website": website = $(this).attr('v');
+					case "wheelchair": wheelchair = $(this).attr('v');
+					case "contact:email": email = $(this).attr('v');
+					case "contact:phone": phone = $(this).attr('v');
+					case "price:beer": beerprice = $(this).attr('v');
+					case "outdoor_seatings" : outdoor_seatings = $(this).attr('v');
+					case "beer_garden" : outdoor_seatings = $(this).attr('v');
+					case "opening_hours" : opening_hours = $(this).attr('v');
+					case "happy_hour" : happy_hour = $(this).attr('v');
+					case "tuc" : tuc = $(this).attr('v');
 				}
 				
 				
@@ -332,6 +251,7 @@ $("#submit").click(function (e) {
 		{
 			window.alert("No results found for your query!");
 		}
+		$.mobile.activePage.trigger("create");
 	}
 
 function newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc){
@@ -364,4 +284,26 @@ function newEvent(ev_id, ev_start, ev_end, ev_name, ev_type, ev_description, ev_
 	this.type = ev_type;
 	this.description = ev_description;
 	this.cost = ev_cost;
+}
+
+// Add functionality for adding the BBox-Tool
+function setBbox() {
+	var bbox;
+	if (b_box) {
+		// Add it to the map
+		var areaSelect = L.areaSelect({width:200, height:300});
+		areaSelect.addTo(map);
+		
+		// Read the bouding box
+		var bounds = areaSelect.getBounds();
+		
+		// Get a callback when the bounds change
+		areaSelect.on("change", function() {
+		    bbox = this.getBounds()._southWest.lat + "," + this.getBounds()._southWest.lng + "," + this.getBounds()._northEast.lat + "," + this.getBounds()._northEast.lng;
+		});
+	}
+	else {
+		bbox = "51.967,7.6,51.95,7.66"
+	}
+	return bbox;
 }

@@ -5,6 +5,14 @@
 		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
 		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 		});
+		
+		// icon for nightview
+		var beerIconN = L.icon({
+		    iconUrl: 'css/images/beer4.ico',
+		    iconSize: [20, 20], // size of the icon
+		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
+		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+		});
 
 
 		// delete markers and popups
@@ -61,25 +69,22 @@
 		        }
 		        openingHours = openingHours + " </table>";
 		    }
-
-		    //images
-		    if (images != ' ') {
-		        var pictures = images.split(',');
-		        var images = "";
-		        for (var i = 0; i < pictures.length; i++) {
-		            images = images + "<img src=" + pictures[i] + " style = 'height:80px;'/>";
-		        }
-		    }
-		    
+			var picture="";
+	        $.ajax({
+             url:'pubs/'+id + '.png',
+             type:'HEAD',
+			 async: false,
+             success: function(){
+             picture =  "<img src='pubs/" + id + ".png' style = 'height:80px;'/>";
+             }
+             });
 			//create popup element
-		    var popup = "<div data-role='popup' id='popup_" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a id='popupResultLink_" + id + "'>More information</a></th></tr></table><p align='center'>" + images + "</p></div>";
+		    var popup = "<div data-role='popup' id='popup_" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a id='popupResultLink_" + id + "'>More information</a></th></tr></table><p align='center'>" + picture+ "</p></div>";
 		    if ($.mobile.activePage == null) {
 		        $("#mapElements").append(popup);
 		    } else {
 		        $.mobile.activePage.append(popup);
-		        $.mobile.activePage.trigger("create");
 		    }
-		    //$.mobile.activePage.append( popup ).trigger( "pagecreate" );
 		    //add marker an return icon width and height
 		    type = "beer";
 		    var iconSize = addMarker(marker, type);
@@ -178,15 +183,16 @@
 			$("#query").collapsible("option", "collapsed", true);
 			document.getElementById("result_text").style.display = "block";
 			deleteResults();
-
+			
 			for (var i = 0; i < pubArray.length; i++){
+			/*
 				var pictureID;
-				if ( !doesFileExist("http://localhost/OSMPubGuide/pubs/"+pubArray[i].id + ".png")){
+				if ( !doesFileExist("http://giv-openpubguide.uni-muenster.de/pubs/"+pubArray[i].id + ".png")){
 					pictureID = 0;
 				}
 				else{
 					pictureID = pubArray[i].id
-				}
+				}*/
 				var content = '<div data-role="collapsible-set" data-theme="a" data-content-theme="a"><div data-role="collapsible" id="'+pubArray[i].pubname+'">' +
 					'<h3>'+pubArray[i].pubname+'</h3></br>' +
 					'<p class = "entry"><b>Adress:</b> '+pubArray[i].street+' ' + pubArray[i].housenr + ', ' + pubArray[i].city +'</p>' +					
@@ -199,7 +205,7 @@
 					'<p class = "entry"><b>Mail: </b>'+pubArray[i].email+'</p>' +
 					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +
 					'<p class = "entry"><b>Barrier free: </b>'+pubArray[i].wheelchair+'</p>' +
-					'<img src="pubs/'+pictureID+'.png" style="width:50%;" /></br>' +
+					//'<img src="pubs/'+pictureID+'.png" style="width:50%;" /></br>' +
 					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
@@ -216,21 +222,6 @@
 		    document.getElementById("result").innerHTML = "";
 		}
 		
-		// Add functionality for adding the BBox-Tool
-		if (b_box) {
-			// Add it to the map
-			var bbox;
-			var areaSelect = L.areaSelect({width:200, height:300});
-			areaSelect.addTo(map);
-			
-			// Read the bouding box
-			var bounds = areaSelect.getBounds();
-			
-			// Get a callback when the bounds change
-			areaSelect.on("change", function() {
-			    bbox = this.getBounds()._southWest.lat + "," + this.getBounds()._southWest.lng + "," + this.getBounds()._northEast.lat + "," + this.getBounds()._northEast.lng;
-			});
-		}
 		
 	function doesFileExist(urlToFile)
 		{
@@ -242,5 +233,27 @@
 				return false;
 			} else {
 				return true;
+			}
+		}
+		
+		
+		// change icon on nightview
+		map.on('baselayerchange',function(e){
+			changeIcon()
+		});
+		
+		map.on('layeradd',function(e){
+			changeIcon()
+		});
+		
+		function changeIcon() {
+			if (!map.hasLayer(day)) {
+				for (var i in markers.getLayers()){
+					markers.getLayers()[i].setIcon(beerIconN);
+				}
+			} else {
+				for (var i in markers.getLayers()){
+					markers.getLayers()[i].setIcon(beerIcon);
+				}
 			}
 		}
