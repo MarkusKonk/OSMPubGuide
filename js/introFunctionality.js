@@ -7,12 +7,12 @@
 		            position: 'top',
 
 		        }, {
-		            intro: 'With this panel you can decide for what kind of pub you would like to search.',
+		            intro: 'Within this panel the results of a query are shown. In addition to this you can click on "Enter your Query" to start a new one.',
 		        },
 
 		        {
 		            element: '.ui-grid-d',
-		            intro: 'With these buttons you can decide which kind of pubs should be shown in the map',
+		            intro: 'By clicking on one of these buttons a query will be executed. The possibilities are: query for opened pubs with cheapest beer price, query for all opened pubs and query for opened pubs which offer warm food.',
 		            position: 'top',
 
 		        }, 
