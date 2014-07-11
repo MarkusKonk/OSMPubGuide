@@ -5,21 +5,21 @@
 		var searchPosition = 'topcenter';
 		var b_box = false;
 
-		 //own Tile-Services (Back-End Group)
-		var day = new L.tileLayer('http://openpubguide-tile.uni-muenster.de:8001/tiles/{z}/{x}/{y}.png', {
-		    maxZoom: 22,
-		})
-		 night = new L.tileLayer('http://openpubguide-tile.uni-muenster.de:8002/tiles/{z}/{x}/{y}.png', {
-		    maxZoom: 22,
-		});
-
 		 // map definition
 		var map = L.map('map', {
 		    zoomControl: false,
 		    center: [lat, lon],
-		    zoom: zoom,
-		    layers: [day]
+		    zoom: zoom
 		})
+		
+		var day = L.tileLayer('http://openpubguide-tile.uni-muenster.de:8001/tiles/{z}/{x}/{y}.png', {
+		maxZoom: 22
+		}).addTo(map);
+		
+		
+		var night = new L.tileLayer('http://openpubguide-tile.uni-muenster.de:8002/tiles/{z}/{x}/{y}.png', {
+		    maxZoom: 22,
+		});
 
 		 //Leaflet.Geosearch: Search Bar (Provider: OpenStreetMap)
 		new L.Control.GeoSearch({
@@ -64,17 +64,23 @@
 		    locateOptions: {} // define location options e.g enableHighAccuracy: true or maxZoom: 10
 		}).addTo(map);
 
-
-		var baseLayers = {
-		    "Dayview": day,
-		    "Nightview": night
-		};
+		//layerSwitcher
+		function layerSwitcher() {
+		if (map.hasLayer(day)) {
+		night.addTo(map);
+		map.removeLayer(day);
+		}
+		else {
+		day.addTo(map);
+		map.removeLayer(night);
+		}
+		}
 
 
 		// add Layers Control to mmap
 		$(document).ready(function () {
-		    var layersControl = new L.Control.Layers(baseLayers);
-		    map.addControl(layersControl);
+		console.log(map.hasLayer(day));
+		console.log(map.hasLayer(night));
 			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.95&west=7.6&north=51.967&east=7.644")
 			// set current date and time as default value in the datepicker
 			$("#datePickerStart").val(getnow());
