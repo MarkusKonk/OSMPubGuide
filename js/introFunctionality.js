@@ -12,30 +12,16 @@
 
 		        {
 		            element: '.ui-grid-d',
-		            intro: 'With this button and the two more left you can decide which kind of pubs should be shown in the map',
+		            intro: 'With these buttons you can decide which kind of pubs should be shown in the map',
 		            position: 'top',
 
-		        }, {
-		            element: '.leaflet-control-geosearch',
-		            intro: 'Here you can serach for streets and pubs and more OSM Elements',
-		            position: 'bottom',
-
-		        }, {
+		        }, 
+				{
 		            element: '.leaflet-control-locate',
 		            intro: 'With this button you can find your actual location.',
 		            position: 'bottom',
 
-		        }, {
-		            element: '.leaflet-control-zoom',
-		            intro: 'With this button you can zoom in and out of the map.',
-		            position: 'right',
-
-		        }, {
-		            element: '.leaflet-control-layers',
-		            intro: 'Here you can choose different maps.',
-		            position: 'left',
-
-		        },
+		        }, 
 
 		    ],
 		    "showStepNumbers": "no",

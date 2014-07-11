@@ -140,24 +140,26 @@ $("#submit").click(function (e) {
 				var actk = $(this).attr('k');
 				
 				switch(actk){
-					case "addr:city": adresscity = $(this).attr('v');
-					case "addr:country": adresscountry = $(this).attr('v');
-					case "addr:housenumber": adressnr = $(this).attr('v');
-					case "addr:postcode": adresscode = $(this).attr('v');
-					case "addr:street": adressstreet = $(this).attr('v');
-					case "amenity": type = $(this).attr('v');
-					case "food": food = $(this).attr('v');
-					case "name": pubName = $(this).attr('v');
-					case "website": website = $(this).attr('v');
-					case "wheelchair": wheelchair = $(this).attr('v');
-					case "contact:email": email = $(this).attr('v');
-					case "contact:phone": phone = $(this).attr('v');
-					case "price:beer": beerprice = $(this).attr('v');
-					case "outdoor_seatings" : outdoor_seatings = $(this).attr('v');
-					case "beer_garden" : outdoor_seatings = $(this).attr('v');
-					case "opening_hours" : opening_hours = $(this).attr('v');
-					case "happy_hour" : happy_hour = $(this).attr('v');
-					case "tuc" : tuc = $(this).attr('v');
+					case "addr:city": adresscity = $(this).attr('v'); break;
+					case "addr:country": adresscountry = $(this).attr('v'); break;
+					case "addr:housenumber": adressnr = $(this).attr('v'); break;
+					case "addr:postcode": adresscode = $(this).attr('v'); break;
+					case "addr:street": adressstreet = $(this).attr('v'); break;
+					case "amenity": type = $(this).attr('v'); break;
+					case "food": food = $(this).attr('v'); break;
+					case "name": pubName = $(this).attr('v'); break;
+					case "website": website = $(this).attr('v'); break;
+					case "wheelchair": wheelchair = $(this).attr('v'); break;
+					case "email": email = $(this).attr('v'); break;
+					case "contact:email": email = $(this).attr('v'); break;
+					case "phone": phone = $(this).attr('v'); break;
+					case "contact:phone": phone = $(this).attr('v'); break;
+					case "price:beer": beerprice = $(this).attr('v'); break;
+					case "outdoor_seatings" : outdoor_seatings = $(this).attr('v'); break;
+					case "beer_garden" : outdoor_seatings = $(this).attr('v'); break;
+					case "opening_hours" : opening_hours = $(this).attr('v'); break;
+					case "happy_hour" : happy_hour = $(this).attr('v'); break;
+					case "tuc" : tuc = $(this).attr('v'); break;
 				}
 				
 				
@@ -173,7 +175,7 @@ $("#submit").click(function (e) {
 			var pub = new newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc);
 			
 			allpubs.push(pub);
-			//console.log(pub);
+			console.log(pub);
 		});
 		
 		//function does not exist, will be defined later by Markus
@@ -193,10 +195,10 @@ $("#submit").click(function (e) {
 			$(this).find('tag').each(function(){
 				
 				switch(actk){
-				case "name" : ev_name = $(this).attr('v');
-				case "type" : ev_type = $(this).attr('v');
-				case "description" : ev_description = $(this).attr('v');
-				case "cost" : ev_cost = $(this).attr('v');
+				case "name" : ev_name = $(this).attr('v'); break;
+				case "type" : ev_type = $(this).attr('v'); break;
+				case "description" : ev_description = $(this).attr('v'); break;
+				case "cost" : ev_cost = $(this).attr('v'); break;
 				
 				}
 				
