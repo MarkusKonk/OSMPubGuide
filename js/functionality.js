@@ -1,6 +1,6 @@
 		// icon representing pubs on the map
 		var beerIcon = L.icon({
-		    iconUrl: 'css/images/beer3.ico',
+		    iconUrl: 'css/images/beer3.png',
 		    iconSize: [20, 20], // size of the icon
 		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
 		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -8,7 +8,7 @@
 		
 		// icon for nightview
 		var beerIconN = L.icon({
-		    iconUrl: 'css/images/beer4.ico',
+		    iconUrl: 'css/images/beer.png',
 		    iconSize: [20, 20], // size of the icon
 		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
 		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
@@ -24,9 +24,8 @@
 
 		function openResultOfBar() {
 		    var id = $(this).attr("id");
-		    id = id.split("_")[1];
+		    id = "#"+id.split("_")[1];
 		    $("#popup_" + id).popup("close");
-		    id = "#result_" + id;
 		    $("#leftpanel2").panel("open");
 		    $(id).collapsible("expand");
 		    var position = parseInt($(id).position().top);
@@ -206,15 +205,16 @@
 					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +
 					'<p class = "entry"><b>Barrier free: </b>'+pubArray[i].wheelchair+'</p>' +
 					//'<img src="pubs/'+pictureID+'.png" style="width:50%;" /></br>' +
-					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+');">Move to</button></div>';
+					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+','+pubArray[i].id+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
 				
 			}
 		}
 		
-		function moveTo(lat,lng) {
-		    map.setView([lat, lng], 18);
+		function moveTo(lat,lng,id) {
+		    map.setView([lat, lng], 20);
+			$("#popup_" + id + "").popup('open');
 		}
 		
 		
@@ -257,3 +257,4 @@
 				}
 			}
 		}
+	

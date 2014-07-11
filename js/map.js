@@ -67,12 +67,12 @@
 		//layerSwitcher
 		function layerSwitcher() {
 		if (map.hasLayer(day)) {
-		night.addTo(map);
 		map.removeLayer(day);
+		night.addTo(map);
 		}
 		else {
-		day.addTo(map);
 		map.removeLayer(night);
+		day.addTo(map);
 		}
 		}
 
