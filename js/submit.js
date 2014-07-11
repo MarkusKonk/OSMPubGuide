@@ -1,7 +1,10 @@
 // get query parameters on click of the submit button and send a request 
 // request returns an xml file
 $("#submit").click(function (e) {
-    //default bounding box
+	//remove focus in bottom bar
+	$(".ui-btn-active").removeClass('ui-btn-active');
+	
+	//default bounding box
     var bbox = setBbox();
     //var bbox = "51.967,7.6,51.95,7.66";
     console.log("bbox submit2: ",bbox);
