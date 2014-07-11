@@ -237,7 +237,7 @@ $("#submit").click(function (e) {
 		{
 			window.alert("No results found for your query!");
 		}
-		$.mobile.activePage.trigger("create");
+		putPopupsOnMap();
 	}
 
 function newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc){

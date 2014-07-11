@@ -20,6 +20,7 @@
 		    $("[id^=popup_]").remove();
 		    map.removeLayer(markers);
 			markers.clearLayers();
+		    popups=new Array();
 		}
 
 		function openResultOfBar() {
@@ -50,11 +51,18 @@
 			markers.addTo(map);			
 		    return iconSize;
 		}
-
+		function putPopupsOnMap(){
+		while(popups.length!=0){
+		var popup=popups.pop();
+		$("#mapElements").append(popup);
+		}
+		$.mobile.activePage.trigger("create");
+		$("[id^='popupResultLink']").click(openResultOfBar);
+		}
+        var popups=new Array();
 		function addPopup(lat, lng, pubName, id, type, opening_hours, adress, e_mail, phone, website, tuc) {
 		    var marker = L.marker();
 		    marker.setLatLng([lat, lng]);
-
 		    //adress	
 		    if (adress != ',,,') {
 		        var adresses = adress.split(',');
@@ -63,7 +71,6 @@
 		            adress = adress + adresses[p] + "<br>";
 		        }
 		    }
-
 		    //opening hours
 		    if (opening_hours != '') {
 		        var opening = opening_hours.split(',');
@@ -88,11 +95,7 @@
 			 
 			//create popup element
 		    var popup = "<div data-role='popup' id='popup_" + id + "' class='ui-content ' data-arrow='true'><a data-rel='back' data-role='button' data-theme='a' data-icon='delete' data-iconpos='notext' class='ui-btn-right'/><p align='center'><a>" + pubName + "</a></p><table style='border-spacing: 15px 0px'><tr><td valign='top'><b>Time until close</b> </td><td>" + tuc + "</td></tr><tr><td valign='top'><b>Opening hours </b> </td><td>" + openingHours + "</td></tr><tr><td valign='top'><b>Adress</b></td><td>" + adress + " </td></tr><tr><td valign='top'><b>Phone number</b></td><td>" + phone + "</td></tr><tr><td valign='top'><b>Mail adress</b></td><td>" + e_mail + "</td></tr><tr valign='top'><td><b>Website</b></td><td><a href='" + website + "' style='font-weight:normal'>" + website + "</a>  </td></tr><tr><th  colspan='2' align='left'><a id='popupResultLink_" + id + "'>More information</a></th></tr></table><p align='center'>" + picture+ "</p></div>";
-		    if ($.mobile.activePage == null) {
-		        $("#mapElements").append(popup);
-		    } else {
-		        $.mobile.activePage.append(popup);
-		    }
+		    popups.push(popup);
 		    //add marker an return icon width and height
 		    type = "beer";
 		    var iconSize = addMarker(marker, type);
@@ -108,8 +111,7 @@
 		            y: y + iconPopupHeight
 		        });
 		    });
-		    //set link to result on sidebar
-		    $("#popupResultLink_" + id + "").click(openResultOfBar);
+			
 		}
 	
 		
