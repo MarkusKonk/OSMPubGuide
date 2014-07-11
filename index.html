@@ -32,6 +32,7 @@
     <div data-role="content" style="overflow-y:hidden;">
         <div id="map"></div>
         <a href="#leftpanel2" id="open_sb" class="ui-btn ui-btn-b ui-shadow ui-icon-carat-r ui-btn-icon-notext"></a>
+		<div data-role="button" id="layerswitcher" class="ui-btn ui-btn-inline ui-corner-all ui-btn-right" onclick = "layerSwitcher();"> Nightview </div>
     </div>
     <div id="leftpanel2" data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="b" class="ui-corner-all ui-shadow ui-panel ui-panel-open ui-panel-inner">
         <div id="query" data-role="collapsible" data-inset="false" data-collapsed="false">
@@ -103,7 +104,7 @@
                     <a href="#" id="price" data-icon="custom">Cheapest Beer</a>
                 </li>
                 <li class="mytab">
-                    <a href="#" id="open" data-icon="custom">Opened Pubs</a>
+                    <a href="#" id="open" data-icon="custom" class="ui-btn-active">Opened Pubs</a>
                 </li>
                 <li class="mytab">
                     <a href="#" id="food" data-icon="custom">Warm Food</a> 
@@ -130,7 +131,7 @@
         <p>Here you can find an introduction into the page navigation: <a onclick="$('#popupHelp').popup('close');intro.start();">Start guide</a>
         </p>
         <p style="padding-top:3%">The OSM Pub Guide is a project of the Institude of Geoinformatics (ifgi) and uses mainly information provided by the Open Street Map community.</p>
-        <a href="http://www.uni-muenster.de/Geoinformatics/">
+        <a href="http://www.uni-muenster.de/Geoinformatics/" target="_blank">
             <img src="ifgilogo.gif" style="width:120px;" />
         </a>
     </div>

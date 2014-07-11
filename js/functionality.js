@@ -200,7 +200,7 @@
 					'<p class = "entry"><b>Closed in </b> '+pubArray[i].tuc+' minutes</p>' +
 					'<p class = "entry"><b>Happy hour: </b>'+pubArray[i].happy_hour+'</p>' +
 					'<p class = "entry"><b>Cheapest beer: </b>'+pubArray[i].beerprice+'</p>' +					
-					'<a href="'+pubArray[i].website+'">Website</a></p>' +
+					'<a href="'+pubArray[i].website+'" target="_blank">Website</a></p>' +
 					'<p class = "entry"><b>Telephone:</b> '+pubArray[i].phone+'</p>' +
 					'<p class = "entry"><b>Mail: </b>'+pubArray[i].email+'</p>' +
 					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +

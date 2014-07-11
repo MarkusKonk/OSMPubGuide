@@ -1,7 +1,10 @@
 // get query parameters on click of the submit button and send a request 
 // request returns an xml file
 $("#submit").click(function (e) {
-    //default bounding box
+	//remove focus in bottom bar
+	$(".ui-btn-active").removeClass('ui-btn-active');
+	
+	//default bounding box
     var bbox = setBbox();
     //var bbox = "51.967,7.6,51.95,7.66";
     console.log("bbox submit2: ",bbox);
@@ -169,9 +172,9 @@ $("#submit").click(function (e) {
 			
 			//has to be filled with all attributes.
 			var pub = new newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc);
-			allpubs.push(pub);
-			//console.log(allpubs);
 			
+			allpubs.push(pub);
+			//console.log(pub);
 		});
 		
 		//function does not exist, will be defined later by Markus
@@ -190,28 +193,12 @@ $("#submit").click(function (e) {
 			
 			$(this).find('tag').each(function(){
 				
-				//event name
-				if (actk == 'name')
-				{
-					ev_name = $(this).attr('v');
-				}
+				switch(actk){
+				case "name" : ev_name = $(this).attr('v');
+				case "type" : ev_type = $(this).attr('v');
+				case "description" : ev_description = $(this).attr('v');
+				case "cost" : ev_cost = $(this).attr('v');
 				
-				//event type
-				if (actk == 'type')
-				{
-					ev_type = $(this).attr('v');
-				}
-				
-				//event description
-				if (actk == 'description')
-				{
-					ev_description = $(this).attr('v');
-				}
-				
-				//event cost
-				if (actk == 'cost')
-				{
-					ev_cost = $(this).attr('v');
 				}
 				
 			});	
