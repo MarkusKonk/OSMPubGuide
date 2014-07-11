@@ -206,15 +206,16 @@
 					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +
 					'<p class = "entry"><b>Barrier free: </b>'+pubArray[i].wheelchair+'</p>' +
 					//'<img src="pubs/'+pictureID+'.png" style="width:50%;" /></br>' +
-					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+');">Move to</button></div>';
+					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+','+pubArray[i].id+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
 				
 			}
 		}
 		
-		function moveTo(lat,lng) {
+		function moveTo(lat,lng,id) {
 		    map.setView([lat, lng], 18);
+			$("#popup_" + id + "").popup('open');
 		}
 		
 		
