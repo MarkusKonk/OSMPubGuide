@@ -190,28 +190,12 @@ $("#submit").click(function (e) {
 			
 			$(this).find('tag').each(function(){
 				
-				//event name
-				if (actk == 'name')
-				{
-					ev_name = $(this).attr('v');
-				}
+				switch(actk){
+				case "name" : ev_name = $(this).attr('v');
+				case "type" : ev_type = $(this).attr('v');
+				case "description" : ev_description = $(this).attr('v');
+				case "cost" : ev_cost = $(this).attr('v');
 				
-				//event type
-				if (actk == 'type')
-				{
-					ev_type = $(this).attr('v');
-				}
-				
-				//event description
-				if (actk == 'description')
-				{
-					ev_description = $(this).attr('v');
-				}
-				
-				//event cost
-				if (actk == 'cost')
-				{
-					ev_cost = $(this).attr('v');
 				}
 				
 			});	
