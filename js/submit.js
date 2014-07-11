@@ -169,9 +169,9 @@ $("#submit").click(function (e) {
 			
 			//has to be filled with all attributes.
 			var pub = new newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc);
-			allpubs.push(pub);
-			//console.log(allpubs);
 			
+			allpubs.push(pub);
+			//console.log(pub);
 		});
 		
 		//function does not exist, will be defined later by Markus
