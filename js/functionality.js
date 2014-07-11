@@ -257,3 +257,9 @@
 				}
 			}
 		}
+	
+$( "#query" ).collapsible({
+   expand: function() { 
+				document.getElementById("result").innerHTML = "";
+			}
+});
