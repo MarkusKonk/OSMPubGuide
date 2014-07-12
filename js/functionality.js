@@ -100,11 +100,11 @@
 				var picture=$("#picture_"+id).html();
 				if(picture==""){
 				  $.ajax({
-                  url:'pubs/thumb/'+id + '.png',
+                  url:'pubs/thumb/'+id + '.jpg',
                   type:'HEAD',
 			      async: false,
                   success: function(){
-                  picture =  "<img src='pubs/thumb/" + id + ".png' style = 'height:80px;'/>";
+                  picture =  "<img src='pubs/thumb/" + id + ".jpg' style = 'height:80px;'/>";
 				  $("#picture_"+id).html(picture);
                   }
                   });
@@ -202,14 +202,6 @@
 			deleteResults();
 			
 			for (var i = 0; i < pubArray.length; i++){
-			
-				var pictureID;
-				if ( !doesFileExist("http://localhost/OSMPubGuide/pubs/thumb/"+pubArray[i].id + ".png")){
-					pictureID = 0;
-				}
-				else{
-					pictureID = pubArray[i].id
-				}
 				
 				var content = '<div data-role="collapsible" id="'+pubArray[i].id+'">' +
 					'<h3>'+pubArray[i].pubname+'</h3></br>' +
@@ -223,7 +215,7 @@
 					'<p class = "entry"><b>Mail: </b>'+pubArray[i].email+'</p>' +
 					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +
 					'<p class = "entry"><b>Barrier free: </b>'+pubArray[i].wheelchair+'</p>' +
-					'<img src="pubs/thumb/'+pictureID+'.png" style="width:50%;" /></br>' +
+					'<img src="pubs/thumb/'+pubArray[i].id+'.jpg" style="width:50%;"onerror=this.src="pubs/thumb/0.jpg" /></br>' +
 					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+','+pubArray[i].id+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
