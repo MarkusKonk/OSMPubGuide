@@ -226,6 +226,7 @@
 		function moveTo(lat,lng,id) {
 		    map.setView([lat, lng], 20);
 			$("#popup_" + id + "").popup('open');
+			$("#leftpanel2").panel("close");
 		}
 		
 		
