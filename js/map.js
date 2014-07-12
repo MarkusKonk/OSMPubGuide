@@ -69,10 +69,12 @@
 		if (map.hasLayer(day)) {
 		map.removeLayer(day);
 		night.addTo(map);
+		document.getElementById('layerswitcher').innerHTML = 'Day view';
 		}
 		else {
 		map.removeLayer(night);
 		day.addTo(map);
+		document.getElementById('layerswitcher').innerHTML = 'Night view';
 		}
 		}
 
