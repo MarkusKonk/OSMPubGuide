@@ -50,7 +50,14 @@ $("#submit").click(function (e) {
         else minutes = parseInt(temp.getMinutes());
         end = temp.getFullYear() + "-" + month + "-" + temp.getDate() + "T" + temp.getHours() + ":" + minutes;
     }
-
+    //change datetime format for desktop version
+	var appname = navigator.userAgent.toLowerCase();
+		if(appname.search("mobile")==-1){
+		end=end.replace(/\//g,"-");
+		start=start.replace(/\//g,"-");
+		}
+		alert(end);
+		alert(start);
     // default query string
     var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?bbox=" + bbox + "&start=" + start + "&end=" + end;
 
