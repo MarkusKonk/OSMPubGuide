@@ -13,8 +13,16 @@
 		    iconAnchor: [0, 0] // point of the icon which will correspond to marker's location
 		        //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 		});
-
-
+		
+		//for desktop applications use another date and time picker
+		var appname = navigator.userAgent.toLowerCase();
+		if(appname.search("mobile")==-1){
+		$('#datePickerStart').replaceWith("<input id='datePickerStart' data-theme='a' />");
+		$('#datePickerEnd').replaceWith("<input id='datePickerEnd' data-theme='a'/>");
+        $('#datePickerStart').datetimepicker();
+		$('#datePickerEnd').datetimepicker();
+		}
+		
 		// delete markers and popups
 		function deleteAllMarkerandPopups() {
 		    $("[id^=popup_]").remove();
