@@ -28,8 +28,9 @@
 		    $(".ui-panel-inner").scroll();
 		    $('.ui-panel-inner').animate({scrollTop: 0}, 0);
 		    var id = $(this).attr("id");
-		    id = "#"+id.split("_")[1];
+		    id = id.split("_")[1];
 		    $("#popup_" + id).popup("close");
+			id="#"+id;
 		    $("#leftpanel2").panel("open");
 		    $(id).collapsible("expand");
 		    var position = parseInt($(id).position().top);
