@@ -13,12 +13,14 @@
 		})
 		
 		var day = L.tileLayer('http://openpubguide-tile.uni-muenster.de:8001/tiles/{z}/{x}/{y}.png', {
-		maxZoom: 22
+		maxZoom: 22,
+		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 		
 		
 		var night = new L.tileLayer('http://openpubguide-tile.uni-muenster.de:8002/tiles/{z}/{x}/{y}.png', {
-		    maxZoom: 22,
+		maxZoom: 22,
+		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		});
 
 		 //Leaflet.Geosearch: Search Bar (Provider: OpenStreetMap)
