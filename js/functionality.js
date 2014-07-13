@@ -73,21 +73,27 @@
 		    var marker = L.marker();
 		    marker.setLatLng([lat, lng]);
 		    //adress	
-		    if (adress != ',,,') {
-		        var adresses = adress.split(',');
+		    if (adress != ',,,'|adress!="undifined") {
+		        var adresses = adress.split(/,|;/);
 		        var adress = "";
 		        for (var p in adresses) {
 		            adress = adress + adresses[p] + "<br>";
 		        }
 		    }
 		    //opening hours
-		    if (opening_hours != '') {
-		        var opening = opening_hours.split(',');
+		    if (opening_hours != ''|opening_hours!="undifined") {
+		        var opening = opening_hours.split(/,|;/);
 		        var openingHours = "<table>";
 		        for (var i = 0; i < opening.length; i++) {
-		            var openArray = opening[i].split(":");
-		            openingHours = openingHours + "<tr><td>" + openArray[0] + ":</td>";
-		            openingHours = openingHours + "<td>" + openArray[1] + "</td></tr>";
+		            var openArray = opening[i].match(/[A-Za-z]+-[A-Za-z]+|[A-Za-z]+\s+[A-Za-z]+|[A-Za-z]+/);
+					if(openArray){
+		            openingHours = openingHours + "<tr><td>" + openArray + ":</td>";
+					}
+					openArray = opening[i].match(/[0-9:]+-[0-9:]+|[0-9:+]+/);
+					if(openArray){
+		            openingHours = openingHours + "<td>" + openArray + "</td></tr>";
+					}
+					
 		        }
 		        openingHours = openingHours + " </table>";
 		    }
