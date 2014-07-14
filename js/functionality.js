@@ -230,7 +230,9 @@
 			deleteResults();
 			
 			for (var key in pubs){
-				console.log(pubs[key].events.length);
+				if (pubs[key].events.length > 0){
+					var eventContent = '<p class = "entry"><b>Event: </b>'+pubs[key].events[0].name+', '+pubs[key].events[0].type+', '+pubs[key].events[0].start+'</p>';					
+				}
 				var content = '<div data-role="collapsible" id="'+pubs[key].id+'">' +
 					'<h3>'+pubs[key].pubname+'</h3></br>' +
 					'<p class = "entry"><b>Adress:</b> '+pubs[key].street+' ' + pubs[key].housenr + ', ' + pubs[key].city +'</p>' +					
@@ -243,6 +245,7 @@
 					'<p class = "entry"><b>Mail: </b>'+pubs[key].email+'</p>' +
 					'<p class = "entry"><b>Food: </b>'+pubs[key].food+'</p>' +
 					'<p class = "entry"><b>Barrier free: </b>'+pubs[key].wheelchair+'</p>' +
+					eventContent +
 					'<img src="pubs/thumb/'+pubs[key].id+'.jpg" style="width:50%;"onerror=this.src="pubs/thumb/0.jpg" /></br>' +
 					'<button onclick="moveTo('+pubs[key]+','+pubs[key].lng+','+pubs[key].id+');">Move to</button></div>';
 
