@@ -56,8 +56,6 @@ $("#submit").click(function (e) {
 		end=end.replace(/\//g,"-");
 		start=start.replace(/\//g,"-");
 		}
-		alert(end);
-		alert(start);
     // default query string
     var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?bbox=" + bbox + "&start=" + start + "&end=" + end;
 
