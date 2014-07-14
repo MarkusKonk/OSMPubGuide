@@ -224,28 +224,27 @@
 
 
 		function createResultList(pubs){
-			var pubArray = pubs;
-
+			
 			$("#query").collapsible("option", "collapsed", true);
 			document.getElementById("result_text").style.display = "block";
 			deleteResults();
 			
-			for (var i = 0; i < pubArray.length; i++){
-				
-				var content = '<div data-role="collapsible" id="'+pubArray[i].id+'">' +
-					'<h3>'+pubArray[i].pubname+'</h3></br>' +
-					'<p class = "entry"><b>Adress:</b> '+pubArray[i].street+' ' + pubArray[i].housenr + ', ' + pubArray[i].city +'</p>' +					
-					'<p class = "entry"><b>Open:</b> '+pubArray[i].opening_hours+'</p>' +
-					'<p class = "entry"><b>Closed in </b> '+pubArray[i].tuc+' minutes</p>' +
-					'<p class = "entry"><b>Happy hour: </b>'+pubArray[i].happy_hour+'</p>' +
-					'<p class = "entry"><b>Cheapest beer: </b>'+pubArray[i].beerprice+'</p>' +					
-					'<a href="'+pubArray[i].website+'" target="_blank">Website</a></p>' +
-					'<p class = "entry"><b>Telephone:</b> '+pubArray[i].phone+'</p>' +
-					'<p class = "entry"><b>Mail: </b>'+pubArray[i].email+'</p>' +
-					'<p class = "entry"><b>Food: </b>'+pubArray[i].food+'</p>' +
-					'<p class = "entry"><b>Barrier free: </b>'+pubArray[i].wheelchair+'</p>' +
-					'<img src="pubs/thumb/'+pubArray[i].id+'.jpg" style="width:50%;"onerror=this.src="pubs/thumb/0.jpg" /></br>' +
-					'<button onclick="moveTo('+pubArray[i].lat+','+pubArray[i].lng+','+pubArray[i].id+');">Move to</button></div>';
+			for (var key in pubs){
+				console.log(pubs[key].events.length);
+				var content = '<div data-role="collapsible" id="'+pubs[key].id+'">' +
+					'<h3>'+pubs[key].pubname+'</h3></br>' +
+					'<p class = "entry"><b>Adress:</b> '+pubs[key].street+' ' + pubs[key].housenr + ', ' + pubs[key].city +'</p>' +					
+					'<p class = "entry"><b>Open:</b> '+pubs[key].opening_hours+'</p>' +
+					'<p class = "entry"><b>Closed in </b> '+pubs[key].tuc+' minutes</p>' +
+					'<p class = "entry"><b>Happy hour: </b>'+pubs[key].happy_hour+'</p>' +
+					'<p class = "entry"><b>Cheapest beer: </b>'+pubs[key].beerprice+'</p>' +					
+					'<a href="'+pubs[key].website+'" target="_blank">Website</a></p>' +
+					'<p class = "entry"><b>Telephone:</b> '+pubs[key].phone+'</p>' +
+					'<p class = "entry"><b>Mail: </b>'+pubs[key].email+'</p>' +
+					'<p class = "entry"><b>Food: </b>'+pubs[key].food+'</p>' +
+					'<p class = "entry"><b>Barrier free: </b>'+pubs[key].wheelchair+'</p>' +
+					'<img src="pubs/thumb/'+pubs[key].id+'.jpg" style="width:50%;"onerror=this.src="pubs/thumb/0.jpg" /></br>' +
+					'<button onclick="moveTo('+pubs[key]+','+pubs[key].lng+','+pubs[key].id+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
 				

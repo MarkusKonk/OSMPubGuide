@@ -106,7 +106,7 @@ $("#submit").click(function (e) {
 	
 	function ajaxrequest(query)
 	{// request using jQuery
-		console.log(query); //just for testing
+		//console.log(query); //just for testing
 		$.ajax({
 			type: "GET",
 			url: query,
@@ -129,7 +129,7 @@ $("#submit").click(function (e) {
 	function parseXML(xml)
 	{		 	
 		//	The following array will contain all pubs, each entry is an object of type newPub.
-		var allpubs = new Array();
+		var allpubs = {};
 		var allevents = new Array();
 		
 		deleteAllMarkerandPopups();
@@ -197,13 +197,10 @@ $("#submit").click(function (e) {
 			//has to be filled with all attributes.
 			var pub = new newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode, adresscity, adresscountry, email, phone, website, food, wheelchair, beerprice, outdoor_seatings, opening_hours, happy_hour, tuc);
 			
-			allpubs.push(pub);
-			console.log(pub);
+			allpubs[""+id+""] = pub;
+//			console.log(id);
 		});
-		
-		//function does not exist, will be defined later by Markus
-		createResultList(allpubs);
-		
+				
 		//events
 		$(xml).find('event').each(function(){
 			var ev_id = $(this).attr('id');
@@ -231,7 +228,7 @@ $("#submit").click(function (e) {
 			//has to be filled with all attributes.
 			var event = new newEvent(ev_id, ev_start, ev_end, ev_name, ev_type, ev_description, ev_cost);
 			allevents.push(event);
-			console.log(allevents);
+			//console.log(allevents);
 			
 		}); //end events
 		
@@ -259,10 +256,12 @@ $("#submit").click(function (e) {
 				if (eventid == allevents[i].id)
 				{
 					allevents[i].idpub = nodeid;
+					allpubs[""+nodeid+""].events.push(allevents[i]);
 				}
 			}
 		});
-		
+		console.log(allpubs);
+		createResultList(allpubs);
 		if (count==false)
 		{
 			window.alert("No results found for your query!");
@@ -289,6 +288,7 @@ function newPub(id, lat, lng, pubName, type, adressstreet, adressnr, adresscode,
 	this.opening_hours = opening_hours;
 	this.happy_hour = happy_hour;
 	this.tuc = tuc;
+	this.events = [];
 }
 
 function newEvent(ev_id, ev_start, ev_end, ev_name, ev_type, ev_description, ev_cost){
