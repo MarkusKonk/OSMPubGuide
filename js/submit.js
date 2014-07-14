@@ -7,6 +7,7 @@ $("#submit").click(function (e) {
 	//default bounding box
     var bbox = getBbox();
     console.log("bbox submit: ",bbox);
+	areaSelect.remove();
     //get query parameters
     var start = $("#datePickerStart").val();
 	if (start=="")
