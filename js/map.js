@@ -104,10 +104,16 @@
 		
 		$( "#query" ).collapsible({
 			expand: function() { 
-				$('#boundingbox').closest('.ui-btn').show();
+				var appname = navigator.userAgent.toLowerCase();
+				if(appname.search("mobile")==-1 && appname.search("firefox")==-1){
+					$('#boundingbox').closest('.ui-btn').show();
+				}
 			},
 			collapse: function() { 
-				$('#boundingbox').closest('.ui-btn').hide();
+				var appname = navigator.userAgent.toLowerCase();
+				if(appname.search("mobile")==-1 && appname.search("firefox")==-1){
+					$('#boundingbox').closest('.ui-btn').hide();
+				}
 			}
 		});
 		
