@@ -293,3 +293,19 @@
 				}
 			}
 		}
+		
+		//just one event type
+		$("#cbConcert").click(function () {
+			$("#cbSport").attr("checked",false).checkboxradio("refresh"); 
+			$("#cbParty").attr("checked",false).checkboxradio("refresh"); 
+		});
+		
+		$("#cbSport").click(function () {
+			$("#cbConcert").attr("checked",false).checkboxradio("refresh"); 
+			$("#cbParty").attr("checked",false).checkboxradio("refresh"); 
+		});
+		
+		$("#cbParty").click(function () {
+			$("#cbSport").attr("checked",false).checkboxradio("refresh"); 
+			$("#cbConcert").attr("checked",false).checkboxradio("refresh"); 
+		});
