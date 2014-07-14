@@ -25,7 +25,7 @@ $("#submit").click(function (e) {
 	$('input[name="radio-choice-h-6"]:checked').each(function() {
 		maximumBeerPrice = this.value;
 	});
-
+	
     // get checked event types
     var eventType = "";
     if ($("#cbConcert").is(":checked")) {
@@ -92,12 +92,11 @@ $("#submit").click(function (e) {
 					query = query + "," + key;
 				}
                 
-				console.log(count);
 				count = count+1;
             }
         }
-        if (!maximumBeerPrice == "" || count>0) query = query + ",maximumBeerPrice=" + maximumBeerPrice;
-		else if (!maximumBeerPrice == "" || count==0) query = query + "maximumBeerPrice=" + maximumBeerPrice;
+        if (!maximumBeerPrice == "" && count>0) query = query + ",maximumBeerPrice=" + maximumBeerPrice;
+		else if (!maximumBeerPrice == "" && count==0) query = query + "maximumBeerPrice=" + maximumBeerPrice;
 	ajaxrequest(query);
     
 	});
@@ -214,7 +213,8 @@ $("#submit").click(function (e) {
 			var ev_cost="";
 			
 			$(this).find('tag').each(function(){
-				
+			var actk = $(this).attr('k');
+			
 				switch(actk){
 				case "name" : ev_name = $(this).attr('v'); break;
 				case "type" : ev_type = $(this).attr('v'); break;
@@ -228,12 +228,15 @@ $("#submit").click(function (e) {
 			//has to be filled with all attributes.
 			var event = new newEvent(ev_id, ev_start, ev_end, ev_name, ev_type, ev_description, ev_cost);
 			allevents.push(event);
+			console.log(allevents);
 			
 		}); //end events
 		
 		//relations
+		
 		$(xml).find('relation').each(function(){
 			$(this).find('member').each(function(){
+				var acttype = $(this).attr('type');
 				//node
 				if (acttype == 'node')
 				{
@@ -248,7 +251,11 @@ $("#submit").click(function (e) {
 			});
 			
 			//for number of objects in event do: check if the current eventid is eventid then insert pubid, else go to the next
-			for (i=0; allevents.length; i++){
+			for (var i=0; i<=allevents.length-1; i++){
+			
+				console.log(eventid);
+				console.log(allevents[i].id);
+				
 				if (eventid == allevents[i].id)
 				{
 					allevents[i].pubid = nodeid;
