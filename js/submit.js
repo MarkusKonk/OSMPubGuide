@@ -63,6 +63,9 @@ $("#submit").click(function (e) {
 		start=start.substr(0, 10) + "T" + start.substr(11);
 		end=end.substr(0, 10) + "T" + end.substr(11);
 		}
+		start=start.replace("Z","");
+		end=end.replace("Z","");
+		
     // default query string
     var query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=" + bbox + "&start=" + start +":00" + "&end=" + end +":00";
 
