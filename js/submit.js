@@ -7,7 +7,8 @@ $("#submit").click(function (e) {
 	//default bounding box
     var bbox = getBbox();
     console.log("bbox submit: ",bbox);
-	areaSelect.remove();
+	if (areaSelect)
+		areaSelect.remove();
     //get query parameters
     var start = $("#datePickerStart").val();
 	if (start=="")
@@ -308,7 +309,7 @@ function getBbox() {
 		   bbox = areaSelect.getBounds()._southWest.lat + "," + areaSelect.getBounds()._southWest.lng + "," + areaSelect.getBounds()._northEast.lat + "," + areaSelect.getBounds()._northEast.lng;
 	}
 	else {
-		bbox = "51.967,7.6,51.95,7.66"
+		bbox = "51.95,7.6,51.967,7.66"
 	}
 	return bbox;
 }
