@@ -49,7 +49,21 @@
 		    $(".ui-panel-inner").scroll();
 		    $('.ui-panel-inner').animate({scrollTop: position}, 0);
 		}
-
+   function loadPicture(id){
+		var picture=$("#picture_"+id).html();
+				if(picture==""){
+				  $.ajax({
+                  url:'pubs/thumb/'+id + '.jpg',
+                  type:'HEAD',
+			      async: false,
+                  success: function(){
+                  picture =  "<img src='pubs/thumb/" + id + ".jpg' style = 'height:80px;'/>";
+				  $("#picture_"+id).html(picture);
+                  }
+                  });
+			     }
+		
+		}
 		var markers = new L.MarkerClusterGroup();			
 		
 		function addMarker(marker, type) {
@@ -114,18 +128,7 @@
 		        var m = e.target;
 		        var x = map.latLngToContainerPoint(m.getLatLng(), zoom).x;
 		        var y = map.latLngToContainerPoint(m.getLatLng(), zoom).y;
-				var picture=$("#picture_"+id).html();
-				if(picture==""){
-				  $.ajax({
-                  url:'pubs/thumb/'+id + '.jpg',
-                  type:'HEAD',
-			      async: false,
-                  success: function(){
-                  picture =  "<img src='pubs/thumb/" + id + ".jpg' style = 'height:80px;'/>";
-				  $("#picture_"+id).html(picture);
-                  }
-                  });
-			     }
+				loadPicture(id);
 		        $("#popup_" + id + "").popup('open', {
 		            x: x + iconPopupWidth,
 		            y: y + iconPopupHeight,
@@ -134,7 +137,7 @@
 		    });
 			
 		}
-	
+	 
 		
 		var popup = L.popup();
 
@@ -251,6 +254,7 @@
 		
 		function moveTo(lat,lng,id) {
 		    map.setView([lat, lng], 20);
+			loadPicture(id);
 			$("#popup_" + id + "").popup('open');
 			$("#leftpanel2").panel("close");
 		}
