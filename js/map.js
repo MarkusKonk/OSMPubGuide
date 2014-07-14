@@ -85,6 +85,7 @@
 		// add Layers Control to mmap
 		$(document).ready(function () {
 			
+			$('#boundingbox').closest('.ui-btn').hide();
 			var appname = navigator.userAgent.toLowerCase();
 			var now=getnow();
 		    if(appname.search("mobile")==-1){
@@ -101,6 +102,14 @@
 			// set current date and time as default value in the datepicker
 		});
 		
+		$( "#query" ).collapsible({
+			expand: function() { 
+				$('#boundingbox').closest('.ui-btn').show();
+			},
+			collapse: function() { 
+				$('#boundingbox').closest('.ui-btn').hide();
+			}
+		});
 		
 		function setBbox() {
 			var bbox;
