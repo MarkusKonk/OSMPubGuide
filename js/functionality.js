@@ -248,7 +248,7 @@
 					'<p class = "entry"><b>Barrier free: </b>'+pubs[key].wheelchair+'</p>' +
 					eventContent +
 					'<img src="pubs/thumb/'+pubs[key].id+'.jpg" style="width:50%;"onerror=this.src="pubs/thumb/0.jpg" /></br>' +
-					'<button onclick="moveTo('+pubs[key]+','+pubs[key].lng+','+pubs[key].id+');">Move to</button></div>';
+					'<button onclick="moveTo('+pubs[key].lat+','+pubs[key].lng+','+pubs[key].id+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
 				
