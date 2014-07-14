@@ -98,7 +98,7 @@
 		        openingHours = openingHours + " </table>";
 		    }
 			var picture="";
-	        if(website.search("http")==-1){
+	        if(website.search("www")!=-1&&website.search("http")==-1){
 			website="http://"+website;
 			}
 			//create popup element
