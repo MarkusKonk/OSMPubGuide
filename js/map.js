@@ -71,12 +71,12 @@
 		if (map.hasLayer(day)) {
 		map.removeLayer(day);
 		night.addTo(map);
-		document.getElementById('layerswitcher').innerHTML = 'Day view';
+		document.getElementById('layerswitcher').innerHTML = 'Day';
 		}
 		else {
 		map.removeLayer(night);
 		day.addTo(map);
-		document.getElementById('layerswitcher').innerHTML = 'Night view';
+		document.getElementById('layerswitcher').innerHTML = 'Night';
 		}
 		}
 
