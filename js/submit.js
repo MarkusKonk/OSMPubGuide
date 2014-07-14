@@ -60,6 +60,8 @@ $("#submit").click(function (e) {
 		if(appname.search("mobile")==-1){
 		end=end.replace(/\//g,"-");
 		start=start.replace(/\//g,"-");
+		start=start.substr(0, 10) + "T" + start.substr(11);
+		end=end.substr(0, 10) + "T" + end.substr(11);
 		}
     // default query string
     var query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=" + bbox + "&start=" + start +":00";
