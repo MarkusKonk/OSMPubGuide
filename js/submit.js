@@ -79,16 +79,25 @@ $("#submit").click(function (e) {
     filter["isBarrierFree"] = isBarrierFree;
 
     // adding boolean query parameters and beer price to the query
-    if (filter.length > 0 || !maximumBeerPrice == "") {
-        query = query + "&filter=";
+        
+		var count = 0
         for (var key in filter) {
             if (filter[key] == true) {
-                query = query + key + ",";
+				if (count==0)
+				{
+					query = query + "&filter="+key;
+				}
+				if (count>0)
+				{
+					query = query + "," + key;
+				}
+                
+				console.log(count);
+				count = count+1;
             }
         }
-        if (!maximumBeerPrice == "") query = query + "maximumBeerPrice=" + maximumBeerPrice;
-        else query.slice(0, -1); //remove unnecessary comma at the end
-    }
+        if (!maximumBeerPrice == "" || count>0) query = query + ",maximumBeerPrice=" + maximumBeerPrice;
+		else if (!maximumBeerPrice == "" || count==0) query = query + "maximumBeerPrice=" + maximumBeerPrice;
 	ajaxrequest(query);
     
 	});
