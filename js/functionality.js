@@ -230,6 +230,7 @@
 			deleteResults();
 			
 			for (var key in pubs){
+				var eventContent = '';
 				if (pubs[key].events.length > 0){
 					var eventContent = '<p class = "entry"><b>Event: </b>'+pubs[key].events[0].name+', '+pubs[key].events[0].type+', '+pubs[key].events[0].start+'</p>';					
 				}
