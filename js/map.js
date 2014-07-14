@@ -83,8 +83,6 @@
 
 		// add Layers Control to mmap
 		$(document).ready(function () {
-		console.log(map.hasLayer(day));
-		console.log(map.hasLayer(night));
 			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.95&west=7.6&north=51.967&east=7.644")
 			// set current date and time as default value in the datepicker
 			$("#datePickerStart").val(getnow());
