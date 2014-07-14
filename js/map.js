@@ -86,9 +86,10 @@
 			$("#datePickerStart").val(getnow());
 			var start = $("#datePickerStart").val();
 			query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=51.95,7.6,51.967,7.644" +"&start=" + start +":00";
-			console.log(query);
 			ajaxrequest(query)
 			// set current date and time as default value in the datepicker
 		});
+		
+		
 
 

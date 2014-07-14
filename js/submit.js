@@ -10,6 +10,11 @@ $("#submit").click(function (e) {
     console.log("bbox submit2: ",bbox);
     //get query parameters
     var start = $("#datePickerStart").val();
+	if (start=="")
+	{
+		$("#datePickerStart").val(getnow());
+		var start = $("#datePickerStart").val();
+	}
     var end = $("#datePickerEnd").val();
     var hasFood = $("#cbFood").is(":checked");
     var hasOutdoorSeats = $("#outside").is(":checked");
@@ -57,7 +62,7 @@ $("#submit").click(function (e) {
 		start=start.replace(/\//g,"-");
 		}
     // default query string
-    var query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=" + bbox + "&start=" + start +":00" +"&end=" + end+":00";
+    var query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=" + bbox + "&start=" + start +":00";
 
     //add events 
     if (!eventType == "") {
@@ -296,7 +301,7 @@ function setBbox() {
 		});
 	}
 	else {
-		bbox = "51.967,7.6,51.95,7.66"
+		bbox = "51.95,7.6,51.967,7.66"
 	}
 	return bbox;
 }
