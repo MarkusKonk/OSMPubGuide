@@ -144,21 +144,30 @@
 		// cheapest beer
 		$("#price").click(function () {
 			deleteAllMarkerandPopups()
-			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.95&west=7.6&north=51.967&east=7.644&filter=maximumBeerPrice=2")
+			$("#datePickerStart").val(getnow());
+			var start = $("#datePickerStart").val();
+			query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=51.95,7.6,51.967,7.644" +"&start=" + start +":00&filter=maximumBeerPrice=2";
+			ajaxrequest(query)
 			$("#leftpanel2").panel("open");
 		});
 		
 		// all opened pubs
 		$("#open").click(function () {
 			deleteAllMarkerandPopups()
-			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.95&west=7.6&north=51.967&east=7.644")
+			$("#datePickerStart").val(getnow());
+			var start = $("#datePickerStart").val();
+			query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=51.95,7.6,51.967,7.644" +"&start=" + start +":00";
+			ajaxrequest(query)
 			$("#leftpanel2").panel("open");
 		});
 		
 		// pubs serving food
 		$("#food").click(function () {
 			deleteAllMarkerandPopups()
-			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.95&west=7.6&north=51.967&east=7.644&filter=hasFood")
+			$("#datePickerStart").val(getnow());
+			var start = $("#datePickerStart").val();
+			query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=51.95,7.6,51.967,7.644" +"&start=" + start +":00&filter=hasFood";
+			ajaxrequest(query)
 			$("#leftpanel2").panel("open");
 		});
 

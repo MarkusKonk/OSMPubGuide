@@ -38,10 +38,10 @@ $("#submit").click(function (e) {
     }
 
 
-    // if end time is empty, endtime = starttime + 24h
+    // if end time is empty, endtime = starttime + 6hh
     if (end == "") {
         var temp = new Date(start);
-        temp.setHours(parseInt(temp.getHours()) + 24);
+        temp.setHours(parseInt(temp.getHours()) + 6);
         var month = "";
         var minutes = "";
         if ((parseInt(temp.getMonth()) + 1) < 10) month = "0" + parseInt(temp.getMonth() + 1);
@@ -57,7 +57,7 @@ $("#submit").click(function (e) {
 		start=start.replace(/\//g,"-");
 		}
     // default query string
-    var query = "http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?bbox=" + bbox + "&start=" + start + "&end=" + end;
+    var query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=" + bbox + "&start=" + start +":00" +"&end=" + end+":00";
 
     //add events 
     if (!eventType == "") {

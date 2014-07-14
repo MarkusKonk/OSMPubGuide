@@ -83,9 +83,12 @@
 
 		// add Layers Control to mmap
 		$(document).ready(function () {
-			ajaxrequest("http://giv-openpubguide.uni-muenster.de:8080/de.ifgi.ohbpgiosm/rest/pubs/getpubswithinbbox?south=51.95&west=7.6&north=51.967&east=7.644")
-			// set current date and time as default value in the datepicker
 			$("#datePickerStart").val(getnow());
+			var start = $("#datePickerStart").val();
+			query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=51.95,7.6,51.967,7.644" +"&start=" + start +":00";
+			console.log(query);
+			ajaxrequest(query)
+			// set current date and time as default value in the datepicker
 		});
 
 
