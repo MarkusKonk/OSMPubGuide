@@ -5,9 +5,8 @@ $("#submit").click(function (e) {
 	$(".ui-btn-active").removeClass('ui-btn-active');
 	
 	//default bounding box
-    var bbox = setBbox();
-    //var bbox = "51.967,7.6,51.95,7.66";
-    console.log("bbox submit2: ",bbox);
+    var bbox = getBbox();
+    console.log("bbox submit: ",bbox);
     //get query parameters
     var start = $("#datePickerStart").val();
 	if (start=="")
@@ -302,24 +301,13 @@ function newEvent(ev_id, ev_start, ev_end, ev_name, ev_type, ev_description, ev_
 	this.cost = ev_cost;
 }
 
-// Add functionality for adding the BBox-Tool
-function setBbox() {
+function getBbox() {
 	var bbox;
 	if (b_box) {
-		// Add it to the map
-		var areaSelect = L.areaSelect({width:200, height:300});
-		areaSelect.addTo(map);
-		
-		// Read the bouding box
-		var bounds = areaSelect.getBounds();
-		
-		// Get a callback when the bounds change
-		areaSelect.on("change", function() {
-		    bbox = this.getBounds()._southWest.lat + "," + this.getBounds()._southWest.lng + "," + this.getBounds()._northEast.lat + "," + this.getBounds()._northEast.lng;
-		});
+		   bbox = areaSelect.getBounds()._southWest.lat + "," + areaSelect.getBounds()._southWest.lng + "," + areaSelect.getBounds()._northEast.lat + "," + areaSelect.getBounds()._northEast.lng;
 	}
 	else {
-		bbox = "51.95,7.6,51.967,7.66"
+		bbox = "51.967,7.6,51.95,7.66"
 	}
 	return bbox;
 }
