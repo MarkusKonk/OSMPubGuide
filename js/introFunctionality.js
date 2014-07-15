@@ -19,7 +19,7 @@
 				{
 		            element: '.leaflet-control-locate',
 		            intro: 'With this button you can find your actual location.',
-		            position: 'bottom',
+		            position: 'left',
 
 		        }, 
 
