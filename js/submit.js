@@ -62,7 +62,11 @@ $("#submit").click(function (e) {
 		if(appname.search("mobile")==-1){
 		end=end.replace(/\//g,"-");
 		start=start.replace(/\//g,"-");
+		}
+		if(start.search("T")==-1){
 		start=start.substr(0, 10) + "T" + start.substr(11);
+		}
+		if(end.search("T")==-1){
 		end=end.substr(0, 10) + "T" + end.substr(11);
 		}
 		start=start.replace("Z","");
