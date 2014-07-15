@@ -87,15 +87,12 @@
 			
 			$('#boundingbox').closest('.ui-btn').hide();
 			var appname = navigator.userAgent.toLowerCase();
-			var now=getnow();
+			var now1=getnow();
 		    if(appname.search("mobile")==-1){
-		    now=now.replace(/-/g,"/");
-		    now=now.replace("T"," ");
-			$("#datePickerStart").val(now);
+		    now1=now1.replace(/-/g,"/");
 		    }
-		    else{
-		    $("#datePickerStart").val(now);
-		    }
+			now1=now1.replace(/[T]/," ");
+		    $("#datePickerStart").val(now1);
 			var start = getnow();
 			query = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?bbox=51.95,7.6,51.967,7.644" +"&start=" + start +":00";
 			ajaxrequest(query)
