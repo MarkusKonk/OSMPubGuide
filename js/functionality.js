@@ -231,7 +231,9 @@
 			
 			for (var key in pubs){
 				var eventContent = '';
+				//console.log(pubs[key].events.length);
 				if (pubs[key].events.length > 0){
+				console.log(pubs[key].events.length);
 					var time = pubs[key].events[0].start.split('.');
 						time = time[0].replace('T',', ')
 					var eventContent = '<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">'+

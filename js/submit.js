@@ -202,7 +202,7 @@ $("#submit").click(function (e) {
 			allpubs[""+id+""] = pub;
 //			console.log(id);
 		});
-				
+				//console.log(allpubs);
 		//events
 		$(xml).find('event').each(function(){
 			var ev_id = $(this).attr('id');
@@ -258,12 +258,13 @@ $("#submit").click(function (e) {
 				if (eventid == allevents[i].id)
 				{
 					allevents[i].idpub = nodeid;
-					if (allpubs.length < 1 ){
-					allpubs[""+nodeid+""].events.push(allevents[i]);}
+					if (Object.keys(allpubs).length > 0 ){
+						allpubs[""+nodeid+""].events.push(allevents[i]);
+					}
 				}
 			}
 		});
-		console.log(allpubs);
+		//console.log(allpubs);
 		createResultList(allpubs);
 		if (count==false)
 		{
