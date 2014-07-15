@@ -119,17 +119,25 @@
 		
 		function setBbox() {
 			var bbox;
-			b_box=true;
-				// Add it to the map
-			areaSelect = L.areaSelect({width:200, height:300});
-			areaSelect.addTo(map);
+			if (b_box==false)
+			{
+				b_box=true;
+					// Add it to the map
+				areaSelect = L.areaSelect({width:200, height:300});
+				areaSelect.addTo(map);
 		
-			// Read the bouding box
-			var bounds = areaSelect.getBounds();
+				// Read the bouding box
+				var bounds = areaSelect.getBounds();
 		
-			// Get a callback when the bounds change
-			areaSelect.on("change", function() {
-				bbox = this.getBounds()._southWest.lat + "," + this.getBounds()._southWest.lng + "," + this.getBounds()._northEast.lat + "," + this.getBounds()._northEast.lng;
-				console.log(bbox);
-			});
+				// Get a callback when the bounds change
+				areaSelect.on("change", function() {
+					bbox = this.getBounds()._southWest.lat + "," + this.getBounds()._southWest.lng + "," + this.getBounds()._northEast.lat + "," + this.getBounds()._northEast.lng;
+					console.log(bbox);
+				});
+			}
+			else
+			{
+				areaSelect.remove(map);
+				b_box=false;
+			}
 			}
