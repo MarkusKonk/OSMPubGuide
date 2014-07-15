@@ -139,7 +139,7 @@ L.AreaSelect = L.Class.extend({
             element.style.height = dimension.height + "px";
             element.style.top = dimension.top + "px";
             element.style.left = dimension.left + "px";
-            element.style.bottom = dimension.bottom + "px";
+            element.style.bottom = (dimension.bottom - 67) + "px";
             element.style.right = dimension.right + "px";
         }
         
