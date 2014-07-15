@@ -113,6 +113,11 @@
 				var appname = navigator.userAgent.toLowerCase();
 				if(appname.search("mobile")==-1 && appname.search("firefox")==-1){
 					$('#boundingbox').closest('.ui-btn').hide();
+					if (b_box==true)
+					{
+						areaSelect.remove(map);
+						b_box=false;
+					}
 				}
 			}
 		});
