@@ -240,7 +240,7 @@
 					'<p class = "entry"><b>Open:</b> '+pubs[key].opening_hours+'</p>' +
 					'<p class = "entry"><b>Closed in </b> '+pubs[key].tuc+' minutes</p>' +
 					'<p class = "entry"><b>Happy hour: </b>'+pubs[key].happy_hour+'</p>' +
-					'<p class = "entry"><b>Cheapest beer: </b>'+pubs[key].beerprice+'</p>' +					
+					'<p class = "entry"><b>Beer: </b>'+pubs[key].beerprice+' €</p>' +					
 					'<a href="'+pubs[key].website+'" target="_blank">Website</a></p>' +
 					'<p class = "entry"><b>Telephone:</b> '+pubs[key].phone+'</p>' +
 					'<p class = "entry"><b>Mail: </b>'+pubs[key].email+'</p>' +
