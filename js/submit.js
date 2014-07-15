@@ -258,7 +258,8 @@ $("#submit").click(function (e) {
 				if (eventid == allevents[i].id)
 				{
 					allevents[i].idpub = nodeid;
-					allpubs[""+nodeid+""].events.push(allevents[i]);
+					if (allpubs.length < 1 ){
+					allpubs[""+nodeid+""].events.push(allevents[i]);}
 				}
 			}
 		});
