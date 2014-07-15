@@ -1,7 +1,7 @@
 		var lon = 7.6286;
 		var lat = 51.9629;
 		var zoom = 14;
-		var zoomPosition = 'topleft';
+		var zoomPosition = 'topright';
 		var searchPosition = 'topcenter';
 		var b_box = false;
 		var areaSelect; 
@@ -37,7 +37,7 @@
 
 		 //Leaflet.Locator: Current Location  
 		L.control.locate({
-		    position: 'topleft', // set the location of the control
+		    position: 'topright', // set the location of the control
 		    drawCircle: true, // controls whether a circle is drawn that shows the uncertainty about the location
 		    follow: false, // follow the user's location
 		    setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true

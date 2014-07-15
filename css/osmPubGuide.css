@@ -117,3 +117,9 @@ padding-bottom:3%
 .entry{
 	margin-top:-4%;
 }
+
+.layer{
+position: fixed;
+top: 105px;
+right: 9px;
+}
