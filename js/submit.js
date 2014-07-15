@@ -9,6 +9,7 @@ $("#submit").click(function (e) {
     console.log("bbox submit: ",bbox);
 	if (bbox!="51.95,7.6,51.967,7.66")
 		areaSelect.remove(map);
+		b_box=false;
     //get query parameters
     var start = $("#datePickerStart").val();
 	if (start=="")
