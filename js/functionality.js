@@ -232,7 +232,15 @@
 			for (var key in pubs){
 				var eventContent = '';
 				if (pubs[key].events.length > 0){
-					var eventContent = '<p class = "entry"><b>Event: </b>'+pubs[key].events[0].name+', '+pubs[key].events[0].type+', '+pubs[key].events[0].start+'</p>';					
+					var time = pubs[key].events[0].start.split('.');
+						time = time[0].replace('T',', ')
+					var eventContent = '<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">'+
+										'<h4>Event 1: '+pubs[key].events[0].name+'</h4>'+
+										'<ul data-role="listview" data-inset="false">';
+						eventContent = eventContent + 	'<li>' + pubs[key].events[0].name + '</li>'+
+														'<li>' + pubs[key].events[0].type + '</li>'+ 
+														'<li>' + time + '</li>';					
+						eventContent = eventContent +'</ul></div>'; console.log(pubs[key].events[0].start);
 				}
 				var content = '<div data-role="collapsible" id="'+pubs[key].id+'">' +
 					'<h3>'+pubs[key].pubname+'</h3></br>' +
@@ -240,14 +248,14 @@
 					'<p class = "entry"><b>Open:</b> '+pubs[key].opening_hours+'</p>' +
 					'<p class = "entry"><b>Closed in </b> '+pubs[key].tuc+' minutes</p>' +
 					'<p class = "entry"><b>Happy hour: </b>'+pubs[key].happy_hour+'</p>' +
-					'<p class = "entry"><b>Beer: </b>'+pubs[key].beerprice+' €</p>' +					
+					'<p class = "entry"><b>Beerprice: </b>'+pubs[key].beerprice+' €</p>' +					
 					'<a href="'+pubs[key].website+'" target="_blank">Website</a></p>' +
 					'<p class = "entry"><b>Telephone:</b> '+pubs[key].phone+'</p>' +
 					'<p class = "entry"><b>Mail: </b>'+pubs[key].email+'</p>' +
 					'<p class = "entry"><b>Food: </b>'+pubs[key].food+'</p>' +
 					'<p class = "entry"><b>Barrier free: </b>'+pubs[key].wheelchair+'</p>' +
-					eventContent +
 					'<img src="pubs/thumb/'+pubs[key].id+'.jpg" style="width:50%;"onerror=this.src="pubs/thumb/0.jpg" /></br>' +
+					eventContent +
 					'<button onclick="moveTo('+pubs[key].lat+','+pubs[key].lng+','+pubs[key].id+');">Move to</button></div>';
 
 				$("#result").append(content).collapsibleset("refresh");
